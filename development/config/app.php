@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        /*
+         * Project - Service Provider
+         */
+        App\Modules\ModulesServiceProvider::class
+
     ],
 
     /*

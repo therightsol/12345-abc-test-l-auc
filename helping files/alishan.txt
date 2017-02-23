@@ -1,0 +1,28 @@
+Create Modules:
+---------------
+http://kamranahmed.info/blog/2015/12/03/creating-a-modular-application-in-laravel/
+
+
+
+Traits:
+-------
+https://www.sitepoint.com/using-traits-in-php-5-4/
+
+
+
+Interfaces vs Traits:
+---------------------
+Traits uses to reuse of code. 
+Interfaces provides only signatures not the functionality. the class that is implementing function must need to provide function body.
+all methods in interface must be public. 
+
+
+
+ServiceProvider in Laravel:
+---------------------------
+If you open the config/app.php file included with Laravel, you will see a providers array. These are all of the service provider classes that will be loaded for your application. 
+
+
+composer autoload command:
+--------------------------
+composer dump-autoload
