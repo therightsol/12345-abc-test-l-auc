@@ -7,7 +7,8 @@
  */
 
 
-$factory(App\Modules\UserModel::class, function ($faker) {
+
+$factory(\Modules\Users\Entities\UserModel::class, function ($faker) {
 
     $firstName = $faker->firstName;
     $lastName = $faker->lastName;
@@ -21,14 +22,140 @@ $factory(App\Modules\UserModel::class, function ($faker) {
         'email' => $faker->email,
         'password' => bcrypt($password),
         'url' => $faker->url,
-        'picture' => $faker->imageUrl(400,400, 'people'),
+        'profile_picture' => $faker->imageUrl(400,400, 'people'),
         'contact_number' => '0' . $faker->numberBetween(300,350) . '-' . $faker->numberBetween(1000000,9999999),
         'user_role'       =>  $faker->randomElement(['admin', 'staff', 'auctioneer', 'bidder']),
+        'updated_by'      => null,
         'deleted_at' => null,
         'created_at' => Carbon\Carbon::now('Asia/Karachi'),
         'updated_at' => Carbon\Carbon::now('Asia/Karachi')
     ];
 });
+
+
+$factory(\Modules\Cars\Entities\CarsModel::class, function ($faker) {
+
+
+    $users_des = \Modules\Users\Entities\UserModel::orderBy('id', 'desc')->get();
+    $users_asc = \Modules\Users\Entities\UserModel::orderBy('id', 'asc')->get();
+
+    $engine_types_des = \Modules\EngineTypes\Entities\EngineTypeModel::orderBy('id', 'desc')->get();
+    $engine_types_asc = \Modules\EngineTypes\Entities\EngineTypeModel::orderBy('id', 'asc')->get();
+
+
+    $car_models_des = \Modules\CarModels\Entities\CarModelsModel::orderBy('id', 'desc')->get();
+    $car_models_asc = \Modules\CarModels\Entities\CarModelsModel::orderBy('id', 'asc')->get();
+
+
+
+    //dd($users_des[0]->id);
+
+
+    $min_price = $faker->numberBetween(200000, 3000000);
+    $average_price = $faker->numberBetween(300000+$min_price, 9999999);
+
+
+
+    return [
+        'uid' => mt_rand($users_asc[0]->id, $users_des[0]->id),
+        'title' =>  $faker->userName . ' car',
+        'average_price' => $average_price,
+        'minimum_price' =>  $min_price,
+        'manufacturing_year'    =>  \Carbon\Carbon::create($faker->year),
+        'model' => mt_rand($car_models_asc[0]->id, $car_models_des[0]->id),
+        'engine_type'   =>  mt_rand($engine_types_asc[0]->id, $engine_types_des[0]->id),
+        'trim'          =>  $faker->randomElement(['LE', 'XLE', 'Limited', "ABC"]),
+        'exterior_color'    => $faker->hexColor,
+        'interior_color'    =>  $faker->hexColor,
+        'grade'          =>  $faker->randomElement(['A', 'B', 'C', "D"]),
+        'kilometers'    => $faker->numberBetween(800, 99999),
+        'engine_number' => $faker->randomLetter . $faker->numberBetween(1, 9999999),
+        'chassis_number'    => $faker->randomLetter . $faker->randomLetter . $faker->randomLetter . $faker->numberBetween(1, 99959),
+        'number_plate'    => $faker->randomLetter . $faker->randomLetter . $faker->randomLetter . $faker->numberBetween(1, 9999),
+        'city_of_registration'    => $faker->randomElement(['Lahore', 'Karachi', 'Islamabad', 'Peshawar', 'Multan', 'Sialkot', 'Sukkhur', 'Rawalpindi']),
+        'transmission'    => $faker->randomElement(['automatic', 'manual']),
+        'body_type'    => $faker->randomElement(['Hatchback', 'Sedan', 'MUV/SUV', 'Coupe', 'Convertible', 'Wagon', 'Van', 'Jeep' ]),
+        'drivetrain'    => $faker->randomElement(['FWD', 'RWD', 'MUV/SUV', '4WD' ]),
+        'deleted_at' => null,
+        'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+        'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+    ];
+});
+
+
+
+$factory(\Modules\CarModels\Entities\CarModelsModel::class, function ($faker) {
+
+    $companies_des = \Modules\CarCompanies\Entities\CarCompaniesModel::orderBy('id', 'desc')->get();
+    $companies_asc = \Modules\CarCompanies\Entities\CarCompaniesModel::orderBy('id', 'asc')->get();
+
+    return [
+        'car_company_id' => mt_rand($companies_asc[0]->id, $companies_des[0]->id),
+        'model_name' =>  $faker->randomElement(['Hyundai Galloper', 'Hyundai Santa Fe', 'Hyundai Accent Variants', 'Toyota Aygo', 'Toyota Avalon']),
+
+        'deleted_at' => null,
+        'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+        'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+    ];
+});
+
+
+$factory(\Modules\CarCompanies\Entities\CarCompaniesModel::class, function ($faker) {
+
+    return [
+        'company_name' => $faker->randomElement(['Hyundai', 'Toyota']),
+        'deleted_at' => null,
+        'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+        'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+    ];
+});
+
+
+
+$factory(\Modules\EngineTypes\Entities\EngineTypeModel::class, function ($faker) {
+
+    return [
+        'title' => $faker->randomElement(['External combustion (EC)', 'Internal Combustion (IC)', 'Diesel Engine', 'Petrol Engine']),
+        'deleted_at' => null,
+        'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+        'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+    ];
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
