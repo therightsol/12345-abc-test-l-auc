@@ -26,3 +26,19 @@ If you open the config/app.php file included with Laravel, you will see a provid
 composer autoload command:
 --------------------------
 composer dump-autoload
+
+
+
+Faker Helping Guide:
+--------------------
+https://github.com/fzaninotto/Faker
+
+
+Publish asset files in Laravel-Modules:
+---------------------------------------
+php artisan module:publish Blog
+
+
+Get information of all artisan commands for Laravel-Modules:
+-------------------------------------------------------------
+php artisan | grep module
