@@ -1,4 +1,4 @@
-@extends('admin.layouts.admin_app')
+@extends('commonbackend::layouts.admin_app')
 
 @section('content')
     <div id="content">
@@ -8,15 +8,15 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-head">
-                                @include('admin.partials._section-head', ['pageTitle' => $pageTitle,'route' => route(getCreateRouteName())])
+                                @include('commonbackend::layouts._section-head', ['pageTitle' => $pageTitle,'route' => ''])
                             </div>
                             <div class="card-body dataTables_wrapper" style="padding-top: 0;">
-                                <form id="filters" action="{{ route(Route::currentRouteName()) }}">
-                                    @include('admin.partials._table-header')
+                                <form id="filters" action="#">
+                                    @include('commonbackend::layouts._table-header')
                                     @yield('table')
                                 </form>
                             </div><!--end .card-body -->
-                            @include('admin.partials._table-footer')
+                            @include('commonbackend::layouts._table-footer')
 
                         </div>
                     </div>
@@ -24,18 +24,18 @@
             </div>
         </section>
     </div>
-    @include('admin.users.includes.delete')
+    @include('commonbackend::layouts.confirm-modal')
 
 @endsection
 @section('js')
-    <script src="{{ asset('admin_assets/js/includes/h-functions.js') }}"></script>
+    <script src="{{ Module::asset('commonbackend:admin_assets/js/includes/h-functions.js') }}"></script>
     <script>
 
         $(document).ready(function () {
             $('table.dataTable').setTableOrder({
                 form: 'form#filters'
             });
-            deleteRow('{{ route(getDestroyRouteName(),'') }}');
+            deleteRow('#');
         })
     </script>
 @endsection

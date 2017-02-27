@@ -5,6 +5,8 @@ namespace Modules\Users\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Users\Entities\UserModel;
+use Modules\Users\Filters\Table\UsersFilters;
 
 class UsersController extends Controller
 {
@@ -12,9 +14,14 @@ class UsersController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request, UsersFilters $filters)
     {
-        return view('users::index');
+        $limit = ($request->has('limit')) ? $request->input('limit') : 10;
+        $users = UserModel::Filter($filters)
+            ->paginate($limit);
+
+        $perPage = $users->perPage();
+        return view('users::index', compact('users','perPage'));
     }
 
     /**
