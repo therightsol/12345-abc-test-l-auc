@@ -18,7 +18,7 @@ $factory(\Modules\Users\Entities\UserModel::class, function ($faker) {
         'full_name' => $firstName . ' ' . $lastName,
         'cnic'      => $faker->numberBetween(11111,99999) . '-' . $faker->numberBetween(1111111,9999999) . '-' . $faker->numberBetween(0, 9),
         'email' => $faker->email,
-        'password' => bcrypt($password),
+        'password' => Hash::make($password),
         'url' => $faker->url,
         'profile_picture' => $faker->imageUrl(400,400, 'people'),
         'contact_number' => '0' . $faker->numberBetween(300,350) . '-' . $faker->numberBetween(1000000,9999999),

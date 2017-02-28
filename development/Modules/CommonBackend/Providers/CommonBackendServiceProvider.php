@@ -2,6 +2,8 @@
 
 namespace Modules\CommonBackend\Providers;
 
+use Modules\CommonBackend\Http\Middleware\LoginCheckMiddleWare as LoginCheckMiddleware;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class CommonBackendServiceProvider extends ServiceProvider
@@ -13,16 +15,37 @@ class CommonBackendServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
+
+    public static $dashboardName = 'backend';
+
+    public static function getdashboardName()
+    {
+        return self::$dashboardName;
+    }
+
+
     /**
      * Boot the application events.
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+
+        $router->middleware('admin_login_check', LoginCheckMiddleware::class);
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('admin_login_check', LoginCheckMiddleware::class);
+
+    }
+
+    public function registerMiddleware(Router $router)
+    {
+        /* custom */
+        //$router->middleware('admin_login_check', \Modules\CommonBackend\Http\Middleware\LoginCheckMiddleWare::class);
+
     }
 
     /**

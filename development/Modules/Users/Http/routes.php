@@ -1,6 +1,13 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'backend/users', 'namespace' => 'Modules\Users\Http\Controllers'], function()
-{
-    Route::get('/', 'UsersController@index');
-});
+$dashboardName = \Modules\CommonBackend\Providers\CommonBackendServiceProvider::getdashboardName();
+
+Route::group(['middleware' => ['web', 'admin_login_check'], 'prefix' => $dashboardName .'/users', 'namespace' => 'Modules\Users\Http\Controllers'],
+    function(  ) use ($dashboardName) {
+        Route::get('/', 'UsersController@index');
+        //Route::get('/login', 'UsersController@login')->name($dashboardName . '-login');
+    });
+
+
+// For Base Controllers
+
