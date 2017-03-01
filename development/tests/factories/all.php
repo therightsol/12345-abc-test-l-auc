@@ -24,6 +24,7 @@ $factory(\Modules\Users\Entities\UserModel::class, function ($faker) {
         'contact_number' => '0' . $faker->numberBetween(300,350) . '-' . $faker->numberBetween(1000000,9999999),
         'user_role'       =>  $faker->randomElement(['admin', 'staff', 'auctioneer', 'bidder']),
         'updated_by'      => null,
+        'remember_token' => null,
         'deleted_at' => null,
         'created_at' => Carbon\Carbon::now('Asia/Karachi'),
         'updated_at' => Carbon\Carbon::now('Asia/Karachi')

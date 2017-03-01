@@ -21,7 +21,10 @@ class CommonBackendController extends Controller
      */
     public function index()
     {
-        return view('commonbackend::index');
+        if (\Auth::check())
+            return view('commonbackend::index');
+
+        return redirect(route('dashboard-login'));
     }
 
     public function not_authorized()
@@ -32,7 +35,16 @@ class CommonBackendController extends Controller
 
     public function login(Request $request)
     {
+        if (\Auth::check()){
+            return redirect(route('backend'));
+        }
         return view('commonbackend::login');
+    }
+
+    public function logout()
+    {
+        \Auth::logout();
+        return redirect(route('backend'));
     }
 
     public function do_login(Request $request)
@@ -43,19 +55,20 @@ class CommonBackendController extends Controller
         ]);
 
 
-        $user = UserModel::where('username', $request->username)->get();
-        if ($user && $user[0]->username == $request->username
-            && password_verify($request->password, $user[0]->password)){
+        \Auth::attempt(['username' => $request->username, 'password' => $request->password, 'user_role' => 'admin'], $request->remember_me);
 
-            \Auth::loginUsingId($user[0]->id, true);
+        if (\Auth::check()){
+            return redirect(route('backend'));
+        }else {
+            $user = UserModel::where('username', $request->username)->get();
+
+            $msg = isset($user) ? "Sorry! you do not have privillage to open this page."
+                : 'Provided username / password was wrong.';
 
 
-            return redirect()->intended('dashboard');
+            return view('commonbackend::login')->withErrors([$msg]);
         }
 
-
-
-        return $request->all();
     }
 
     /**

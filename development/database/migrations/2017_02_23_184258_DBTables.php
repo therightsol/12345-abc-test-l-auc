@@ -31,6 +31,7 @@ class DBTables extends Migration
             $table->string('url', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->string('contact_number', 255)->nullable();
+            $table->string('remember_token', 255)->nullable();
             $table->enum('user_role', ['admin', 'staff', 'auctioneer', 'bidder'])->nullable();
             $table->bigInteger('updated_by', false, true)->unsigned()->nullable();
             $table->dateTime('deleted_at')->nullable();

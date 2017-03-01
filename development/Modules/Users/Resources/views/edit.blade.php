@@ -1,7 +1,9 @@
-@extends('admin/layouts.admin_app')
+@extends( Module::get('commonbackend') != NULL ? 'commonbackend::layouts.admin_app': 'users::layouts.master', ['pageTitle' => 'Users', 'obj' => $user] )
+
+@include('media::layoutfiles.embedd')
 
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ asset('admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
 
     <style>
         .changePasswordRow{
@@ -106,8 +108,6 @@
             padding-top: 0;
         }
     </style>
-
-    @include('admin.media.embedd.includes.styles')
 @endsection
 
 @section('form-title')
@@ -120,7 +120,7 @@
 
 
 @section('form-open')
-    <form class="form" action="{{route('admin.user.update', ['id' => $user->id])}}" enctype="multipart/form-data" data-uid="" method="post" >
+    <form class="form" action="{{route('admin.users.update', ['id' => $user->id])}}" enctype="multipart/form-data" data-uid="" method="post" >
         <input name="_method" type="hidden" value="PUT">
 @endsection
 
@@ -147,16 +147,13 @@
                         <div class="row">
                             <!-- BEGIN ALERT - REVENUE -->
                             <div class="col-sm-12">
-                                @include('admin.users.includes.edit-user-inc')
+                                @include('users::includes.edit-user-inc')
                             </div>
 
                         </div>
                     </div>
                 </section>
             </div>
-
-
-            @include('admin.media.embedd.media-modal-viewer')
 
 
         @endsection
@@ -173,9 +170,6 @@
                     jQuery('#display_name').val(display_name).addClass('dirty');
                 });
             </script>
-            <script src="{{url("admin_assets/js/includes/custom-functions.js")}}"></script>
+            <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
 
-
-    @include('admin.media.embedd.includes.js')
-
-@endsection
+        @endsection

@@ -32,6 +32,7 @@ class UserModel extends Model implements Authenticatable
     public function getAuthIdentifierName()
     {
         // TODO: Implement getAuthIdentifierName() method.
+        return 'id';
     }
 
     /**
@@ -42,6 +43,9 @@ class UserModel extends Model implements Authenticatable
     public function getAuthIdentifier()
     {
         // TODO: Implement getAuthIdentifier() method.
+        $name = $this->getAuthIdentifierName();
+
+        return $this->attributes[$name];
     }
 
     /**
@@ -52,6 +56,7 @@ class UserModel extends Model implements Authenticatable
     public function getAuthPassword()
     {
         // TODO: Implement getAuthPassword() method.
+        return $this->attributes['password'];
     }
 
     /**
@@ -62,6 +67,7 @@ class UserModel extends Model implements Authenticatable
     public function getRememberToken()
     {
         // TODO: Implement getRememberToken() method.
+        return $this->attributes[$this->getRememberTokenName()];
     }
 
     /**
@@ -73,6 +79,7 @@ class UserModel extends Model implements Authenticatable
     public function setRememberToken($value)
     {
         // TODO: Implement setRememberToken() method.
+        $this->attributes[$this->getRememberTokenName()] = $value;
     }
 
     /**
@@ -83,5 +90,6 @@ class UserModel extends Model implements Authenticatable
     public function getRememberTokenName()
     {
         // TODO: Implement getRememberTokenName() method.
+        return 'remember_token';
     }
 }

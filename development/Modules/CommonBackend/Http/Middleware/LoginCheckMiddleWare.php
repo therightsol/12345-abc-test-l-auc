@@ -22,7 +22,7 @@ class LoginCheckMiddleWare
 
         //@todo for development purpose - Delete Login line in production
         //$user = \Auth::loginUsingId(101);
-        $user = Auth::check();
+        $user = Auth::user();
 
         //dd($user);
         //return gettype($user->isAdmin());

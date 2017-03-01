@@ -84,9 +84,11 @@
                                 <div class="col-xs-6 text-left">
                                     <div class="checkbox checkbox-inline checkbox-styled">
                                         <label>
-                                            <input type="checkbox"> <span>Remember me</span>
+                                            <input type="checkbox" > <span  class="rememberme">Remember me</span>
                                         </label>
                                     </div>
+                                    <input type="hidden" value="false" name="remember_me" id="remember_me">
+
                                 </div><!--end .col -->
                                 <div class="col-xs-6 text-right">
                                     <button class="btn btn-primary btn-raised" type="submit">Login</button>
@@ -131,6 +133,19 @@
 
 <script>
     $('#main-menu').find('a.active').closest('li').addClass('active expanded').closest('li.gui-folder').addClass('active expanded')
+</script>
+<script>
+    $(document).ready(function (){
+        $('.rememberme').click(function (){
+
+            if ($('#remember_me').val().length > 0 &&  $('#remember_me').val() == 'true'){
+                $('#remember_me').val('false');
+            }else {
+                $('#remember_me').val('true');
+
+            }
+        })
+    });
 </script>
 
 

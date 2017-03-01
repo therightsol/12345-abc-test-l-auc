@@ -12,46 +12,20 @@
 
         <div class="row">
             <div class="col-sm-7">
-                <div class="form-group">
-                    <h4>Choose Gender: </h4>
-                    <div id="gender" class="{{ $errors->has('gender') ? 'has-error' : ''}}">
-                        <label class="radio-inline radio-styled">
-                            <input type="radio" name="gender" id="male"
-                                   @if(old('gender') == 'male' || ( (isset($user->sex) && $user->sex == 'male') ) ) {{'checked'}} @endif  value="male"><span>Male</span>
-                        </label>
-                        <label class="radio-inline radio-styled">
-                            <input type="radio" name="gender" value="female" id="female"
-                            @if(old('gender') == 'female' || ( (isset($user->sex) && $user->sex == 'female') ) ) {{'checked'}} @endif ><span>Female</span>
-                        </label>
-                        {!! $errors->first('gender', '<span class="help-block">:message</span>') !!}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group {{ $errors->has('firstname') ? 'has-error' : ''}}">
-                            <input type="text" class="form-control"
-                                   value="@if(!empty(old('firstname'))){{old('firstname')}}@elseif(isset($user->firstname)){{$user->firstname}}@endif"
-                                   name="firstname" id="firstname">
-                            <label for="firstname">First Name</label>
-                            {!! $errors->first('firstname', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group {{ $errors->has('lastname') ? 'has-error' : ''}}">
-                            <input type="text" class="form-control"
-                                   value="@if(!empty(old('lastname'))){{old('lastname')}}@elseif(isset($user->lastname)){{$user->lastname}}@endif"
-                                   id="lastname" name="lastname">
-                            <label for="lastname">Last Name</label>
-                            {!! $errors->first('lastname', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group {{ $errors->has('display_name') ? 'has-error' : ''}}">
+                <div class="form-group {{ $errors->has('full_name') ? 'has-error' : ''}}">
                     <input type="text" class="form-control"
-                           value="@if(!empty(old('display_name'))){{old('display_name')}}@elseif(isset($user->display_name)){{$user->display_name}}@endif"
-                           id="display_name" name="display_name">
-                    <label for="display_name">Display Name</label>
-                    {!! $errors->first('display_name', '<p class="help-block">:message</p>') !!}
+                           value="@if(!empty(old('full_name'))){{old('full_name')}}@elseif(isset($user->full_name)){{$user->full_name}}@endif"
+                           id="full_name" name="full_name">
+                    <label for="full_name">Full Name</label>
+                    {!! $errors->first('full_name', '<p class="help-block">:message</p>') !!}
+                </div>
+
+                <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : ''}}">
+                    <input type="text" class="form-control"
+                           value="@if(!empty(old('contact_number'))){{old('contact_number')}}@elseif(isset($user->contact_number)){{$user->contact_number}}@endif"
+                           id="contact_number" name="contact_number">
+                    <label for="contact_number">Contact Number</label>
+                    {!! $errors->first('contact_number', '<p class="help-block">:message</p>') !!}
                 </div>
 
             </div>
@@ -111,26 +85,60 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="form-group {{ $errors->has('user_role_id') ? 'has-error' : ''}}">
-                    <form class="form">
-                        <label for="user_role_id">User Role</label>
+                <div class="form-group {{ $errors->has('user_role') ? 'has-error' : ''}}">
 
-                        <select class="form-control select2-list" name="user_role_id" id="user_role_id"
+                        <label for="user_role">User Role</label>
+
+                        <select class="form-control select2-list" name="user_role" id="user_role"
                                 data-placeholder="Select Role">
                             <option selected value="">Choose Role</option>
                             <optgroup label="User Roles">
                                 @foreach($userroles as $userrole)
-                                    <option value="{{strtolower($userrole->id)}}" {!! old('user_role_id') || ( isset($user->user_role_id) ? $user->user_role_id : '' ) == strtolower($userrole->id) ? 'selected' : '' !!}>
-                                        {{$userrole->role}}
+                                    <option value="{{$userrole}}" {!! old('user_role') || ( isset($user->user_role) ? $user->user_role : '' ) == strtolower($userrole) ? 'selected' : '' !!}>
+                                        {{$userrole}}
                                     </option>
                                 @endforeach
                             </optgroup>
                         </select>
-                        {!! $errors->first('user_role_id', '<p class="help-block">:message</p>') !!}
+                        {!! $errors->first('user_role', '<p class="help-block">:message</p>') !!}
 
-                    </form>
+
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+
+                        <label for="status">User Status</label>
+
+                        <select class="form-control select2-list" name="status" id="status"
+                                data-placeholder="status Role">
+                            <option selected value="">Choose Status</option>
+                            <optgroup label="User Status">
+                                @foreach($statuses as $status)
+                                    <option value="{{$status}}" {!! old('status') || ( isset($user->status) ? $user->status : '' ) == strtolower($status) ? 'selected' : '' !!}>
+                                        {{$status}}
+                                    </option>
+                                @endforeach
+                            </optgroup>
+                        </select>
+                        {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
+
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group {{ $errors->has('cnic') ? 'has-error' : ''}}">
+                    <input type="text" class="form-control"
+                           value="@if(!empty(old('cnic'))){{old('cnic')}}@elseif(isset($user->cnic)){{$user->cnic}}@endif"
+                           name="cnic" id="cnic">
+                    <label for="cnic">CNIC</label>
+                    {!! $errors->first('cnic', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+
         </div>
         <div class="row" id="toggle-stock">
             <div class="col-sm-12">

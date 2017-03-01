@@ -34,7 +34,7 @@
                 <td>{{ $user->contact_number }}</td>
                 <td><span  class="user {{ $user->user_role }}">{{ strtoupper($user->user_role) }}</span></td>
                 <td width="150">
-                    <a href="#" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
+                    <a href="{{ route('admin.users.edit', [$user->id]) }}" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
                        data-placement="top" data-original-title="Edit row">
                         <i class="fa fa-pencil"></i>
                     </a>
