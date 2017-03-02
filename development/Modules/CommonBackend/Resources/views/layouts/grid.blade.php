@@ -8,7 +8,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-head">
-                                @include('commonbackend::layouts._section-head', ['pageTitle' => $pageTitle,'route' => ''])
+                                @include('commonbackend::layouts._section-head')
                             </div>
                             <div class="card-body dataTables_wrapper" style="padding-top: 0;">
                                 <form id="filters" action="#">

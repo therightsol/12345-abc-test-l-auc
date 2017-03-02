@@ -46,6 +46,17 @@
                         <li><a href=""><span class="title">Add User</span></a></li>
                     </ul><!--end /submenu -->
                 </li>
+                <li class="gui-folder">
+                    <a>
+                        <div class="gui-icon"><i class="fa fa-user fa-fw"></i></div>
+                        <span class="title">Car</span>
+                    </a>
+                    <!--start submenu -->
+                    <ul>
+                        <li><a class="{{ Helper::isActiveResource('admin.cars') }}"  href="{{ route('admin.cars.index') }}"><span class="title">Manage Cars</span></a></li>
+                        <li><a class="{{ Helper::isActiveResource('admin.category') }}" href="{{ route('admin.category.index') }}"><span class="title">Manage Category</span></a></li>
+                    </ul><!--end /submenu -->
+                </li>
 
 
                 <!-- BEGIN LEVELS -->

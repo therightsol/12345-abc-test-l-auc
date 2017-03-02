@@ -2,25 +2,30 @@
 
 namespace Modules\Cars\Http\Controllers;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Cars\Entities\CarsModel;
-use Modules\Cars\Http\Filters\CarFilter;
-class CarsController extends Controller
+use Modules\Cars\Http\Filters\CategoryFilter;
+use Modules\Cars\Entities\Category;
+
+class CategoryController extends Controller
 {
+
+    use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
 
-    public function index(CarFilter $filter, Request $request)
+    public function index(CategoryFilter $filter, Request $request)
     {
 
-        $cars = CarsModel::filter($filter)
+        $categories = Category::filter($filter)
             ->paginate(\Helper::limit($request));
 
-        return view('cars::index', compact('cars'));
+        return view('cars::category.index', compact('categories'));
     }
 
     /**
@@ -29,7 +34,7 @@ class CarsController extends Controller
      */
     public function create()
     {
-        return view('cars::create');
+        return view('cars::category.create');
 
     }
 
@@ -40,15 +45,15 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'category' => 'required'
+        $this->validate($request, [
+            'category' => 'required|unique:categories,category'
         ]);
 
-        $isSuccess = CarsModel::create([
+        $isSuccess = Category::create([
             'category' => $request->input('category')
         ]);
-        return ($isSuccess)?
-            back()->with('alert-success', 'CarsModel Created Successfully')
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Category Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
 
     }
@@ -68,8 +73,8 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        $category = CarsModel::find($id);
-        return view('cars::edit', compact('category'));
+        $category = Category::find($id);
+        return view('cars::category.edit', compact('category'));
 
     }
 
@@ -85,12 +90,12 @@ class CarsController extends Controller
         ]);
 
 
-        if (!$car = Category::find($id)) return back()->with('alert-danger', 'Error: please try again.');
-        $isSuccess = $car->update([
+        if (!$category = Category::find($id)) return back()->with('alert-danger', 'Error: please try again.');
+        $isSuccess = $category->update([
             'category' => $request->input('category')
         ]);
         return ($isSuccess) ?
-            back()->with('alert-success', 'Car Created Successfully')
+            back()->with('alert-success', 'Category Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
     }
 

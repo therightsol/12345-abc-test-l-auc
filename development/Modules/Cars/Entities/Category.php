@@ -4,11 +4,14 @@ namespace Modules\Cars\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CarsModel extends Model
+class Category extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['id', 'category', 'parent_id'];
 
-    protected $table = 'cars';
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
 
     public function scopeFilter($query, $filters)
     {

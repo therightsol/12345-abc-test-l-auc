@@ -4,10 +4,10 @@
             <label>
                 <select id="filter-limit-select"
                              name="limit" aria-controls="country_table" class="">
-                    <option value="10" @if($perPage == 10) selected @endif >10</option>
-                    <option value="25" @if($perPage == 25) selected @endif>25</option>
-                    <option value="50" @if($perPage == 50) selected @endif>50</option>
-                    <option value="100" @if($perPage == 100) selected @endif>100</option>
+                    <option value="10" @if($obj->perPage() == 10) selected @endif >10</option>
+                    <option value="25" @if($obj->perPage() == 25) selected @endif>25</option>
+                    <option value="50" @if($obj->perPage() == 50) selected @endif>50</option>
+                    <option value="100" @if($obj->perPage() == 100) selected @endif>100</option>
                 </select> Per Page
             </label>
         </div>

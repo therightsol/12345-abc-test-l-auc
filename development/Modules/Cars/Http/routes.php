@@ -1,6 +1,25 @@
 <?php
+Route::group(
+    [
+//        'middleware' => ['web', 'admin_login_check'],
+        'middleware' => ['web'],
+        'prefix' => Helper::dashboardName(),
+        'as'    =>  'admin.',
+        'namespace' => 'Modules\Cars\Http\Controllers'
+    ],
+    function()
+    {
 
-Route::group(['middleware' => 'web', 'prefix' => 'cars', 'namespace' => 'Modules\Cars\Http\Controllers'], function()
-{
-    Route::get('/', 'CarsController@index');
+        Route::Resource('cars', 'CarsController', ['names' => Helper::ResourceNames('cars')]);
+        Route::Resource('category', 'CategoryController', ['names' => Helper::ResourceNames('category')]);
+
+    });
+
+
+// For Base Controllers
+
+
+Route::get('route', function(){
+    \Artisan::call('route:list');
+    dd(\Artisan::output());
 });
