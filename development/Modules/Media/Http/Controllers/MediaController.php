@@ -5,8 +5,8 @@ namespace Modules\Media\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Media\Entities\Post;
 use Modules\Media\Entities\PostStatus;
-use Modules\Media\Post;
 use Nwidart\Modules\Facades\Module;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
@@ -19,8 +19,8 @@ class MediaController extends Controller
     // Check requried module
     public function __construct()
     {
-        if (! $this->isModuleEnabled('post'))
-            dd('Please enable post module first');
+        if (! $this->isModuleEnabled('post')){}
+            //dd('Please enable post module first');
 
     }
 
@@ -61,7 +61,7 @@ class MediaController extends Controller
         if (! isset($post_status[0]->id))
             $post_status[0]->id = null;
 
-        $selected_files = \Modules\Media\Entities\Post::where('post_type', 'attachment')
+        $selected_files = Post::where('post_type', 'attachment')
             ->where('status', $post_status[0]->id);
 
 

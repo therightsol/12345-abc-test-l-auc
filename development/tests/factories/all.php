@@ -370,6 +370,77 @@ function getRandomDate(){
     return $randomDate;
 }
 
+$factory(\Modules\Media\Entities\Post::class, function ($faker) {
+    // One key per user
+
+    $user = \Modules\Users\Entities\UserModel::firstOrFail();
+
+
+    $title = $faker->name;
+    $slug = str_replace(' ', '-', $title . '_' . $faker->numberBetween(10,1000));
+
+    $slug = str_replace('.', '', $slug);
+
+
+    $image_url = array();
+    for($i = 0; $i < 10; $i++){
+        $image_url[] = $faker->imageUrl(640);
+    }
+
+    $json_images = json_encode($image_url);
+
+    exit;
+
+    $arr  = [
+        'user_id' => $user->id,
+        'title'         =>  $title,
+        'short_description' =>  $faker->text(80),
+        'content'           =>  $faker->text(400),
+        'slug'              =>  $slug,
+        'featured_image'    =>  $faker->imageUrl(800,800,'fashion'),
+        'images'            =>  $json_images,
+        'status'            =>  mt_rand(1,4),
+        'comment_count'     =>  '0',
+        'deleted_at' => null,
+        'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+        'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+    ];
+
+    if ($_SESSION['usermeta_iteration'] > 3){
+        $_SESSION['usermeta_iteration'] = '0';
+    }
+
+    return $arr;
+} );
+
+$factory(\Modules\Media\Entities\PostStatus::class, function ($faker) {
+
+    $records = DB::table('post_statuses')->get();
+
+    if (! (sizeof($records) >= 4 ) ) {
+
+        $post_statuses = ['published', 'draft', 'private', 'pending review'];
+
+
+        if (!isset($_SESSION['post_status_iteration']))
+            $_SESSION['post_status_iteration'] = '0';
+
+        $arr = ['status_title' => $post_statuses[$_SESSION['post_status_iteration']],
+            'deleted_at' => null,
+            'created_at' => Carbon\Carbon::now('Asia/Karachi'),
+            'updated_at' => Carbon\Carbon::now('Asia/Karachi')
+        ];
+
+        $_SESSION['post_status_iteration']++;
+
+        if ($_SESSION['post_status_iteration'] > 3) {
+            $_SESSION['post_status_iteration'] = 0;
+        }
+
+        return $arr;
+    }
+} );
+
 /*$factory('App\Bank_Account',  [
         'user_id' => 'factory:App\User',
         'bank_name' => 'Bank ' . $faker->name . ' LTD',

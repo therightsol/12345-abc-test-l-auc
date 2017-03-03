@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PostStatus extends Model
 {
     //
+
+    protected $table = 'post_statuses';
+
     public function getForeignKey()
     {
         return 'status';

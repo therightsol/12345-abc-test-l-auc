@@ -345,6 +345,87 @@ class DBTables extends Migration
         });
 
 
+
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        Schema::create('posts', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('parent_id')->unsigned()->nullable();
+            $table->string('title', 255)->nullable();
+            $table->string('short_description', 255)->nullable();
+            $table->longText('content')->nullable();
+            $table->string('slug', 191)->nullable();
+            $table->string('featured_image', 255)->nullable();
+            $table->longText('images')->nullable();
+            $table->string('post_type', 50)->nullable()->default('post');
+            $table->string('mime_type', 255)->nullable();
+            $table->integer('status')->unsigned()->nullable();
+            $table->bigInteger('comment_count')->nullable()->default(0);
+            $table->dateTime('deleted_at')->nullable();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+
+            $table->unique('slug','slug_UNIQUE');
+
+
+            $table->index('user_id','user_id_idx');
+            $table->index('status','post_status_idx');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('status')
+                ->references('id')->on('post_statuses')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+
+        });
+
+
+        Schema::create('post_statuses', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->string('status_title', 100)->nullable();
+            $table->dateTime('deleted_at')->nullable();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+
+
+        });
+
+
+        Schema::create('post_metas', function(Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id');
+            $table->bigInteger('post_id', false, true)->unsigned()->nullable();
+            $table->string('meta_key', 255)->nullable();
+            $table->longText('meta_value')->nullable();
+            $table->dateTime('deleted_at')->nullable();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+
+            //$table->primary('id');
+
+            $table->index('post_id','post_id_idx');
+
+            $table->foreign('post_id')
+                ->references('id')->on('posts')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+        });
+
+
+
+
         // General Tables - 2
         Schema::create('notifications', function(Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -405,6 +486,10 @@ class DBTables extends Migration
         Schema::drop('car_companies');
         Schema::drop('categories');
 
+
+        Schema::drop('posts');
+        Schema::drop('post_metas');
+        Schema::drop('post_statuses');
 
         // General Tables - 2
         Schema::drop('notifications');
