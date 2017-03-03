@@ -2,19 +2,28 @@
 
 namespace Modules\CarCompanies\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-
+use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Http\Filters\CarCompaniesFilter;
 class CarCompaniesController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(CarCompaniesFilter $filter, Request $request)
     {
-        return view('carcompanies::index');
+
+        $carCompanies = CarCompaniesModel::filter($filter)
+            ->paginate(\Helper::limit($request));
+        return view('carcompanies::index', compact('carCompanies'));
     }
 
     /**
@@ -33,6 +42,17 @@ class CarCompaniesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'company_name' => 'required|unique:car_companies,company_name'
+        ]);
+
+        $isSuccess = CarCompaniesModel::create([
+            'company_name' => $request->input('company_name')
+        ]);
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Car Company Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -48,9 +68,11 @@ class CarCompaniesController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('carcompanies::edit');
+        $carCompany = CarCompaniesModel::find($id);
+        if(!$carCompany) return redirect()->route(Helper::route('index'));
+        return view('carcompanies::edit', compact('carCompany'));
     }
 
     /**
@@ -58,15 +80,29 @@ class CarCompaniesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'company_name' => 'required|unique:car_companies,company_name,' . $id
+        ]);
+
+        if (!$carCompany = CarCompaniesModel::find($id)) return redirect()->route(Helper::route('index'));
+        $isSuccess = $carCompany->update([
+            'company_name' => $request->input('company_name')
+        ]);
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Car Company Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = CarCompaniesModel::find($id);
+        if(empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }

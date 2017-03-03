@@ -74,6 +74,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+        if(!$category) return redirect()->route(Helper::route('index'));
         return view('cars::category.edit', compact('category'));
 
     }
@@ -103,7 +104,10 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = Category::find($id);
+        if(empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }

@@ -35,7 +35,7 @@
             $('table.dataTable').setTableOrder({
                 form: 'form#filters'
             });
-            deleteRow('#');
+            deleteRow('{{ route(Helper::route('destroy'), '') }}');
         })
     </script>
 @endsection

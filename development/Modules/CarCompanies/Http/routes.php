@@ -1,6 +1,15 @@
 <?php
+Route::group(
+    [
+//        'middleware' => ['web', 'admin_login_check'],
+        'middleware' => ['web'],
+        'prefix' => Helper::dashboardName(),
+        'as'    =>  'admin.',
+        'namespace' => 'Modules\CarCompanies\Http\Controllers'
+    ],
+    function()
+    {
 
-Route::group(['middleware' => 'web', 'prefix' => 'carcompanies', 'namespace' => 'Modules\CarCompanies\Http\Controllers'], function()
-{
-    Route::get('/', 'CarCompaniesController@index');
-});
+        Route::Resource('car-companies', 'CarCompaniesController', ['names' => Helper::ResourceNames('carCompany')]);
+
+    });

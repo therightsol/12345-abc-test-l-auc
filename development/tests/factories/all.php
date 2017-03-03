@@ -222,7 +222,7 @@ $factory(\Modules\Invoices\Entities\Invoice::class, function ($faker) {
 });
 
 
-$factory(\Modules\Categories\Entities\Category::class, function ($faker) {
+/*$factory(\Modules\Categories\Entities\Category::class, function ($faker) {
 
 
     $number = \Modules\Categories\Database\Seeders\CategoriesDatabaseSeeder::getIterationNumber();
@@ -240,7 +240,7 @@ $factory(\Modules\Categories\Entities\Category::class, function ($faker) {
         'updated_at' => Carbon\Carbon::now('Asia/Karachi'),
         'deleted_at' => null
     ];
-});
+});*/
 
 
 $factory(\Modules\Cars\Entities\CarCategories::class, function ($faker) {
