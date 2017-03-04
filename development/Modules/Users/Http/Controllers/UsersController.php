@@ -6,12 +6,26 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 use Modules\Users\Entities\UserModel;
 use Modules\Users\Filters\Table\UsersFilters;
 
 class UsersController extends Controller
 {
     use ValidatesRequests;
+
+    public $max_file_size;
+
+
+    public function __construct ()
+    {
+        $maxFileSize = ini_get('upload_max_filesize');
+        $maxFileSize = str_replace('M', '', $maxFileSize);
+
+        $this->max_file_size = $maxFileSize;
+    }
+
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -32,7 +46,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users::create');
+        $userroles = ['admin', 'staff', 'auctioneer', 'bidder'];
+        $statuses = ['open', 'closed'];
+        $maxFileSize = $this->max_file_size;
+
+        return view('users::add-user', compact('userroles', 'statuses', 'user_saved', 'maxFileSize'));
     }
 
     /**
@@ -42,6 +60,50 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
+
+        $validationArr = [
+            'username'         => 'required|max:60|min:3|unique:users,username',
+            'full_name'        => 'required|max:255|min:2',
+            'email'            => 'required|max:255|email|unique:users,email',
+            'status'           => 'required',
+            'cnic'             => 'required|max:15',
+            'picture'          => 'max:255',
+            'contact_number'   => 'required|max:255',
+            'user_role'        => 'required',
+            'password'         => 'required|max:60|same:confirm_password',
+            'confirm_password' => 'required|max:60|same:password',
+            'url'              => 'max:255'
+
+        ];
+
+        // validating input form
+        $this->validate($request, $validationArr);
+
+        $user = new UserModel();
+
+        $user->full_name = $request->full_name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->cnic = $request->cnic;
+        $user->contact_number = $request->contact_number;
+        $user->picture = $request->picture;
+        $user->password = Hash::make($request->password);
+        $user->url = $request->url;
+        $user->user_role = $request->user_role;
+        $user->status = $request->status;
+        $user->remember_token = '';
+
+        $is_saved = $user->save();
+
+
+        $user_saved = $is_saved ? true : false;
+
+        $userroles = ['admin', 'staff', 'auctioneer', 'bidder'];
+        $statuses = ['open', 'closed'];
+
+        return view('users::add-user', compact('user_saved', 'userroles', 'statuses'))->with('maxFileSize', $this->max_file_size);
+
     }
 
     /**
@@ -80,14 +142,14 @@ class UsersController extends Controller
     {
 
         $validationArr = [
-            'username'         => 'required|max:60|min:3|unique:users,username,'.$id,
-            'full_name'     => 'required|max:255|min:2',
-            'email'            => 'required|max:255|email|unique:users,email,'.$id,
-            'status'            => 'required',
-            'cnic'              => 'required|max:15',
-            'profile_picture'   =>  'max:255',
-            'contact_number'    =>  'required|max:255',
-            'user_role'         => 'required',
+            'username'         => 'required|max:60|min:3|unique:users,username,' . $id,
+            'full_name'        => 'required|max:255|min:2',
+            'email'            => 'required|max:255|email|unique:users,email,' . $id,
+            'status'           => 'required',
+            'cnic'             => 'required|max:15',
+            'picture'          => 'max:255',
+            'contact_number'   => 'required|max:255',
+            'user_role'        => 'required',
             'password'         => 'max:60|same:confirm_password',
             'confirm_password' => 'max:60|same:password',
             'url'              => 'max:255'
@@ -105,34 +167,26 @@ class UsersController extends Controller
 
         $data['updated_by'] = \Auth::id();
 
-        return $data;
-
-        /*$path = public_path('images/users');
-        $filename = '';
-        if ($picture = $request->file('picture')){
-            $name = $picture->getClientOriginalName();
-            $filename = time().'-'.$name;
-            $target = $picture->move($path, $filename );
-        }*/
 
         $data['picture']    = $request->input('picture');
 
 
-        $user = User::find($id);
+        $user = UserModel::find($id);
 
-        $user->username        = strtolower($data['username']);
-        $user->firstname       = $data['firstname'];
-        $user->lastname        = $data['lastname'];
-        $user->sex             = strtolower($request->gender);
-        $user->display_name    = $data['display_name'];
-        $user->email           = strtolower($data['email']);
+        $user->username = strtolower($data['username']);
+        $user->status = strtolower($data['status']);
+        $user->full_name = $data['full_name'];
+        $user->cnic = $data['cnic'];
+        $user->email = strtolower($data['email']);
+        $user->url = strtolower($data['url']);
+        $user->picture = $data['picture'];
+        $user->contact_number = $data['contact_number'];
+        $user->updated_by = $data['updated_by'];
 
         if (!empty($data['password']))
-            $user->password        = bcrypt($data['password']);
+            $user->password = bcrypt($data['password']);
 
-        $user->url             = strtolower($data['url']);
-        $user->picture         = $data['picture'];
-        $user->user_role_id    = (int) $data['user_role_id'];
+        $user->user_role = $data['user_role'];
 
 
         $isUpdated = $user->update();
@@ -140,7 +194,6 @@ class UsersController extends Controller
         $isUpdated = $isUpdated ? 'update' : '';
 
 
-        $userroles = User_Role::all();
 
         return back()->with('isUpdated', $isUpdated);
         //return view('admin.users.edit-user', compact('isUpdated', 'userroles', 'user'));
@@ -151,7 +204,10 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $is_success = UserModel::destroy($id);
+
+        return $is_success ? 'true' : 'not deleted';
     }
 }

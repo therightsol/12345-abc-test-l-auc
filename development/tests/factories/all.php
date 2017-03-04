@@ -20,7 +20,7 @@ $factory(\Modules\Users\Entities\UserModel::class, function ($faker) {
         'email' => $faker->email,
         'password' => Hash::make($password),
         'url' => $faker->url,
-        'profile_picture' => $faker->imageUrl(400,400, 'people'),
+        'picture' => $faker->imageUrl(400,400, 'people'),
         'contact_number' => '0' . $faker->numberBetween(300,350) . '-' . $faker->numberBetween(1000000,9999999),
         'user_role'       =>  $faker->randomElement(['admin', 'staff', 'auctioneer', 'bidder']),
         'updated_by'      => null,

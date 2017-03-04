@@ -1,0 +1,33 @@
+
+Pending Tasks:
+---------------
+post module ko delete krna hai
+media k andar hi post table ko bnana + seed krvana
+db design ko update krna. (post ko media table k name dy dena. )
+
+
+write common functions class
+reset
+user list 
+add user
+edit user
+update user
+delete user
+
+
+
+
+
+
+
+
+Links:
+-------
+backend
+backend/login 
+backend/logout
+backend/users
+backend/create
+backend/users/13 <-- MediaController.show pending
+backend/users/12/edit
+backend/media

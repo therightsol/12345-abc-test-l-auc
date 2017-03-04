@@ -111,7 +111,7 @@
 @endsection
 
 @section('form-title')
-    <header>Update User - {{ $user['username']}}</header>
+    <header>Update User - {{ $user['full_name']}}</header>
 @endsection
 
 @section('form-submit-buttons')

@@ -1,7 +1,29 @@
 <?php
+    $dashboardName = \Modules\CommonBackend\Providers\CommonBackendServiceProvider::getdashboardName();
 
-Route::group(['middleware' => 'web', 'prefix' => 'media', 'namespace' => 'Modules\Media\Http\Controllers'], function()
-{
+    $prefixedResourceNames = function ($prefix) {
+        return [
+            'index'   => $prefix . '.index',
+            'create'  => $prefix . '.create',
+            'store'   => $prefix . '.store',
+            'show'    => $prefix . '.show',
+            'edit'    => $prefix . '.edit',
+            'update'  => $prefix . '.update',
+            'destroy' => $prefix . '.destroy'
+        ];
+    };
+
+
+	Route::group(
+	[
+		'middleware' => ['web', 'admin_login_check'],
+		'prefix' => 'backend',
+		'as'    =>  'admin.',
+		'namespace' => 'Modules\Media\Http\Controllers'
+	],
+	function(  ) use ($dashboardName, $prefixedResourceNames)
+	{
+
 
 
     // Media
