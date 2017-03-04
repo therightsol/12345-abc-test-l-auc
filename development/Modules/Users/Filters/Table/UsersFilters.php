@@ -12,7 +12,7 @@ use Modules\Users\Filters\QueryFilter;
 class UsersFilters extends QueryFilter
 {
 
-    protected $column = ['id', 'full_name','cnic','email','profile_picture', 'contact_number', 'user_role'];
+    protected $column = ['id', 'full_name','cnic','email','picture', 'contact_number', 'user_role'];
 
 
 }

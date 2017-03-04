@@ -10,7 +10,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "nwidart/laravel-modules": "^1.16"
+        "nwidart/laravel-modules": "^1.16",
+      "intervention/image": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

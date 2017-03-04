@@ -239,10 +239,11 @@ function deleteRow(route) {
         } ).success( function ( data ) {
             if(data == 'true'){
                 $this.closest( 'tr' ).fadeOut( 'slow' );
+                closeModal('#delete-confirm-modal');
+            }else {
+                $('.modal-body').html('<p class="alert alert-danger">Unable to delete.</p>');
             }
         } );
-
-        closeModal('#delete-confirm-modal');
 
     });
 }

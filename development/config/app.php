@@ -179,6 +179,11 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         /*
+         * Image Service Provider
+         */
+        Intervention\Image\ImageServiceProvider::class,
+
+        /*
          * Project - Service Provider
          */
         Nwidart\Modules\LaravelModulesServiceProvider::class,
@@ -235,6 +240,7 @@ return [
         'Helper' => \Modules\CommonBackend\Helpers\Helper::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

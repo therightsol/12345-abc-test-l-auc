@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 
+
 class MediaController extends Controller
 {
 
@@ -53,13 +54,13 @@ class MediaController extends Controller
         if ($page)
             $request['page'] = $page;
 
-        //
-        //abort(511, 'Your are not allowed to perform this action.');
 
         $post_status = PostStatus::where('status_title', 'published')->get(['id']);
 
-        if (! isset($post_status[0]->id))
-            $post_status[0]->id = null;
+        if (! isset($post_status[0])){
+            return '<p class="alert alert-danger">please add post publish status first</p>';
+        }
+
 
         $selected_files = Post::where('post_type', 'attachment')
             ->where('status', $post_status[0]->id);
@@ -207,6 +208,7 @@ class MediaController extends Controller
             $name = $picture->getClientOriginalName();
             $filename = time().'-'.$name;
             $target = $picture->move($path, $filename );
+
 
             $is_image = explode('/', $mime);
 

@@ -39,6 +39,8 @@ class CommonBackendServiceProvider extends ServiceProvider
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('admin_login_check', LoginCheckMiddleware::class);
 
+
+
     }
 
     public function registerMiddleware(Router $router)

@@ -69,7 +69,7 @@
 
         function load_images(paginate, page){
             jQuery.ajax({
-                url: "{{route('media')}}/" + paginate + '/' + page,
+                url: "{{route('admin.media')}}/" + paginate + '/' + page,
                 dataType: 'html'
             }).success(function( data ) {
 
@@ -78,7 +78,7 @@
                 $('#images-container').html(data);
 
                 jQuery.ajax({
-                    url: "{{route('add-media')}}",
+                    url: "{{route('admin.add-media')}}",
                     dataType: 'html'
                 }).success( function (data) {
                     //console.log(data);
@@ -116,7 +116,7 @@
             var myJsonString = JSON.stringify( bulk_selection );
 
             $.ajax( {
-                url: '{{ route('media-bulk-delete') }}',
+                url: '{{ route('admin.media-bulk-delete') }}',
                 type: 'post',
                 data: { 'files': myJsonString },
                 success: function ( data ) {
@@ -187,7 +187,7 @@
 
             // Remove from Database
             /*$.ajax({
-                url: '{{route('media-delete', [''])}}' + '/' + img_id,
+                url: '' + '/' + img_id,
                 type: 'DELETE',
                 data: {
                     'file_id': img_id
@@ -419,7 +419,7 @@
                     if (rmvFile){
                         //console.log(rmvFile);
                         $.ajax({
-                            url: "{{route('destroy-media')}}",
+                            url: "{{route('admin.destroy-media')}}",
                             type: "POST",
                             data: { "fileName" : rmvFile, 'id': db_id }
                         });

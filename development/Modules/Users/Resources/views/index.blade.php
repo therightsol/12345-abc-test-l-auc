@@ -1,5 +1,7 @@
 @extends( Module::get('commonbackend') != NULL ? 'commonbackend::layouts.grid': 'users::layouts.master', ['pageTitle' => 'Users', 'obj' => $users] )
 
+
+
 @section('table')
     <table class="table table-striped table-hover dataTable">
         <thead>

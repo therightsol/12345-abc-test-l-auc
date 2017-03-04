@@ -1,4 +1,4 @@
-@extends('admin/layouts.admin_app')
+@extends( Module::get('commonbackend') != NULL ? 'commonbackend::layouts.admin_app': 'media::layouts.master' )
 
 
 @section('style')
@@ -336,7 +336,7 @@
 
                 $('#yes-delete').click( function () {
                     $.ajax( {
-                        url: "{{ route('media-delete',"") }}" + "/" + fileID,
+                        url: "{{ route('admin.media-delete',"") }}" + "/" + fileID,
                         type: 'DELETE',
                         success: function ( data ) {
                             $this.attr( 'disabled', false );

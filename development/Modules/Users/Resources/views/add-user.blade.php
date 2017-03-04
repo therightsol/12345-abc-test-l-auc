@@ -1,9 +1,25 @@
-@extends('admin/layouts.admin_app')
+@extends( Module::get('commonbackend') != NULL ? 'commonbackend::layouts.admin_app': 'users::layouts.master' )
 
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ asset('admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
 
-    @include('admin.media.embedd.includes.styles')
+    <style>
+        .nopadding{
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .no-left-padding{
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .no-right-padding{
+            padding-right: 0 !important;
+            margin-right: 0 !important;
+        }
+    </style>
+    @include('media::layoutfiles.embedd.includes.styles')
 @endsection
 
 @section('form-title')
@@ -14,18 +30,17 @@
     <button type="submit" id="savebtn" class="btn btn-primary">Create</button>
 @endsection
 
-@section('form-action')
-    action="{{url('tp-admin/add-user')}}"
-@endsection
+
 
 @section('form-open')
-    <form class="form" action="{{route('admin.user.store')}}" enctype="multipart/form-data" data-uid="" method="post" >
+    <form class="form" action="{{route('admin.users.store')}}" enctype="multipart/form-data" data-uid="" method="post" >
 @endsection
 
 @if (isset($user_saved) && $user_saved)
     @section('form-alerts')
     <div class="alert alert-success">
         User successfully created.
+        <strong><a href="{{route('admin.users.index')}}">Return Back</a></strong>
     </div>
     @endsection
 @elseif(isset($user_saved))
@@ -44,7 +59,9 @@
                 <div class="row">
                     <!-- BEGIN ALERT - REVENUE -->
                     <div class="col-sm-12">
-                        @include('admin.users.includes.add-user-form')
+
+                            @include('users::includes.add-user-form')
+
                     </div>
 
                 </div>
@@ -53,7 +70,7 @@
     </div>
 
 
-    @include('admin.media.embedd.media-modal-viewer')
+    @include('media::layoutfiles.embedd.media-modal-viewer')
 
 
 @endsection
@@ -70,9 +87,11 @@
             jQuery('#display_name').val(display_name).addClass('dirty');
         });
     </script>
-    <script src="{{url("admin_assets/js/includes/custom-functions.js")}}"></script>
+            <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
 
 
-    @include('admin.media.embedd.includes.js')
+    @include('media::layoutfiles.embedd.includes.js')
+
+
 
 @endsection
