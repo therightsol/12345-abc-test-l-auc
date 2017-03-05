@@ -2,19 +2,26 @@
 
 namespace Modules\Features\Http\Controllers;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Features\Entities\Feature;
+use Modules\Features\Http\Filters\FeaturesFilter;
 
 class FeaturesController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(FeaturesFilter $filter, Request $request)
     {
-        return view('features::index');
+        $features = Feature::filter($filter)
+            ->paginate(\Helper::limit($request));
+        return view('features::index', compact('features'));
     }
 
     /**
@@ -33,6 +40,15 @@ class FeaturesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'title' => 'required|unique:features,title',
+        ]);
+
+        $isSuccess = Feature::create($request->only('title','icon_path'));
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Feature Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -48,9 +64,12 @@ class FeaturesController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('features::edit');
+        $feature = Feature::find($id);
+        if(!$feature) return redirect()->route(Helper::route('index'));
+
+        return view('features::edit', compact('feature'));
     }
 
     /**
@@ -58,15 +77,29 @@ class FeaturesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:features,title,'.$id,
+        ]);
+
+        if (!$feature = Feature::find($id)) return redirect()->route(Helper::route('index'));
+        $isSuccess = $feature->update(
+            $request->only('title','icon_path')
+        );
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Feature Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = Feature::find($id);
+        if(empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }
