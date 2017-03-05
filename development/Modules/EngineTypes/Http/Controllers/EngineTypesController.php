@@ -2,19 +2,26 @@
 
 namespace Modules\EngineTypes\Http\Controllers;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\EngineTypes\Http\Filters\EngineTypesFilter;
+use Modules\EngineTypes\Entities\EngineTypeModel;
 
 class EngineTypesController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(EngineTypesFilter $filter, Request $request)
     {
-        return view('enginetypes::index');
+        $engineTypes = EngineTypeModel::filter($filter)
+            ->paginate(\Helper::limit($request));
+        return view('enginetypes::index', compact('engineTypes'));
     }
 
     /**
@@ -33,6 +40,15 @@ class EngineTypesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'title' => 'required|unique:engine_types,title',
+        ]);
+
+        $isSuccess = EngineTypeModel::create($request->only('title'));
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Engine Type Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -48,9 +64,12 @@ class EngineTypesController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('enginetypes::edit');
+        $engineType = EngineTypeModel::find($id);
+        if(!$engineType) return redirect()->route(Helper::route('index'));
+
+        return view('enginetypes::edit', compact('engineType'));
     }
 
     /**
@@ -58,15 +77,29 @@ class EngineTypesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:engine_types,title,'.$id,
+        ]);
+
+        if (!$engineType = EngineTypeModel::find($id)) return redirect()->route(Helper::route('index'));
+        $isSuccess = $engineType->update(
+            $request->only('title')
+        );
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Engine Type Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = EngineTypeModel::find($id);
+        if(empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }
