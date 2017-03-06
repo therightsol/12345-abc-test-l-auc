@@ -53,7 +53,7 @@
                     </a>
                     <!--start submenu -->
                     <ul>
-{{--                        <li><a class="{{ Helper::isActiveResource('admin.cars') }}"  href="{{ route('admin.cars.index') }}"><span class="title">Manage Cars</span></a></li>--}}
+                        <li><a class="{{ Helper::isActiveResource('admin.cars') }}"  href="{{ route('admin.cars.index') }}"><span class="title">Manage Cars</span></a></li>
                         <li><a class="{{ Helper::isActiveResource('admin.category') }}" href="{{ route('admin.category.index') }}"><span class="title">Manage Category</span></a></li>
                         <li><a class="{{ Helper::isActiveResource('admin.carCompany') }}" href="{{ route('admin.carCompany.index') }}"><span class="title">Manage Car Companies</span></a></li>
                         <li><a class="{{ Helper::isActiveResource('admin.carModel') }}" href="{{ route('admin.carModel.index') }}"><span class="title">Manage Car Modal</span></a></li>

@@ -2,17 +2,27 @@
 
 namespace Modules\Cars\Http\Controllers;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarModels\Entities\CarModelsModel;
+use Modules\Cars\Entities\CarCategories;
+use Modules\Cars\Entities\CarFeature;
 use Modules\Cars\Entities\CarsModel;
+use Modules\Cars\Entities\Category;
 use Modules\Cars\Http\Filters\CarFilter;
+use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\Features\Entities\Feature;
+
 class CarsController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Response
      */
+    use ValidatesRequests;
 
     public function index(CarFilter $filter, Request $request)
     {
@@ -29,8 +39,24 @@ class CarsController extends Controller
      */
     public function create()
     {
-        return view('cars::create');
+        $carCompanies = CarCompaniesModel::pluck('company_name', 'id');
+//        $models = CarModelsModel::pluck('model_name', 'id');
+        $categories = Category::pluck('category', 'id');
+        $engine_types = EngineTypeModel::pluck('title', 'id');
+        $features = Feature::pluck('title', 'id');
+        return view('cars::create', compact('carCompanies', 'categories','engine_types', 'features'));
 
+    }
+
+    public function getModels(Request $request)
+    {
+        if ($request->ajax()) {
+            $this->validate($request, [
+                'id' => "required|integer",
+            ]);
+
+            return CarModelsModel::where('car_company_id', $request->input('id'))->get(['id', 'model_name']);
+        }
     }
 
     /**
