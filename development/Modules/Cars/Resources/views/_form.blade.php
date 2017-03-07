@@ -99,9 +99,10 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('grade') ? ' has-error' : '' }}">
-                    {{ Form::text('grade', null ,['class' => 'form-control']) }}
-                    {{ Form::label('grade', 'Model Name') }}
-                    @if ($errors->has('grade'))
+                    {{ Form::label('grade', 'Grade') }}
+                    {{ Form::select('grade', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], isset($car)?$car->grade:null,['class' => 'form-control','placeholder' => 'Select Car Grad']) }}
+
+                @if ($errors->has('grade'))
                         <span class="help-block">
                     <strong>{{ $errors->first('grade') }}</strong>
                 </span>
@@ -115,6 +116,17 @@
                     @if ($errors->has('engine_number'))
                         <span class="help-block">
                     <strong>{{ $errors->first('engine_number') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('kilometers') ? ' has-error' : '' }}">
+                    {{ Form::number('kilometers', null ,['class' => 'form-control']) }}
+                    {{ Form::label('kilometers', 'Kilometer') }}
+                    @if ($errors->has('kilometers'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('kilometers') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -141,7 +153,72 @@
                     @endif
                 </div>
             </div>
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('transmission') ? ' has-error' : '' }}">
+                    {{ Form::label('transmission', 'Transmission') }}
+                    {{ Form::select('transmission', ['automatic' => 'Automatic', 'manual' => 'Manual'], isset($car)?$car->transmission:null,['class' => 'form-control','placeholder' => 'Select Engine Type']) }}
 
+                @if ($errors->has('transmission'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('transmission') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('city_of_registration') ? ' has-error' : '' }}">
+                    {{ Form::text('city_of_registration', null ,['class' => 'form-control']) }}
+                    {{ Form::label('city_of_registration', 'City of registration') }}
+                    @if ($errors->has('city_of_registration'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('city_of_registration') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('body_type') ? ' has-error' : '' }}">
+                    {{ Form::text('body_type', null ,['class' => 'form-control']) }}
+                    {{ Form::label('body_type', 'Body Type') }}
+                    @if ($errors->has('body_type'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('body_type') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('drivetrain') ? ' has-error' : '' }}">
+                    {{ Form::text('drivetrain', null ,['class' => 'form-control']) }}
+                    {{ Form::label('drivetrain', 'Drivetrain') }}
+                    @if ($errors->has('drivetrain'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('drivetrain') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group{{ $errors->has('categories') ? ' has-error' : '' }}">
+                    {{ Form::select('categories[]', $categories , null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allCategories']) }}
+                    @if ($errors->has('categories'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('categories') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group{{ $errors->has('features') ? ' has-error' : '' }}">
+                    {{ Form::select('features[]', $features , null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allFeatures']) }}
+                    @if ($errors->has('features'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('features') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
         </div>
 
 

@@ -7,7 +7,7 @@
             <th class="sorting" data-table="CarModel.id">Id</th>
             <th class="sorting" data-table="CarModel.title">Title</th>
             <th class="sorting" data-table="CarModel.grade">Grade</th>
-            <th class="sorting" data-table="CarModel.engine_number">Engine Number</th>
+            <th class="sorting" data-table="CarModelsModel.model_name">Model</th>
             <th>Action</th>
 
         </tr>
@@ -18,7 +18,7 @@
                 <td>{{ $car->id }}</td>
                 <td>{{ $car->title }}</td>
                 <td>{{ $car->grade }}</td>
-                <td>{{ $car->engine_number }}</td>
+                <td>{{ $car->model_name }}</td>
                 <td width="150">
                     <a href="{{ route(Helper::route('edit'),$car->id) }}" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
                        data-placement="top" data-original-title="Edit row">

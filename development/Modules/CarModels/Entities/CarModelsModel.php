@@ -19,4 +19,9 @@ class CarModelsModel extends Model
     {
         return $this->belongsTo(CarCompaniesModel::class);
     }
+
+    public function getForeignKey()
+    {
+        return 'model';
+    }
 }

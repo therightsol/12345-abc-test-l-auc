@@ -1,7 +1,13 @@
 @extends('commonbackend::layouts.admin_app')
 @section('style')
     <link href="{{Module::asset('commonbackend:admin_assets/bootstrap3-editable/css/bootstrap-editable.css')}}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/multi-select/multi-select.css?1424887857') }}" />
 
+    <style>
+        .ms-selection .ms-elem-selection{
+            color:#0aa89e !important;
+        }
+    </style>
     @endsection
 @section('content')
     <div id="content">
@@ -31,12 +37,25 @@
 @endsection
 @section('js')
     <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/multi-select/jquery.multi-select.js') }}"></script>
 
     <script>
+        $('#allCategories').multiSelect({
+            selectableHeader: "<div class='custom-header'>All Categories</div>",
+            selectionHeader: "<div class='text-primary'><strong>Selected Currencies</strong></div>",
+        });
+        $('#allFeatures').multiSelect({
+            selectableHeader: "<div class='custom-header'>All Features</div>",
+            selectionHeader: "<div class='text-primary'><strong>Selected Features</strong></div>",
+        });
+
         var spinner = $('.spinnerLoader');
         $('.date').datepicker({
-            todayHighlight: true,
-            format : 'dd/mm/yyyy'
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        }).on('changeDate', function(e){
+            $(this).datepicker('hide');
         });
 
             $('select[name=company_id]').change(function () {

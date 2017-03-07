@@ -2,6 +2,7 @@
 
 namespace Modules\Cars\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -67,12 +68,21 @@ class CarsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'category' => 'required'
+            'title' => 'required',
+            'model' => 'required',
         ]);
 
-        $isSuccess = CarsModel::create([
-            'category' => $request->input('category')
-        ]);
+        $date = Carbon::createFromFormat('Y', $request->input('manufacturing_year'));
+
+        $isSuccess = CarsModel::create(
+            array_merge(['manufacturing_year' => $date],$request->only(
+                'title', 'model', 'engine_type', 'trim',
+                'exterior_color', 'interior_color', 'grade',
+                'kilometers', 'number_plate','engine_number', 'chassis_number',
+                'city_of_registration', 'transmission', 'body_type', 'drivetrain'))
+        );
+        $isSuccess->categories()->attach($request->input('categories'));
+        $isSuccess->features()->attach($request->input('features'));
         return ($isSuccess)?
             back()->with('alert-success', 'CarsModel Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
@@ -94,7 +104,14 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        $category = CarsModel::find($id);
+        $car = CarsModel::whereId($id)->with(
+            ['engineType','categories','carModel.carCompany','features']
+        )->get();
+
+
+        return $car;
+
+
         return view('cars::edit', compact('category'));
 
     }
@@ -124,7 +141,10 @@ class CarsController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = CarsModel::find($id);
+        if(empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }
