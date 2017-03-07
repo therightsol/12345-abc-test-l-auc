@@ -102,6 +102,7 @@ class UsersController extends Controller
         $userroles = ['admin', 'staff', 'auctioneer', 'bidder'];
         $statuses = ['open', 'closed'];
 
+        return back()->with( compact('user_saved', 'userroles', 'statuses'));
         return view('users::add-user', compact('user_saved', 'userroles', 'statuses'))->with('maxFileSize', $this->max_file_size);
 
     }

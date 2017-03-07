@@ -33,10 +33,17 @@ class CommonBackendController extends Controller
         return view('commonbackend::errors.not-authorized', compact('dashboardName'));
     }
 
-    public function login(Request $request)
+
+    /**
+	 * show login form. if user is logged in then redirect.
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */public function login(Request $request)
     {
         if (\Auth::check()){
-            return redirect(route('backend'));
+			$already_logged_in = true;
+            return redirect(route('backend'))->with(compact('already_logged_in'));
         }
         return view('commonbackend::login');
     }

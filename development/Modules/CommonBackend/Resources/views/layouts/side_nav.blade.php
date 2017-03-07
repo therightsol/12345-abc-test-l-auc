@@ -18,19 +18,19 @@
 
                 <!-- BEGIN DASHBOARD -->
                 <li>
-                    <a href="#" class="" >
+                    <a href="{{route('backend')}}"  class="{{ Helper::isActiveRoute(Modules\CommonBackend\Providers\CommonBackendServiceProvider::getdashboardName()) }}" >
                         <div class="gui-icon"><i class="md md-home"></i></div>
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" >
+                    <a href="{{route('dashboard-login')}}" class="{{ Helper::isActiveRoute('dashboard-login') }}">
                         <div class="gui-icon"><i class="fa fa-sign-in"></i></div>
                         <span class="title">login</span>
                     </a>
                 </li><!--end /menu-li -->
                 <li>
-                    <a href="" >
+                    <a href="{{route('logout')}}" class="{{ Helper::isActiveRoute('logout') }}">
                         <div class="gui-icon"><i class="fa fa-sign-out "></i></div>
                         <span class="title">Logout</span>
                     </a>
@@ -42,8 +42,8 @@
                     </a>
                     <!--start submenu -->
                     <ul>
-                        <li><a href=""><span class="title">View Users</span></a></li>
-                        <li><a href=""><span class="title">Add User</span></a></li>
+                        <li><a class="{{ Helper::isActiveResource('admin.users') }}"  href="{{ route('admin.users.index') }}"><span class="title">View Users</span></a></li>
+                        <li><a class="{{ Helper::isActiveResource('admin.users.create') }}"  href="{{ route('admin.users.create') }}"><span class="title">Add User</span></a></li>
                     </ul><!--end /submenu -->
                 </li>
                 <li class="gui-folder">

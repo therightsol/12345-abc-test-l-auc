@@ -4,15 +4,24 @@
 
 @endsection
 
+
 @section('content')
     <div id="content">
         <section class="style-default-bright">
             <div class="section-header">
-                <h2 class="text-primary">Posts</h2>
+                <h2 class="text-primary">Dashboard</h2>
             </div>
             <div class="section-body">
                 <div class="row">
                     {{-- start writing from here--}}
+
+                    @if(session('already_logged_in'))
+                        <div class="col-sm-12">
+                            <div class="alert alert-info">
+                                    You are already logged in.
+                            </div>
+                        </div>
+                    @endif
 
 
                 </div>

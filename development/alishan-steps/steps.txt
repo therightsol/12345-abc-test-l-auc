@@ -6,13 +6,17 @@ media k andar hi post table ko bnana + seed krvana
 db design ko update krna. (post ko media table k name dy dena. )
 
 
-write common functions class
+jo deliver krna hai usy alag production mai rkh k test krna hai.
+
 reset
-user list 
-add user
-edit user
-update user
-delete user
+user list
+highlight add user menu  item
+create menu links in side bar
+    add media
+    delete media
+    upload media
+    view media
+
 
 
 

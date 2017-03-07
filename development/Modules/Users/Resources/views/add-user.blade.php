@@ -36,21 +36,25 @@
     <form class="form" action="{{route('admin.users.store')}}" enctype="multipart/form-data" data-uid="" method="post" >
 @endsection
 
-@if (isset($user_saved) && $user_saved)
-    @section('form-alerts')
-    <div class="alert alert-success">
-        User successfully created.
-        <strong><a href="{{route('admin.users.index')}}">Return Back</a></strong>
-    </div>
-    @endsection
-@elseif(isset($user_saved))
-    @section('form-alerts')
-        <div class="alert alert-danger">
-            Sorry! There is an error while creating a new user. <br />
-            Please try again. If problem persists then please contact to developer.
-        </div>
-    @endsection
+
+@if(session ('user_saved'))
+    @if(session ('user_saved') == '1')
+        @section('form-alerts')
+            <div class="alert alert-success">
+                User successfully created.
+                <strong><a href="{{route('admin.users.index')}}">Return Back</a></strong>
+            </div>
+        @endsection
+    @else
+        @section('form-alerts')
+            <div class="alert alert-danger">
+                Sorry! There is an error while creating a new user. <br />
+                Please try again. If problem persists then please contact to developer.
+            </div>
+        @endsection
+    @endif
 @endif
+
 
 @section('content')
     <div id="content">
