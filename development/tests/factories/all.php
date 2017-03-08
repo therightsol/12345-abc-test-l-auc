@@ -55,13 +55,13 @@ $factory(\Modules\Cars\Entities\CarsModel::class, function ($faker) {
 
 
     return [
-        'uid' => mt_rand($users_asc[0]->id, $users_des[0]->id),
+        'user_id' => mt_rand($users_asc[0]->id, $users_des[0]->id),
         'title' =>  $faker->userName . ' car',
         'average_price' => $average_price,
         'minimum_price' =>  $min_price,
-        'manufacturing_year'    =>  \Carbon\Carbon::create($faker->year),
-        'model' => mt_rand($car_models_asc[0]->id, $car_models_des[0]->id),
-        'engine_type'   =>  mt_rand($engine_types_asc[0]->id, $engine_types_des[0]->id),
+        'manufacturing_year'    =>  $faker->year,
+        'car_model_id' => mt_rand($car_models_asc[0]->id, $car_models_des[0]->id),
+        'engine_type_id'   =>  mt_rand($engine_types_asc[0]->id, $engine_types_des[0]->id),
         'trim'          =>  $faker->randomElement(['LE', 'XLE', 'Limited', "ABC"]),
         'exterior_color'    => $faker->hexColor,
         'interior_color'    =>  $faker->hexColor,
@@ -156,7 +156,7 @@ $factory(\Modules\Biddings\Entities\Bidding::class, function ($faker) {
     $auction_id = mt_rand($auction_asc[0]->id, $auction_des[0]->id);
 
     return [
-        'uid' => $uid,
+        'user_id' => $uid,
         'bid_amount' => mt_rand(80000, 5000000),
         'auction_id' => $auction_id,
         'created_at' => Carbon\Carbon::now('Asia/Karachi'),
@@ -178,7 +178,7 @@ $factory(\Modules\InspectionRequests\Entities\InspectionRequest::class, function
     $car_id = mt_rand($car_asc[0]->id, $car_des[0]->id);
 
     return [
-        'uid' => $uid,
+        'user_id' => $uid,
         'car_id' => $car_id,
         'date_of_inspection' => getRandomDate(),
         'time_of_inspection' => getRandomTime(),
@@ -211,7 +211,7 @@ $factory(\Modules\Invoices\Entities\Invoice::class, function ($faker) {
         'amount' => mt_rand(10000, 7000000),
         'description' => $faker->text(mt_rand(50, 200)),
         'status' => $faker->randomElement(['paid', 'cancelled', 'pending', 'draft']),
-        'uid'   => $uid,
+        'user_id'   => $uid,
         'payment_method'    => $faker->randomElement(['cash', 'cc', 'bank']),
         'payment_for' => $payment_for,
         'auction_id'    => $auction_id,
@@ -222,13 +222,14 @@ $factory(\Modules\Invoices\Entities\Invoice::class, function ($faker) {
 });
 
 
-/*$factory(\Modules\Categories\Entities\Category::class, function ($faker) {
+$factory(\Modules\Cars\Entities\Category::class, function ($faker) {
 
 
-    $number = \Modules\Categories\Database\Seeders\CategoriesDatabaseSeeder::getIterationNumber();
-    \Modules\Categories\Database\Seeders\CategoriesDatabaseSeeder::updateIterationNumber(($number+1));
+    $number = \Modules\Cars\Database\Seeders\CarsDatabaseSeeder::getIterationNumber();
+    \Modules\Cars\Database\Seeders\CarsDatabaseSeeder::updateIterationNumber(($number+1));
 
-    $catArr = ['Cars', 'Best Deals', 'Popular', 'Limited Offers', 'Misc'];
+
+    $catArr = ['Cars', 'Best Deals', 'Popular', 'Limited Offers', 'Misc', 'Eid Special'];
 
     $category = $catArr[$number];
 
@@ -240,13 +241,13 @@ $factory(\Modules\Invoices\Entities\Invoice::class, function ($faker) {
         'updated_at' => Carbon\Carbon::now('Asia/Karachi'),
         'deleted_at' => null
     ];
-});*/
+});
 
 
 $factory(\Modules\Cars\Entities\CarCategories::class, function ($faker) {
 
-    $cat_des = \Modules\Categories\Entities\Category::orderBy('id', 'desc')->get();
-    $cat_asc = \Modules\Categories\Entities\Category::orderBy('id', 'asc')->get();
+    $cat_des = \Modules\Cars\Entities\Category::orderBy('id', 'desc')->get();
+    $cat_asc = \Modules\Cars\Entities\Category::orderBy('id', 'asc')->get();
     $cat_id = mt_rand($cat_asc[0]->id, $cat_des[0]->id);
 
     $car_des = \Modules\Cars\Entities\CarsModel::orderBy('id', 'desc')->get();
@@ -399,7 +400,7 @@ $factory(\Modules\Media\Entities\Post::class, function ($faker) {
         'slug'              =>  $slug,
         'featured_image'    =>  $faker->imageUrl(800,800,'fashion'),
         'images'            =>  $json_images,
-        'status'            =>  mt_rand(1,4),
+        'post_status_id'            =>  mt_rand(1,4),
         'comment_count'     =>  '0',
         'deleted_at' => null,
         'created_at' => Carbon\Carbon::now('Asia/Karachi'),

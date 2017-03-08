@@ -39,6 +39,8 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
         });
+        echo "users table created \n";
+
         Schema::create('invoices', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -46,7 +48,7 @@ class DBTables extends Migration
             $table->double('amount', 10,2)->nullable();
             $table->longText('description')->nullable();
             $table->enum('status', ['paid', 'cancelled', 'pending', 'draft'])->nullable();
-            $table->bigInteger('uid', false, true)->unsigned()->nullable();
+            $table->bigInteger('user_id', false, true)->unsigned()->nullable();
             $table->enum('payment_method', ['cash', 'cc', 'bank'])->nullable();
             $table->enum('payment_for', ['account', 'bid'])->nullable();
             $table->bigInteger('auction_id', false, true)->unsigned()->nullable();
@@ -54,19 +56,21 @@ class DBTables extends Migration
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
 
-            $table->index('uid','invoices.uid_idx');
+            $table->index('user_id','invoices.user_id_idx');
 
-            $table->foreign('uid')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
         });
+        echo "invoices table created \n";
+
         Schema::create('inspection_requests', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id',20)->unsigned();
-            $table->bigInteger('uid', false, true)->unsigned()->nullable();
+            $table->bigInteger('user_id', false, true)->unsigned()->nullable();
             $table->bigInteger('car_id', false, true)->unsigned()->nullable();
             $table->date('date_of_inspection')->nullable();
             $table->time('time_of_inspection')->nullable();
@@ -74,19 +78,21 @@ class DBTables extends Migration
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
 
-            $table->index('uid','inspection_requests.uid_idx');
+            $table->index('user_id','inspection_requests.uid_idx');
 
-            $table->foreign('uid')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
         });
+        echo "inspection_requests table created \n";
+
         Schema::create('biddings', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id',20)->unsigned();
-            $table->bigInteger('uid', false, true)->unsigned()->nullable();
+            $table->bigInteger('user_id', false, true)->unsigned()->nullable();
             $table->double('bid_amount', 10,2)->nullable();
             $table->bigInteger('auction_id', false, true)->unsigned()->nullable();;
             $table->dateTime('deleted_at')->nullable();
@@ -94,9 +100,9 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
 
-            $table->index('uid','biddings.uid_idx');
+            $table->index('user_id','biddings.uid_idx');
 
-            $table->foreign('uid')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
@@ -104,11 +110,14 @@ class DBTables extends Migration
 
 
         });
+        echo "biddings table created \n";
+
+
         Schema::create('user_metas', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id',20)->unsigned();
-            $table->bigInteger('uid', false, true)->unsigned()->nullable();
+            $table->bigInteger('user_id', false, true)->unsigned()->nullable();
             $table->longText('meta_key')->nullable();
             $table->longText('meta_value')->nullable();
             $table->dateTime('deleted_at')->nullable();
@@ -116,14 +125,16 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
 
-            $table->index('uid','uid_idx');
+            $table->index('user_id','uid_idx');
 
-            $table->foreign('uid')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
         });
+        echo "user_metas table created \n";
+
         Schema::create('password_resets', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -137,6 +148,8 @@ class DBTables extends Migration
                 ->onUpdate('no action');
 
         });
+        echo "password_resets table created \n";
+
 
 
 
@@ -165,6 +178,9 @@ class DBTables extends Migration
                 ->onUpdate('no action');
 
         });
+        echo "auctions table created \n";
+
+
         Schema::create('car_metas', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -186,6 +202,8 @@ class DBTables extends Migration
 
 
         });
+        echo "car_metas table created \n";
+
         Schema::create('car_features', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -209,6 +227,9 @@ class DBTables extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
+        echo "car_features table created \n";
+
+
         Schema::create('features', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -220,6 +241,8 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
         });
+        echo "features table created \n";
+
         Schema::create('engine_types', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -230,6 +253,9 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
         });
+        echo "engine_types table created \n";
+
+
         Schema::create('car_categories', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -255,7 +281,10 @@ class DBTables extends Migration
                 ->onUpdate('no action');
 
         });
-        Schema::create('models', function(Blueprint $table) {
+        echo "car_categories table created \n";
+
+
+        Schema::create('car_models', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->increments('id',9)->unsigned();
@@ -265,7 +294,7 @@ class DBTables extends Migration
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
 
-            $table->index('car_company_id','models.car_company_id_idx');
+            $table->index('car_company_id','car_company_id_idx');
 
             $table->foreign('car_company_id')
                 ->references('id')->on('car_companies')
@@ -273,17 +302,20 @@ class DBTables extends Migration
                 ->onUpdate('no action');
 
         });
+        echo "car_models table created \n";
+
+
         Schema::create('cars', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
             $table->bigIncrements('id',20)->unsigned();
-            $table->bigInteger('uid',false, true)->nullable()->unsigned();
+            $table->bigInteger('user_id',false, true)->nullable()->unsigned();
             $table->string('title',255)->nullable();
             $table->double('average_price',10,2)->nullable();
             $table->double('minimum_price',10,2)->nullable();
-            $table->date('manufacturing_year')->nullable();
-            $table->integer('model', false, true)->nullable()->unsigned();
-            $table->integer('engine_type', false, true)->nullable()->unsigned();
+            $table->integer('manufacturing_year', false, true)->nullable();
+            $table->integer('car_model_id', false, true)->nullable()->unsigned();
+            $table->integer('engine_type_id', false, true)->nullable()->unsigned();
             $table->string('trim', 255)->nullable();
             $table->string('exterior_color', 7)->nullable();
             $table->string('interior_color', 7)->nullable();
@@ -301,27 +333,29 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
 
-            $table->index('engine_type','cars.engine_type_idx');
-            $table->index('model','cars.model_idx');
-            $table->index('uid','cars.uid_idx');
+            $table->index('engine_type_id','cars.engine_type_idx');
+            $table->index('car_model_id','cars.model_idx');
+            $table->index('user_id','cars.uid_idx');
 
-            $table->foreign('engine_type')
+            $table->foreign('engine_type_id')
                 ->references('id')->on('engine_types')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('model')
-                ->references('id')->on('models')
+            $table->foreign('car_model_id')
+                ->references('id')->on('car_models')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('uid')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
 
         });
+        echo "cars table created \n";
+
         Schema::create('car_companies', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -343,8 +377,7 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
         });
-
-
+        echo "car_companies table created \n";
 
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
@@ -363,7 +396,7 @@ class DBTables extends Migration
             $table->longText('images')->nullable();
             $table->string('post_type', 50)->nullable()->default('post');
             $table->string('mime_type', 255)->nullable();
-            $table->integer('status')->unsigned()->nullable();
+            $table->integer('post_status_id')->unsigned()->nullable();
             $table->bigInteger('comment_count')->nullable()->default(0);
             $table->dateTime('deleted_at')->nullable();
             $table->dateTime('created_at')->nullable();
@@ -373,20 +406,22 @@ class DBTables extends Migration
 
 
             $table->index('user_id','user_id_idx');
-            $table->index('status','post_status_idx');
+            $table->index('post_status_id','post_status_idx');
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('status')
+            $table->foreign('post_status_id')
                 ->references('id')->on('post_statuses')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
 
         });
+        echo "posts table created \n";
+
 
 
         Schema::create('post_statuses', function(Blueprint $table) {
@@ -400,6 +435,8 @@ class DBTables extends Migration
 
 
         });
+        echo "post_statuses table created \n";
+
 
 
         Schema::create('post_metas', function(Blueprint $table) {
@@ -415,13 +452,15 @@ class DBTables extends Migration
 
             //$table->primary('id');
 
-            $table->index('post_id','post_id_idx');
+            $table->index('post_id','post_metas.post_id_idx');
 
             $table->foreign('post_id')
                 ->references('id')->on('posts')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
+        echo "post_metas table created \n";
+
 
 
 
@@ -440,6 +479,8 @@ class DBTables extends Migration
             $table->dateTime('updated_at')->nullable();
 
         });
+        echo "notifications table created \n";
+
         Schema::create('general_settings', function(Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -454,6 +495,8 @@ class DBTables extends Migration
             $table->index('key', 'key_x');
 
         });
+        echo "general_settings table created \n";
+
 
 
     }
@@ -481,7 +524,7 @@ class DBTables extends Migration
         Schema::drop('features');
         Schema::drop('engine_types');
         Schema::drop('car_categories');
-        Schema::drop('models');
+        Schema::drop('car_models');
         Schema::drop('cars');
         Schema::drop('car_companies');
         Schema::drop('categories');

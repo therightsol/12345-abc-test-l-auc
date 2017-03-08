@@ -10,9 +10,12 @@ use Laracasts\TestDummy\Factory as TestDummy;
 use Modules\Cars\Entities\CarCategories;
 use Modules\Cars\Entities\CarFeature;
 use Modules\Cars\Entities\CarsModel;
+use Modules\Cars\Entities\Category;
 
 class CarsDatabaseSeeder extends Seeder
 {
+    public static $i = 0;
+
     /**
      * Run the database seeds.
      *
@@ -22,10 +25,23 @@ class CarsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+
+
+        TestDummy::times(5)->create(Category::class);
         TestDummy::times(100)->create(CarsModel::class);
         TestDummy::times(200)->create(CarCategories::class);
         TestDummy::times(100)->create(CarFeature::class);
 
         // $this->call("OthersTableSeeder");
+    }
+
+    public static function getIterationNumber()
+    {
+        $i = self::$i ++;
+        return $i;
+    }
+
+    public static function updateIterationNumber( $number ){
+        self::$i = $number;
     }
 }

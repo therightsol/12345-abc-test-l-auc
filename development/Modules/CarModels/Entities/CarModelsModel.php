@@ -9,7 +9,7 @@ class CarModelsModel extends Model
 {
     protected $fillable = ['model_name','car_company_id'];
 
-    protected $table = 'models';
+    protected $table = 'car_models';
 
     public function scopeFilter($query, $filters)
     {
