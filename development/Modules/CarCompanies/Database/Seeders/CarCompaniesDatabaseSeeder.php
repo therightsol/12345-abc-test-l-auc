@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Entities\CarCompany;
 
 
 class CarCompaniesDatabaseSeeder extends Seeder
@@ -20,7 +20,7 @@ class CarCompaniesDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        TestDummy::times(2)->create(CarCompaniesModel::class);
+        TestDummy::times(2)->create(CarCompany::class);
 
         // $this->call("OthersTableSeeder");
     }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\EngineTypes\Http\Filters\EngineTypesFilter;
-use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\EngineTypes\Entities\EngineType;
 
 class EngineTypesController extends Controller
 {
@@ -19,7 +19,7 @@ class EngineTypesController extends Controller
      */
     public function index(EngineTypesFilter $filter, Request $request)
     {
-        $engineTypes = EngineTypeModel::filter($filter)
+        $engineTypes = EngineType::filter($filter)
             ->paginate(\Helper::limit($request));
         return view('enginetypes::index', compact('engineTypes'));
     }
@@ -45,7 +45,7 @@ class EngineTypesController extends Controller
             'title' => 'required|unique:engine_types,title',
         ]);
 
-        $isSuccess = EngineTypeModel::create($request->only('title'));
+        $isSuccess = EngineType::create($request->only('title'));
         return ($isSuccess) ?
             back()->with('alert-success', 'Engine Type Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
@@ -66,7 +66,7 @@ class EngineTypesController extends Controller
      */
     public function edit($id)
     {
-        $engineType = EngineTypeModel::find($id);
+        $engineType = EngineType::find($id);
         if(!$engineType) return redirect()->route(Helper::route('index'));
 
         return view('enginetypes::edit', compact('engineType'));
@@ -83,7 +83,7 @@ class EngineTypesController extends Controller
             'title' => 'required|unique:engine_types,title,'.$id,
         ]);
 
-        if (!$engineType = EngineTypeModel::find($id)) return redirect()->route(Helper::route('index'));
+        if (!$engineType = EngineType::find($id)) return redirect()->route(Helper::route('index'));
         $isSuccess = $engineType->update(
             $request->only('title')
         );
@@ -98,7 +98,7 @@ class EngineTypesController extends Controller
      */
     public function destroy($id)
     {
-        $rec = EngineTypeModel::find($id);
+        $rec = EngineType::find($id);
         if(empty($rec)) return;
         return ($rec->forceDelete()) ? 'true' : 'false';
     }

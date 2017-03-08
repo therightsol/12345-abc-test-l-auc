@@ -5,7 +5,7 @@ namespace Modules\CarModels\Http\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Entities\CarCompany;
 
 class CarModelsFilter
 {
@@ -17,7 +17,7 @@ class CarModelsFilter
 
     protected $model;
     protected $belongsToThrough = [];
-    protected $belongsTo = [CarCompaniesModel::class => ['company_name']];
+    protected $belongsTo = [CarCompany::class => ['company_name']];
     protected $tableNames = [];
     protected $column = ['id','model_name'];
     protected $select = [];

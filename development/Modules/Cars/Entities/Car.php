@@ -3,25 +3,21 @@
 namespace Modules\Cars\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\CarModels\Entities\CarModelsModel;
-use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\CarModels\Entities\CarModel;
+use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
 
-class CarsModel extends Model
+class Car extends Model
 {
     protected $fillable =
         ['title', 'average_price','minimum_price', 'manufacturing_year',
-            'model', 'engine_type', 'trim','exterior_color', 'interior_color',
+            'car_model_id', 'engine_type_id', 'trim','exterior_color', 'interior_color',
             'grade', 'kilometers', 'number_plate', 'engine_number',
             'chassis_number', 'city_of_registration', 'transmission',
             'body_type', 'drivetrain'];
 
     protected $table = 'cars';
 
-    public function getForeignKey()
-    {
-        return 'car_id';
-    }
 
     public function scopeFilter($query, $filters)
     {
@@ -30,7 +26,7 @@ class CarsModel extends Model
 
     public function engineType()
     {
-        return $this->hasOne(EngineTypeModel::class, 'id', 'engine_type');
+        return $this->belongsTo(EngineType::class);
     }
 
     public function categories()
@@ -40,7 +36,7 @@ class CarsModel extends Model
 
     public function carModel()
     {
-        return $this->hasOne(CarModelsModel::class, 'id', 'model');
+        return $this->belongsTo(CarModel::class);
     }
 
     public function features()

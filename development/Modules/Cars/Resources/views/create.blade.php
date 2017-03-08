@@ -69,7 +69,7 @@
                     type: 'POST',
                     data: { 'id': val },
                     success: function ( data ) {
-                        $('select[name=model]').find('option')
+                        $('select[name=car_model_id]').find('option')
                                 .remove()
                                 .end()
                                 .append(render_options(data, null));

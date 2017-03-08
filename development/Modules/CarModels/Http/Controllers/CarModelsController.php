@@ -8,9 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Entities\CarCompany;
 use Modules\CarModels\Http\Filters\CarModelsFilter;
-use Modules\CarModels\Entities\CarModelsModel;
+use Modules\CarModels\Entities\CarModel;
 
 class CarModelsController extends Controller
 {
@@ -22,7 +22,7 @@ class CarModelsController extends Controller
      */
     public function index(CarModelsFilter $filter, Request $request)
     {
-        $carModels = CarModelsModel::filter($filter)
+        $carModels = CarModel::filter($filter)
             ->paginate(\Helper::limit($request));
         return view('carmodels::index', compact('carModels'));
     }
@@ -33,7 +33,7 @@ class CarModelsController extends Controller
      */
     public function create()
     {
-        $carCompanies = CarCompaniesModel::pluck('company_name', 'id');
+        $carCompanies = CarCompany::pluck('company_name', 'id');
         return view('carmodels::create', compact('carCompanies'));
     }
 
@@ -46,11 +46,11 @@ class CarModelsController extends Controller
     {
         
         $this->validate($request, [
-            'model_name' => 'required|unique:models,model_name',
+            'model_name' => 'required|unique:car_models,model_name',
             'car_company_id' => 'required'
         ]);
 
-        $isSuccess = CarModelsModel::create($request->only('model_name', 'car_company_id'));
+        $isSuccess = CarModel::create($request->only('model_name', 'car_company_id'));
         return ($isSuccess) ?
             back()->with('alert-success', 'Car Model Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
@@ -71,9 +71,9 @@ class CarModelsController extends Controller
      */
     public function edit($id)
     {
-        $carModel = CarModelsModel::whereId($id)->with('carCompany')->first();
+        $carModel = CarModel::whereId($id)->with('carCompany')->first();
         if(!$carModel) return redirect()->route(Helper::route('index'));
-        $carCompanies = CarCompaniesModel::pluck('company_name', 'id');
+        $carCompanies = CarCompany::pluck('company_name', 'id');
 
         return view('carmodels::edit', compact('carModel','carCompanies'));
     }
@@ -90,7 +90,7 @@ class CarModelsController extends Controller
             'car_company_id' => 'required'
         ]);
 
-        if (!$carModel = CarModelsModel::find($id)) return redirect()->route(Helper::route('index'));
+        if (!$carModel = CarModel::find($id)) return redirect()->route(Helper::route('index'));
         $isSuccess = $carModel->update(
             $request->only('model_name', 'car_company_id')
         );
@@ -105,7 +105,7 @@ class CarModelsController extends Controller
      */
     public function destroy($id)
     {
-        $rec = CarModelsModel::find($id);
+        $rec = CarModel::find($id);
         if(empty($rec)) return;
         return ($rec->forceDelete()) ? 'true' : 'false';
     }

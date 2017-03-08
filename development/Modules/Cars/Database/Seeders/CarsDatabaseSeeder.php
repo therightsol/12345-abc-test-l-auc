@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laracasts\TestDummy\Factory as TestDummy;
 use Modules\Cars\Entities\CarCategories;
 use Modules\Cars\Entities\CarFeature;
-use Modules\Cars\Entities\CarsModel;
+use Modules\Cars\Entities\Car;
 use Modules\Cars\Entities\Category;
 
 class CarsDatabaseSeeder extends Seeder
@@ -28,7 +28,7 @@ class CarsDatabaseSeeder extends Seeder
 
 
         TestDummy::times(5)->create(Category::class);
-        TestDummy::times(100)->create(CarsModel::class);
+        TestDummy::times(100)->create(Car::class);
         TestDummy::times(200)->create(CarCategories::class);
         TestDummy::times(100)->create(CarFeature::class);
 

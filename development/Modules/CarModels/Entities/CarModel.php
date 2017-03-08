@@ -3,9 +3,9 @@
 namespace Modules\CarModels\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Entities\CarCompany;
 
-class CarModelsModel extends Model
+class CarModel extends Model
 {
     protected $fillable = ['model_name','car_company_id'];
 
@@ -17,11 +17,7 @@ class CarModelsModel extends Model
     }
     public function carCompany()
     {
-        return $this->belongsTo(CarCompaniesModel::class);
+        return $this->belongsTo(CarCompany::class);
     }
 
-    public function getForeignKey()
-    {
-        return 'model';
-    }
 }

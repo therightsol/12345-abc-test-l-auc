@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
-use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\EngineTypes\Entities\EngineType;
 
 class CarMetasDatabaseSeeder extends Seeder
 {

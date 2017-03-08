@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
+use Modules\CarCompanies\Entities\CarCompany;
 use Modules\CarCompanies\Http\Filters\CarCompaniesFilter;
 class CarCompaniesController extends Controller
 {
@@ -21,7 +21,7 @@ class CarCompaniesController extends Controller
     public function index(CarCompaniesFilter $filter, Request $request)
     {
 
-        $carCompanies = CarCompaniesModel::filter($filter)
+        $carCompanies = CarCompany::filter($filter)
             ->paginate(\Helper::limit($request));
         return view('carcompanies::index', compact('carCompanies'));
     }
@@ -47,7 +47,7 @@ class CarCompaniesController extends Controller
             'company_name' => 'required|unique:car_companies,company_name'
         ]);
 
-        $isSuccess = CarCompaniesModel::create([
+        $isSuccess = CarCompany::create([
             'company_name' => $request->input('company_name')
         ]);
         return ($isSuccess) ?
@@ -70,7 +70,7 @@ class CarCompaniesController extends Controller
      */
     public function edit($id)
     {
-        $carCompany = CarCompaniesModel::find($id);
+        $carCompany = CarCompany::find($id);
         if(!$carCompany) return redirect()->route(Helper::route('index'));
         return view('carcompanies::edit', compact('carCompany'));
     }
@@ -86,7 +86,7 @@ class CarCompaniesController extends Controller
             'company_name' => 'required|unique:car_companies,company_name,' . $id
         ]);
 
-        if (!$carCompany = CarCompaniesModel::find($id)) return redirect()->route(Helper::route('index'));
+        if (!$carCompany = CarCompany::find($id)) return redirect()->route(Helper::route('index'));
         $isSuccess = $carCompany->update([
             'company_name' => $request->input('company_name')
         ]);
@@ -101,7 +101,7 @@ class CarCompaniesController extends Controller
      */
     public function destroy($id)
     {
-        $rec = CarCompaniesModel::find($id);
+        $rec = CarCompany::find($id);
         if(empty($rec)) return;
         return ($rec->forceDelete()) ? 'true' : 'false';
     }

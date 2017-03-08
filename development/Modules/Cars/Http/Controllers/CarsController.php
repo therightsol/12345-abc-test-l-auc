@@ -7,14 +7,14 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\CarCompanies\Entities\CarCompaniesModel;
-use Modules\CarModels\Entities\CarModelsModel;
+use Modules\CarCompanies\Entities\CarCompany;
+use Modules\CarModels\Entities\CarModel;
 use Modules\Cars\Entities\CarCategories;
 use Modules\Cars\Entities\CarFeature;
-use Modules\Cars\Entities\CarsModel;
+use Modules\Cars\Entities\Car;
 use Modules\Cars\Entities\Category;
 use Modules\Cars\Http\Filters\CarFilter;
-use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
 
 class CarsController extends Controller
@@ -28,7 +28,7 @@ class CarsController extends Controller
     public function index(CarFilter $filter, Request $request)
     {
 
-        $cars = CarsModel::filter($filter)
+        $cars = Car::filter($filter)
             ->paginate(\Helper::limit($request));
 
         return view('cars::index', compact('cars'));
@@ -40,10 +40,10 @@ class CarsController extends Controller
      */
     public function create()
     {
-        $carCompanies = CarCompaniesModel::pluck('company_name', 'id');
-//        $models = CarModelsModel::pluck('model_name', 'id');
+        $carCompanies = CarCompany::pluck('company_name', 'id');
+//        $car_model_ids = CarModelsModel::pluck('car_model_id_name', 'id');
         $categories = Category::pluck('category', 'id');
-        $engine_types = EngineTypeModel::pluck('title', 'id');
+        $engine_types = EngineType::pluck('title', 'id');
         $features = Feature::pluck('title', 'id');
         return view('cars::create', compact('carCompanies', 'categories','engine_types', 'features'));
 
@@ -56,7 +56,7 @@ class CarsController extends Controller
                 'id' => "required|integer",
             ]);
 
-            return CarModelsModel::where('car_company_id', $request->input('id'))->get(['id', 'model_name']);
+            return CarModel::where('car_company_id', $request->input('id'))->get(['id', 'model_name']);
         }
     }
 
@@ -69,17 +69,17 @@ class CarsController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'model' => 'required',
+            'car_model_id' => 'required',
+            'kilometers' => 'integer|min:0',
         ]);
 
-        $date = Carbon::createFromFormat('Y', $request->input('manufacturing_year'));
 
-        $isSuccess = CarsModel::create(
-            array_merge(['manufacturing_year' => $date],$request->only(
-                'title', 'model', 'engine_type', 'trim',
-                'exterior_color', 'interior_color', 'grade',
+        $isSuccess = Car::create(
+            $request->only(
+                'title', 'car_model_id', 'engine_type_id', 'trim',
+                'exterior_color', 'interior_color', 'grade','manufacturing_year',
                 'kilometers', 'number_plate','engine_number', 'chassis_number',
-                'city_of_registration', 'transmission', 'body_type', 'drivetrain'))
+                'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
         $isSuccess->categories()->attach($request->input('categories'));
         $isSuccess->features()->attach($request->input('features'));
@@ -104,16 +104,17 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        $car = CarsModel::whereId($id)->with(
+
+        $carCompanies = CarCompany::pluck('company_name', 'id');
+        $categories = Category::pluck('category', 'id');
+        $engine_types = EngineType::pluck('title', 'id');
+        $features = Feature::pluck('title', 'id');
+
+        $car = Car::whereId($id)->with(
             ['engineType','categories','carModel.carCompany','features']
-        )->get();
+        )->first();
 
-
-        return $car;
-
-
-        return view('cars::edit', compact('category'));
-
+        return view('cars::edit', compact('car','carCompanies', 'categories','engine_types', 'features'));
     }
 
     /**
@@ -123,17 +124,25 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'category' => 'required|unique:categories,category,' . $id
+        $this->validate($request,[
+            'title' => 'required',
+            'car_model_id' => 'required',
+            'kilometers' => 'integer|min:0',
         ]);
+        if (!$car = Car::find($id)) return back()->with('alert-danger', 'Error: please try again.');
 
+        $isSuccess = $car->update(
+            $request->only(
+                'title', 'car_model_id', 'engine_type_id', 'trim',
+                'exterior_color', 'interior_color', 'grade','manufacturing_year',
+                'kilometers', 'number_plate','engine_number', 'chassis_number',
+                'city_of_registration', 'transmission', 'body_type', 'drivetrain')
+        );
 
-        if (!$car = Category::find($id)) return back()->with('alert-danger', 'Error: please try again.');
-        $isSuccess = $car->update([
-            'category' => $request->input('category')
-        ]);
-        return ($isSuccess) ?
-            back()->with('alert-success', 'Car Created Successfully')
+        $car->categories()->sync($request->input('categories'));
+        $car->features()->sync($request->input('features'));
+        return ($isSuccess)?
+            back()->with('alert-success', 'Car Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
     }
 
@@ -143,7 +152,7 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        $rec = CarsModel::find($id);
+        $rec = Car::find($id);
         if(empty($rec)) return;
         return ($rec->forceDelete()) ? 'true' : 'false';
     }

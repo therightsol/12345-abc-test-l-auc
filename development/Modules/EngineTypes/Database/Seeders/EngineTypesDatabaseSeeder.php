@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 // composer require laracasts/testdummy
 use Laracasts\TestDummy\Factory as TestDummy;
-use Modules\EngineTypes\Entities\EngineTypeModel;
+use Modules\EngineTypes\Entities\EngineType;
 
 class EngineTypesDatabaseSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class EngineTypesDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        TestDummy::times(4)->create(EngineTypeModel::class);
+        TestDummy::times(4)->create(EngineType::class);
 
 
         // $this->call("OthersTableSeeder");

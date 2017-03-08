@@ -31,18 +31,18 @@ $factory(\Modules\Users\Entities\UserModel::class, function ($faker) {
     ];
 });
 
-$factory(\Modules\Cars\Entities\CarsModel::class, function ($faker) {
+$factory(\Modules\Cars\Entities\Car::class, function ($faker) {
 
 
     $users_des = \Modules\Users\Entities\UserModel::orderBy('id', 'desc')->get();
     $users_asc = \Modules\Users\Entities\UserModel::orderBy('id', 'asc')->get();
 
-    $engine_types_des = \Modules\EngineTypes\Entities\EngineTypeModel::orderBy('id', 'desc')->get();
-    $engine_types_asc = \Modules\EngineTypes\Entities\EngineTypeModel::orderBy('id', 'asc')->get();
+    $engine_types_des = \Modules\EngineTypes\Entities\EngineType::orderBy('id', 'desc')->get();
+    $engine_types_asc = \Modules\EngineTypes\Entities\EngineType::orderBy('id', 'asc')->get();
 
 
-    $car_models_des = \Modules\CarModels\Entities\CarModelsModel::orderBy('id', 'desc')->get();
-    $car_models_asc = \Modules\CarModels\Entities\CarModelsModel::orderBy('id', 'asc')->get();
+    $car_models_des = \Modules\CarModels\Entities\CarModel::orderBy('id', 'desc')->get();
+    $car_models_asc = \Modules\CarModels\Entities\CarModel::orderBy('id', 'asc')->get();
 
 
 
@@ -80,10 +80,10 @@ $factory(\Modules\Cars\Entities\CarsModel::class, function ($faker) {
     ];
 });
 
-$factory(\Modules\CarModels\Entities\CarModelsModel::class, function ($faker) {
+$factory(\Modules\CarModels\Entities\CarModel::class, function ($faker) {
 
-    $companies_des = \Modules\CarCompanies\Entities\CarCompaniesModel::orderBy('id', 'desc')->get();
-    $companies_asc = \Modules\CarCompanies\Entities\CarCompaniesModel::orderBy('id', 'asc')->get();
+    $companies_des = \Modules\CarCompanies\Entities\CarCompany::orderBy('id', 'desc')->get();
+    $companies_asc = \Modules\CarCompanies\Entities\CarCompany::orderBy('id', 'asc')->get();
 
     return [
         'car_company_id' => mt_rand($companies_asc[0]->id, $companies_des[0]->id),
@@ -95,7 +95,7 @@ $factory(\Modules\CarModels\Entities\CarModelsModel::class, function ($faker) {
     ];
 });
 
-$factory(\Modules\CarCompanies\Entities\CarCompaniesModel::class, function ($faker) {
+$factory(\Modules\CarCompanies\Entities\CarCompany::class, function ($faker) {
 
     return [
         'company_name' => $faker->randomElement(['Hyundai', 'Toyota']),
@@ -105,7 +105,7 @@ $factory(\Modules\CarCompanies\Entities\CarCompaniesModel::class, function ($fak
     ];
 });
 
-$factory(\Modules\EngineTypes\Entities\EngineTypeModel::class, function ($faker) {
+$factory(\Modules\EngineTypes\Entities\EngineType::class, function ($faker) {
 
     return [
         'title' => $faker->randomElement(['External combustion (EC)', 'Internal Combustion (IC)', 'Diesel Engine', 'Petrol Engine']),
@@ -118,8 +118,8 @@ $factory(\Modules\EngineTypes\Entities\EngineTypeModel::class, function ($faker)
 
 $factory(\Modules\Auctions\Entities\Auction::class, function ($faker) {
 
-    $car_des = \Modules\Cars\Entities\CarsModel::orderBy('id', 'desc')->get();
-    $car_asc = \Modules\Cars\Entities\CarsModel::orderBy('id', 'asc')->get();
+    $car_des = \Modules\Cars\Entities\Car::orderBy('id', 'desc')->get();
+    $car_asc = \Modules\Cars\Entities\Car::orderBy('id', 'asc')->get();
 
     $user_des = \Modules\Users\Entities\UserModel::orderBy('id', 'desc')->get();
     $user_asc = \Modules\Users\Entities\UserModel::orderBy('id', 'asc')->get();
@@ -168,8 +168,8 @@ $factory(\Modules\Biddings\Entities\Bidding::class, function ($faker) {
 
 $factory(\Modules\InspectionRequests\Entities\InspectionRequest::class, function ($faker) {
 
-    $car_des = \Modules\Cars\Entities\CarsModel::orderBy('id', 'desc')->get();
-    $car_asc = \Modules\Cars\Entities\CarsModel::orderBy('id', 'asc')->get();
+    $car_des = \Modules\Cars\Entities\Car::orderBy('id', 'desc')->get();
+    $car_asc = \Modules\Cars\Entities\Car::orderBy('id', 'asc')->get();
 
     $user_des = \Modules\Users\Entities\UserModel::orderBy('id', 'desc')->get();
     $user_asc = \Modules\Users\Entities\UserModel::orderBy('id', 'asc')->get();
@@ -250,8 +250,8 @@ $factory(\Modules\Cars\Entities\CarCategories::class, function ($faker) {
     $cat_asc = \Modules\Cars\Entities\Category::orderBy('id', 'asc')->get();
     $cat_id = mt_rand($cat_asc[0]->id, $cat_des[0]->id);
 
-    $car_des = \Modules\Cars\Entities\CarsModel::orderBy('id', 'desc')->get();
-    $car_asc = \Modules\Cars\Entities\CarsModel::orderBy('id', 'asc')->get();
+    $car_des = \Modules\Cars\Entities\Car::orderBy('id', 'desc')->get();
+    $car_asc = \Modules\Cars\Entities\Car::orderBy('id', 'asc')->get();
     $car_id = mt_rand($car_asc[0]->id, $car_des[0]->id);
 
     return [
@@ -292,8 +292,8 @@ $factory(\Modules\Cars\Entities\CarFeature::class, function ($faker) {
     $feature_asc = \Modules\Features\Entities\Feature::orderBy('id', 'asc')->get();
     $feature_id = mt_rand($feature_asc[0]->id, $feature_des[0]->id);
 
-    $car_des = \Modules\Cars\Entities\CarsModel::orderBy('id', 'desc')->get();
-    $car_asc = \Modules\Cars\Entities\CarsModel::orderBy('id', 'asc')->get();
+    $car_des = \Modules\Cars\Entities\Car::orderBy('id', 'desc')->get();
+    $car_asc = \Modules\Cars\Entities\Car::orderBy('id', 'asc')->get();
     $car_id = mt_rand($car_asc[0]->id, $car_des[0]->id);
 
     return [

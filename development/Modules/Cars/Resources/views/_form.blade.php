@@ -30,7 +30,7 @@
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('company_id') ? ' has-error' : '' }}">
                     {{ Form::label('company_id', 'Company') }}
-                    {{ Form::select('company_id', $carCompanies, isset($car)?$car->company_id->model_name:null,['class' => 'form-control','placeholder' => 'Select Company']) }}
+                    {{ Form::select('company_id', $carCompanies, isset($car)?$car->carModel->carCompany->id:null,['class' => 'form-control','placeholder' => 'Select Company']) }}
                     @if ($errors->has('company_id'))
                         <span class="help-block">
                     <strong>{{ $errors->first('company_id') }}</strong>
@@ -40,24 +40,24 @@
             </div>
 
             <div class="col-sm-6">
-                <div class="form-group{{ $errors->has('model') ? ' has-error' : '' }}">
-                    {{ Form::label('model', 'Model') }}
-                    {{ Form::select('model', isset($models)?$models:[], isset($car)?$car->model->model_name:null,['class' => 'form-control','placeholder' => 'Select Model']) }}
-                @if ($errors->has('model'))
+                <div class="form-group{{ $errors->has('car_model_id') ? ' has-error' : '' }}">
+                    {{ Form::label('car_model_id', 'Model') }}
+                    {{ Form::select('car_model_id', isset($models)?$models:[], null,['class' => 'form-control','placeholder' => 'Select Model']) }}
+                @if ($errors->has('car_model_id'))
                         <span class="help-block">
-                    <strong>{{ $errors->first('model') }}</strong>
+                    <strong>{{ $errors->first('car_model_id') }}</strong>
                 </span>
                     @endif
                 </div>
             </div>
 
             <div class="col-sm-6">
-                <div class="form-group{{ $errors->has('engine_type') ? ' has-error' : '' }}">
-                    {{ Form::label('engine_type', 'Engine Type') }}
-                    {{ Form::select('engine_type', $engine_types, isset($car)?$car->engineType->title:null,['class' => 'form-control','placeholder' => 'Select Engine Type']) }}
-                    @if ($errors->has('engine_type'))
+                <div class="form-group{{ $errors->has('engine_type_id') ? ' has-error' : '' }}">
+                    {{ Form::label('engine_type_id', 'Engine Type') }}
+                    {{ Form::select('engine_type_id', $engine_types, isset($car)?$car->engineType->title:null,['class' => 'form-control','placeholder' => 'Select Engine Type']) }}
+                    @if ($errors->has('engine_type_id'))
                         <span class="help-block">
-                    <strong>{{ $errors->first('engine_type') }}</strong>
+                    <strong>{{ $errors->first('engine_type_id') }}</strong>
                 </span>
                     @endif
                 </div>
@@ -76,8 +76,8 @@
 
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('exterior_color') ? ' has-error' : '' }}">
-                    {{ Form::text('exterior_color', null ,['class' => 'form-control']) }}
                     {{ Form::label('exterior_color', 'Exterior Color') }}
+                    {{ Form::color('exterior_color', null ,['class' => 'form-control']) }}
                     @if ($errors->has('exterior_color'))
                         <span class="help-block">
                     <strong>{{ $errors->first('exterior_color') }}</strong>
@@ -88,7 +88,7 @@
 
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('interior_color') ? ' has-error' : '' }}">
-                    {{ Form::text('interior_color', null ,['class' => 'form-control']) }}
+                    {{ Form::color('interior_color', null ,['class' => 'form-control']) }}
                     {{ Form::label('interior_color', 'Interror Color') }}
                     @if ($errors->has('interior_color'))
                         <span class="help-block">
@@ -201,7 +201,7 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group{{ $errors->has('categories') ? ' has-error' : '' }}">
-                    {{ Form::select('categories[]', $categories , null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allCategories']) }}
+                    {{ Form::select('categories[]', $categories, isset($car)?$car->categories->pluck('id')->toArray():null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allCategories']) }}
                     @if ($errors->has('categories'))
                         <span class="help-block">
                     <strong>{{ $errors->first('categories') }}</strong>
@@ -211,7 +211,7 @@
             </div>
             <div class="col-sm-12">
                 <div class="form-group{{ $errors->has('features') ? ' has-error' : '' }}">
-                    {{ Form::select('features[]', $features , null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allFeatures']) }}
+                    {{ Form::select('features[]', $features , isset($car)?$car->features->pluck('id')->toArray():null, ['multiple' => true, 'class' => 'form-control', 'id' => 'allFeatures']) }}
                     @if ($errors->has('features'))
                         <span class="help-block">
                     <strong>{{ $errors->first('features') }}</strong>

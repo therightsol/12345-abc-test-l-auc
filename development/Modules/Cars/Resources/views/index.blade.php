@@ -4,10 +4,10 @@
     <table class="table table-striped table-hover dataTable">
         <thead>
         <tr>
-            <th class="sorting" data-table="CarModel.id">Id</th>
-            <th class="sorting" data-table="CarModel.title">Title</th>
-            <th class="sorting" data-table="CarModel.grade">Grade</th>
-            <th class="sorting" data-table="CarModelsModel.model_name">Model</th>
+            <th class="sorting" data-table="Car.id">Id</th>
+            <th class="sorting" data-table="Car.title">Title</th>
+            <th class="sorting" data-table="Car.grade">Grade</th>
+            <th class="sorting" data-table="CarModel.model_name">Model</th>
             <th>Action</th>
 
         </tr>
