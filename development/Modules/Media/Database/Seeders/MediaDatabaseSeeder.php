@@ -19,15 +19,12 @@ class MediaDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        TestDummy::times(50)->create(Post::class);
+        $size = PostStatus::all();
 
-
-
-        $records = DB::table('post_statuses')->get();
-
-        if (! (sizeof($records) >= 4 ) ){
+        if ( sizeof($size) == 0){
             TestDummy::times(4)->create(PostStatus::class);
         }
+
 
         // $this->call("OthersTableSeeder");
     }

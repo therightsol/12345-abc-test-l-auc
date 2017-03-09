@@ -63,7 +63,7 @@ class MediaController extends Controller
 
 
         $selected_files = Post::where('post_type', 'attachment')
-            ->where('status', $post_status[0]->id);
+            ->where('post_status_id', $post_status[0]->id);
 
 
         $maxFileSize = ini_get('upload_max_filesize');
@@ -254,9 +254,8 @@ class MediaController extends Controller
             $post->content = $url . '/' . $filename;
             $post->post_type = 'attachment';
             $post->mime_type = $mime;
-            $post->status = 'publish';
             $post->short_description = json_encode(['image-folder' => 'images/users']);
-            $post->status = $post_status[0]->id;
+            $post->post_status_id = $post_status[0]->id;
 
             if ( $post->save() )
                 return json_encode([ ['filename' => $post->content, 'id' => $post->id, 'mime_type' => $post->mime_type], 'status' => 'success']);

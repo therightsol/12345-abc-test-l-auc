@@ -224,8 +224,8 @@ class DBTables extends Migration
 
             $table->foreign('car_id')
                 ->references('id')->on('cars')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
         echo "car_features table created \n";
 
@@ -271,8 +271,8 @@ class DBTables extends Migration
 
             $table->foreign('car_id')
                 ->references('id')->on('cars')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
             $table->foreign('category_id')
@@ -397,7 +397,6 @@ class DBTables extends Migration
             $table->string('post_type', 50)->nullable()->default('post');
             $table->string('mime_type', 255)->nullable();
             $table->integer('post_status_id')->unsigned()->nullable();
-            $table->bigInteger('comment_count')->nullable()->default(0);
             $table->dateTime('deleted_at')->nullable();
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
@@ -436,31 +435,6 @@ class DBTables extends Migration
 
         });
         echo "post_statuses table created \n";
-
-
-
-        Schema::create('post_metas', function(Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->bigIncrements('id');
-            $table->bigInteger('post_id', false, true)->unsigned()->nullable();
-            $table->string('meta_key', 255)->nullable();
-            $table->longText('meta_value')->nullable();
-            $table->dateTime('deleted_at')->nullable();
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
-
-            //$table->primary('id');
-
-            $table->index('post_id','post_metas.post_id_idx');
-
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-        });
-        echo "post_metas table created \n";
-
 
 
 
@@ -531,7 +505,6 @@ class DBTables extends Migration
 
 
         Schema::drop('posts');
-        Schema::drop('post_metas');
         Schema::drop('post_statuses');
 
         // General Tables - 2

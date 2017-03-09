@@ -25,12 +25,15 @@ class CarsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $cat_size = Category::all();
+        if (sizeof($cat_size) == 0){
+            TestDummy::times(5)->create(Category::class);
+        }
 
-
-        TestDummy::times(5)->create(Category::class);
-        TestDummy::times(100)->create(Car::class);
         TestDummy::times(200)->create(CarCategories::class);
         TestDummy::times(100)->create(CarFeature::class);
+        TestDummy::times(100)->create(Car::class);
+
 
         // $this->call("OthersTableSeeder");
     }
