@@ -61,6 +61,12 @@
                         <li><a class="{{ Helper::isActiveResource('admin.features') }}" href="{{ route('admin.features.index') }}"><span class="title">Manage Car Features</span></a></li>
                     </ul><!--end /submenu -->
                 </li>
+                <li>
+                    <a href="{{route('admin.settings.index')}}"  class="{{ Helper::isActiveRoute('admin.settings') }}" >
+                        <div class="gui-icon"><i class="fa fa-gears"></i></div>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
 
 
                 <!-- BEGIN LEVELS -->

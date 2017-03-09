@@ -5,6 +5,7 @@ namespace Modules\GeneralSettings\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\GeneralSettings\Entities\GeneralSetting;
 
 class GeneralSettingsController extends Controller
 {
@@ -14,43 +15,11 @@ class GeneralSettingsController extends Controller
      */
     public function index()
     {
-        return view('generalsettings::index');
-    }
+//        \Redis::publish('notification-chanel', json_encode(['message']));
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('generalsettings::create');
-    }
+        $settings = GeneralSetting::all();
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('generalsettings::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('generalsettings::edit');
+        return view('generalsettings::index', compact('settings'));
     }
 
     /**
@@ -58,15 +27,20 @@ class GeneralSettingsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function save(Request $request)
     {
+
+        GeneralSetting::truncate();
+
+        $arr = [];
+        foreach ($request->except('_token') as $key => $value) {
+            $arr[] = ['key' => $key, 'value' => $value];
+        }
+        $isSuccess = GeneralSetting::insert($arr);
+
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Settings Saved Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }
