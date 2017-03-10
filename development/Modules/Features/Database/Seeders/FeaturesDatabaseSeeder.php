@@ -20,9 +20,13 @@ class FeaturesDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $size = Feature::all();
+        if (sizeof($size) === 0){
+            Model::unguard();
 
-        TestDummy::times(11)->create(Feature::class);
+            TestDummy::times(11)->create(Feature::class);
+        }
+
 
         // $this->call("OthersTableSeeder");
     }

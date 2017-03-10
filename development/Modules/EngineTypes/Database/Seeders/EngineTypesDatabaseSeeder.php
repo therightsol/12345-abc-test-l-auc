@@ -18,9 +18,13 @@ class EngineTypesDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $size = EngineType::all();
+        if (sizeof($size) === 0){
+            Model::unguard();
 
-        TestDummy::times(4)->create(EngineType::class);
+            TestDummy::times(4)->create(EngineType::class);
+        }
+
 
 
         // $this->call("OthersTableSeeder");

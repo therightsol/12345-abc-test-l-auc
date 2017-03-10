@@ -19,9 +19,12 @@ class CarCompaniesDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-        TestDummy::times(2)->create(CarCompany::class);
+        $size = CarCompany::all();
 
+        if (sizeof($size) == 0){
+            Model::unguard();
+            TestDummy::times(2)->create(CarCompany::class);
+        }
         // $this->call("OthersTableSeeder");
     }
 }

@@ -22,9 +22,11 @@ class GeneralSettingsDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
-        TestDummy::times(5)->create(GeneralSetting::class);
+        $size = GeneralSetting::all();
+        if (sizeof ($size) == 0){
+            Model::unguard();
+            TestDummy::times(5)->create(GeneralSetting::class);
+        }
 
 
         // $this->call("OthersTableSeeder");
