@@ -86,7 +86,7 @@ class CarModelsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'model_name' => 'required|unique:models,model_name,'.$id,
+            'model_name' => 'required|unique:car_models,model_name,'.$id,
             'car_company_id' => 'required'
         ]);
 

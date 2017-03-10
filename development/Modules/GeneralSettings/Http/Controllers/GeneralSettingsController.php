@@ -15,7 +15,6 @@ class GeneralSettingsController extends Controller
      */
     public function index()
     {
-//        \Redis::publish('notification-chanel', json_encode(['message']));
 
         $settings = GeneralSetting::all();
 

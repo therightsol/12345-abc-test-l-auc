@@ -10,7 +10,7 @@ var redis = new Redis();
 redis.subscribe('notification-chanel')
 
 redis.on('message', function (chanel, message) {
-    console.log(message)
-})
+    io.emit(chanel+':test', message)
+});
 
-server.listen(6379);
+server.listen(3000);

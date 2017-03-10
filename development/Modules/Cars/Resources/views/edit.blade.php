@@ -61,7 +61,10 @@
         $('select[name=company_id]').change(function () {
             var val = $(this).val();
             if(!val){
-                render_options([]);
+                $('select[name=car_model_id]').find('option')
+                        .remove()
+                        .end()
+                        .append(render_options([]));
                 return;
             }
             $.ajax( {
@@ -82,9 +85,10 @@
                     spinner.hide();
                 }
             }  );
-        }).trigger('change');
+        });
 
         function render_options ( arr , model_id ) {
+            console.log(arr);
             var strOptions,selected;
             if ( arr.length < 1 ) {
                 strOptions = "<option value=''>No Model Found</option>"

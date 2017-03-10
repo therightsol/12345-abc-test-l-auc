@@ -114,7 +114,10 @@ class CarsController extends Controller
             ['engineType','categories','carModel.carCompany','features']
         )->first();
 
-        return view('cars::edit', compact('car','carCompanies', 'categories','engine_types', 'features'));
+        $carCompanyModels = CarModel::where('car_company_id', $car->carModel->carCompany->id)->pluck('model_name', 'id');
+
+
+        return view('cars::edit', compact('car','carCompanies','carCompanyModels', 'categories','engine_types', 'features'));
     }
 
     /**
@@ -139,8 +142,12 @@ class CarsController extends Controller
                 'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
 
-        $car->categories()->sync($request->input('categories'));
-        $car->features()->sync($request->input('features'));
+        ($request->input('categories'))
+            ? $car->categories()->sync($request->input('categories'))
+            : $car->categories()->detach();
+        ($request->input('features'))
+            ? $car->features()->sync($request->input('features'))
+            : $car->features()->detach();
         return ($isSuccess)?
             back()->with('alert-success', 'Car Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
