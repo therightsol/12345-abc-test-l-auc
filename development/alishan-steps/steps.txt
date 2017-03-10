@@ -16,6 +16,7 @@ create menu links in side bar
     delete media
     upload media
     view media
+create a Laravel command from where automatic migration + all seeding done.
 
 
 

@@ -48,7 +48,7 @@
                 </li>
                 <li class="gui-folder">
                     <a>
-                        <div class="gui-icon"><i class="fa fa-user fa-fw"></i></div>
+                        <div class="gui-icon"><i class="fa fa-car fa-fw"></i></div>
                         <span class="title">Car</span>
                     </a>
                     <!--start submenu -->
