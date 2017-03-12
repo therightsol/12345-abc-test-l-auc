@@ -62,7 +62,14 @@
                     </ul><!--end /submenu -->
                 </li>
                 <li>
-                    <a href="{{route('admin.settings.index')}}"  class="{{ Helper::isActiveRoute('admin.settings') }}" >
+                    <a href="{{route('admin.auctions.index')}}"  class="{{ Helper::isActiveResource('admin.auctions') }}" >
+                        <div class="gui-icon"><i class="fa fa-gavel" aria-hidden="true"></i>
+                        </div>
+                        <span class="title">Auctions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('admin.settings.index')}}"  class="{{ Helper::isActiveResource('admin.settings') }}" >
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
                         <span class="title">Settings</span>
                     </a>

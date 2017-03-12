@@ -23,10 +23,6 @@
                     </div>
                 </div>
             </div>
-            <form id="tess">
-                <input id="message">
-                <button type="submit">Send</button>
-            </form>
         </section>
     </div>
 
