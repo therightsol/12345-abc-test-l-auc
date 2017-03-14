@@ -51,6 +51,18 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('currency_symbol') ? ' has-error' : '' }}">
+                    {{ Form::label('currency_symbol', 'Currency Symbol:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('currency_symbol', isset($settings['currency_symbol'])? $settings['currency_symbol']: null ,['class' => 'form-control']) }}
+
+                    @if ($errors->has('currency_symbol'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('currency_symbol') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
 

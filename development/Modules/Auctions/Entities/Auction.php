@@ -3,6 +3,7 @@
 namespace Modules\Auctions\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Cars\Entities\Car;
 
 class Auction extends Model
 {
@@ -13,4 +14,10 @@ class Auction extends Model
     {
         return $filters->apply($query);
     }
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
+
 }

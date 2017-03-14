@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\CommonBackend\Helpers;
+use Modules\GeneralSettings\Entities\GeneralSetting;
 use \Route;
 
 /**
@@ -109,6 +110,16 @@ class Helper
 
     public static function getResourceName(){
         return preg_replace('/\W\w+\s*(\W*)$/', '$1', Route::currentRouteName());
+    }
+
+
+    public static function currencySymbol()
+    {
+        $symbol = GeneralSetting::currencySymbol();
+        if(!empty($symbol)){
+            $symbol = $symbol[0];
+        }
+        return $symbol;
     }
 
 }

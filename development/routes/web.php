@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::match(['get','post'],'auction', 'Auction\AuctionController@index')->name('auction.index');
