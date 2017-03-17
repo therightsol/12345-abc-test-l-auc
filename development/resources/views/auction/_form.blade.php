@@ -17,41 +17,19 @@
 <form method="post" action="#" class="listing_sort">
     <div class="select-wrapper listing_select clearfix margin-top-none margin-bottom-15 col-sm-12">
         <div class="my-dropdown years-dropdown">
-            <select name="year" class="css-dropdowns" tabindex="1" >
-                <option value="">All Years</option>
-                <option>2015</option>
-                <option>2014</option>
-                <option>2013</option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2010</option>
-                <option>2009</option>
-                <option>2008</option>
-                <option>2007</option>
-                <option>2006</option>
-                <option>2005</option>
-                <option>2004</option>
-            </select>
+            {{ Form::select('year', $manufacturing_years, null,
+            ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Years']) }}
+
         </div>
         <div class="my-dropdown makers-dropdown">
-            <select name="make" class="css-dropdowns" tabindex="1" >
-                <option value="">All Makes</option>
-                <option>Lorem</option>
-                <option>ipsum</option>
-                <option>dolor</option>
-                <option>sit</option>
-                <option>amet</option>
-            </select>
+            {{ Form::select('company', $companies, null,
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Companies']) }}
+
         </div>
         <div class="my-dropdown models-dropdown">
-            <select name="model" class="css-dropdowns" tabindex="1" >
-                <option value="">All Models</option>
-                <option>Lorem</option>
-                <option>ipsum</option>
-                <option>dolor</option>
-                <option>sit</option>
-                <option>amet</option>
-            </select>
+            {{ Form::select('company', $models, null,
+        ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Models']) }}
+
         </div>
         <div class="my-dropdown body-styles-dropdown">
             <select name="body_style" class="css-dropdowns" tabindex="1" >

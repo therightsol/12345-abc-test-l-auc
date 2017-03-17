@@ -116,10 +116,10 @@ class Helper
     public static function currencySymbol()
     {
         $symbol = GeneralSetting::currencySymbol();
-        if(!empty($symbol)){
-            $symbol = $symbol[0];
+        if(count($symbol)){
+            return $symbol[0];
         }
-        return $symbol;
+        return '';
     }
 
 }

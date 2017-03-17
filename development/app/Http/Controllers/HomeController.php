@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $listings = Auction::with('car')->limit(20)->latest()->get();
+
         return view('home.index', compact('listings'));
     }
 }

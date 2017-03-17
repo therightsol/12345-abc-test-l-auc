@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-10 col-sm-8 padding-right-none xs-padding-left-none">
             <div class="carasouel-slider3">
-                @if(count(@listings))
+                @if(count($listings))
 
                     @foreach($listings as $listing)
                 <div class="slide">
