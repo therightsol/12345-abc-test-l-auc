@@ -14,7 +14,7 @@ Interfaces vs Traits:
 ---------------------
 Traits uses to reuse of code. 
 Interfaces provides only signatures not the functionality. the class that is implementing function must need to provide function body.
-all methods in interface must be public. 
+all methods in interface must be public or final public static. if static then it should final. 
 
 
 
