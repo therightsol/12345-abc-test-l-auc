@@ -12,6 +12,7 @@ use \Route;
 class Helper
 {
 
+    public static $symbol;
 
     /*
     |--------------------------------------------------------------------------
@@ -115,11 +116,14 @@ class Helper
 
     public static function currencySymbol()
     {
-        $symbol = GeneralSetting::currencySymbol();
-        if(count($symbol)){
-            return $symbol[0];
+        if(!self::$symbol){
+            $symbol = GeneralSetting::currencySymbol();
+            if(count($symbol)){
+                self::$symbol = $symbol[0];
+            }
         }
-        return '';
+
+        return self::$symbol;
     }
 
 }

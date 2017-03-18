@@ -30,6 +30,7 @@ abstract class QueryBuilder
 
             // if($value) ? $this->$name($value) : $this->name;
 
+            if(!$value) continue;
             if (method_exists($this, $name)) {
                 call_user_func_array([$this, $name], array_filter([$value]));
             }

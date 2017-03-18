@@ -1,139 +1,71 @@
 <div class="listing-view margin-bottom-20 col-sm-12">
     <div class="row">
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 padding-none"> <span class="ribbon"><strong>140 Vehicles Matching:</strong></span> <span class="ribbon-item">All Listings</span> </div>
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 padding-none"> <span class="ribbon"><strong>{{ $auctions->count() }} Auctions Matching:</strong></span> <span class="ribbon-item">All Listings</span> </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 padding-none pull-right select_view"> <span class="align-right">Select View:</span>
             <ul class="page-view nav nav-tabs" id="myTab">
                 <li class="active"><a href="#full-width" data-toggle="tab"><i class="fa fa-align-left"></i></a></li>
-                <li><a href="#list-left-sidebar" data-toggle="tab"><i class="fa"></i></a></li>
-                <li><a href="#list-right-sidebar" data-toggle="tab"><i class="fa"></i></a></li>
                 <li><a href="#box-full-width" data-toggle="tab"><i class="fa"></i></a></li>
-                <li><a href="#left-box-fullwidth" data-toggle="tab"><i class="fa"></i></a></li>
-                <li><a href="#right-box-fullwidth" data-toggle="tab"><i class="fa"></i></a></li>
             </ul>
         </div>
     </div>
 </div>
 <div class="clearfix"></div>
-<form method="post" action="#" class="listing_sort">
+<form method="post" action="" id="listingForm" class="listing_sort">
+    {{ csrf_field() }}
     <div class="select-wrapper listing_select clearfix margin-top-none margin-bottom-15 col-sm-12">
         <div class="my-dropdown years-dropdown">
-            {{ Form::select('year', $manufacturing_years, null,
+
+            {{ Form::select('year', $manufacturing_years, Request::input('year'),
             ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Years']) }}
 
         </div>
         <div class="my-dropdown makers-dropdown">
-            {{ Form::select('company', $companies, null,
+            {{ Form::select('company', $companies, Request::input('company'),
           ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Companies']) }}
 
         </div>
         <div class="my-dropdown models-dropdown">
-            {{ Form::select('company', $models, null,
+            {{ Form::select('model', $models, Request::input('model'),
         ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Models']) }}
 
         </div>
         <div class="my-dropdown body-styles-dropdown">
-            <select name="body_style" class="css-dropdowns" tabindex="1" >
-                <option value="">All Body Styles</option>
-                <option>Cargo</option>
-                <option>Compact</option>
-                <option>Convertible</option>
-                <option>Coupe</option>
-                <option>Hatchback</option>
-                <option>Minivan</option>
-                <option>Sedan</option>
-                <option>SUV</option>
-                <option>Truck</option>
-                <option>Van</option>
-                <option>Wagon</option>
-            </select>
+            {{ Form::select('body_type', $body_types, Request::input('body_type'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Body Styles']) }}
         </div>
         <div class="my-dropdown mileage-dropdown">
-            <select name="mileage" class="css-dropdowns" tabindex="1" >
-                <option value="">All Mileage</option>
-                <option>0</option>
-                <option>&lt; 10,000</option>
-                <option>&lt; 20,000</option>
-                <option>&lt; 30,000</option>
-                <option>&lt; 40,000</option>
-                <option>&lt; 50,000</option>
-                <option>&lt; 60,000</option>
-                <option>&lt; 70,000</option>
-                <option>&lt; 80,000</option>
-                <option>&lt; 90,000</option>
-                <option>&lt; 100,000</option>
-                <option>&lt; 120,000</option>
-                <option>&lt; 150,000</option>
-            </select>
+            {{ Form::select('kilometer', $kilometers, Request::input('kilometer'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Mileage']) }}
         </div>
         <div class="my-dropdown transmissions-dropdown">
-            <select name="transmission" class="css-dropdowns" tabindex="1" >
-                <option value="">All Transmissions</option>
-                <option>Automatic</option>
-                <option>Manual</option>
-            </select>
+            {{ Form::select('transmission', ['automatic' => 'Automatic', 'manual'=> 'Manual'], Request::input('transmission'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Transmissions']) }}
+
         </div>
-        <div class="my-dropdown fuel-economies-dropdown">
-            <select name="fuel_economies" class="css-dropdowns" tabindex="1" >
-                <option value="">All Fuel Economies</option>
-                <option>10-20 MPG</option>
-                <option>20-30 MPG</option>
-                <option>30-40 MPG</option>
-                <option>40-50 MPG</option>
-                <option>50-60 MPG</option>
-            </select>
-        </div>
-        <div class="my-dropdown conditions-dropdown">
-            <select name="conditions" class="css-dropdowns" tabindex="1" >
-                <option value="">All Conditions</option>
-                <option>New</option>
-                <option>Used</option>
-            </select>
-        </div>
+
         <div class="my-dropdown location-dropdown">
-            <select name="location" class="css-dropdowns" tabindex="1" >
-                <option value="">All Locations</option>
-                <option>Toronto</option>
-                <option>New York</option>
-                <option>Los Angeles</option>
-                <option>Vancouver</option>
-            </select>
+            {{ Form::select('location', $city_of_registration, Request::input('location'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Locations']) }}
         </div>
         <div class="my-dropdown prices-dropdown">
-            <select name="price" class="css-dropdowns" tabindex="1" >
-                <option value="">All Prices</option>
-                <option>&lt; $1,000</option>
-                <option>&lt; $10,000</option>
-                <option>&lt; $20,000</option>
-                <option>&lt; $30,000</option>
-                <option>&lt; $40,000</option>
-                <option>&lt; $50,000</option>
-                <option>&lt; $60,000</option>
-                <option>&lt; $70,000</option>
-                <option>&lt; $80,000</option>
-                <option>&lt; $90,000</option>
-                <option>&lt; $100,000</option>
-            </select>
+            {{ Form::select('price', $bid_starting_amounts, Request::input('price'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Prices']) }}
         </div>
     </div>
     <div class="select-wrapper pagination clearfix">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sort-by-menu"> <span class="sort-by">Sort By:</span>
                 <div class="my-dropdown price-ascending-dropdown">
-                    <select name="price" class="css-dropdowns" tabindex="1" >
-                        <option value="">Price Ascending</option>
-                        <option>Ascending</option>
-                        <option>Descending</option>
-                    </select>
+                    {{ Form::select('order_by', ['asc' => 'Ascending', 'desc'=> 'Descending'], Request::input('order_by'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'Price Ascending']) }}
+
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1">
-                <div class="controls full"> <a href="#" class="left-arrow"><i class="fa fa-angle-left"></i></a> <span>Page 1 of 4</span> <a href="#" class="right-arrow"><i class="fa fa-angle-right"></i></a> </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
                 <ul class="form-links top_buttons">
                     <li><a href="#" class="gradient_button">Reset Filters</a></li>
-                    <li><a href="#" class="gradient_button">Deselect All</a></li>
-                    <li><a href="#" class="gradient_button">Compare 0 Vehicles</a></li>
                 </ul>
             </div>
         </div>
