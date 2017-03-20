@@ -1,6 +1,6 @@
 <div class="listing-view margin-bottom-20 col-sm-12">
     <div class="row">
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 padding-none"> <span class="ribbon"><strong>{{ $auctions->count() }} Auctions Matching:</strong></span> <span class="ribbon-item">All Listings</span> </div>
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 padding-none"> <span class="ribbon"><strong>{{ $auctions->count() }} Auctions Showing:</strong></span> <span class="ribbon-item">All Listings</span> </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 padding-none pull-right select_view"> <span class="align-right">Select View:</span>
             <ul class="page-view nav nav-tabs" id="myTab">
                 <li class="active"><a href="#full-width" data-toggle="tab"><i class="fa fa-align-left"></i></a></li>
@@ -10,8 +10,7 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<form method="post" action="" id="listingForm" class="listing_sort">
-    {{ csrf_field() }}
+<form method="get" action="" id="listingForm" class="listing_sort">
     <div class="select-wrapper listing_select clearfix margin-top-none margin-bottom-15 col-sm-12">
         <div class="my-dropdown years-dropdown">
 
@@ -62,11 +61,10 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-lg-offset-1">
+                {{$auctions->appends(request()->input())->links()}}
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
-                <ul class="form-links top_buttons">
-                    <li><a href="#" class="gradient_button">Reset Filters</a></li>
-                </ul>
+
             </div>
         </div>
     </div>
