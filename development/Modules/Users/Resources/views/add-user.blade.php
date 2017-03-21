@@ -1,8 +1,6 @@
 @extends( Module::get('commonbackend') != NULL ? 'commonbackend::layouts.admin_app': 'users::layouts.master' )
-
+@include('media::layoutfiles.embedd')
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
-
     <style>
         .nopadding{
             padding: 0 !important;
@@ -19,8 +17,7 @@
             margin-right: 0 !important;
         }
     </style>
-    @include('media::layoutfiles.embedd.includes.styles')
-@endsection
+ @endsection
 
 @section('form-title')
     <header>Add User</header>
@@ -30,6 +27,27 @@
     <button type="submit" id="savebtn" class="btn btn-primary">Create</button>
 @endsection
 
+
+@section('password')
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
+                <input type="password" class="form-control" value="{{old('password')}}" name="password"
+                       id="password">
+                <label for="password">Password</label>
+                {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('confirm_password') ? 'has-error' : ''}}">
+                <input type="password" class="form-control" value="{{old('confirm_password')}}"
+                       name="confirm_password" id="confirm_password">
+                <label for="confirm-password">Confirm Password</label>
+                {!! $errors->first('confirm_password', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+    </div>
+@endsection
 
 
 @section('form-open')
@@ -72,11 +90,6 @@
             </div>
         </section>
     </div>
-
-
-    @include('media::layoutfiles.embedd.media-modal-viewer')
-
-
 @endsection
 
 @section('js')
@@ -92,10 +105,5 @@
         });
     </script>
             <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
-
-
-    @include('media::layoutfiles.embedd.includes.js')
-
-
 
 @endsection

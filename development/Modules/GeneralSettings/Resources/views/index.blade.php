@@ -1,5 +1,5 @@
 @extends('commonbackend::layouts.admin_app')
-
+@include('media::layoutfiles.embedd')
 @section('content')
     <div id="content">
         <section class="">
@@ -33,10 +33,14 @@
     </ul>
 @endsection
 
-{{--
+
 @section('js')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
+
+@endsection
+
+ {{--   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         var socket = io('http://127.0.0.1:3000');
@@ -55,3 +59,4 @@
 
     </script>
         @endsection--}}
+

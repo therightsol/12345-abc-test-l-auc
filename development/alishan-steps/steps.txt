@@ -1,11 +1,6 @@
 
 Pending Tasks:
 ---------------
-post module ko delete krna hai
-media k andar hi post table ko bnana + seed krvana
-db design ko update krna. (post ko media table k name dy dena. )
-
-
 jo deliver krna hai usy alag production mai rkh k test krna hai.
 
 reset
@@ -16,7 +11,6 @@ create menu links in side bar
     delete media
     upload media
     view media
-create a Laravel command from where automatic migration + all seeding done.
 
 
 

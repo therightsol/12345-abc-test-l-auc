@@ -3,109 +3,20 @@
 @include('media::layoutfiles.embedd')
 
 @section('style')
-    <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css') }}" />
-
     <style>
-        .changePasswordRow{
-            display: none;
+        .nopadding{
+            padding: 0 !important;
+            margin: 0 !important;
         }
 
-        .image-div {
-            margin: 4px;
-            display: inline-block;
-            border: 2px solid transparent;
-            position: relative;
-
-            -webkit-box-shadow: 1px 2px 2px rgba(130, 130, 130, 0.31);
-            -moz-box-shadow: 1px 2px 2px rgba(130, 130, 130, 0.31);
-            box-shadow: 1px 2px 2px rgba(130, 130, 130, 0.31);
+        .no-left-padding{
+            padding-left: 0 !important;
+            margin-left: 0 !important;
         }
 
-        .image-div i {
-            display: none;
-        }
-
-        .image-div.selected i {
-            display: block;
-        }
-
-        .image-div:hover img {
-            opacity: 1;
-        }
-
-        .image-div img {
-            -webkit-transition: all 0.7s ease;
-            -moz-transition: all 0.7s ease;
-            -ms-transition: all 0.7s ease;
-            -o-transition: all 0.7s ease;
-            transition: all 0.7s ease;
-            opacity: 0.7;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-        }
-
-        .selected {
-            border: 2px solid #3499ff;
-        }
-
-        .tick:after {
-            content: '\f00c';
-            position: absolute;
-            z-index: 9;
-            right: -8px;
-            font-size: 2em;
-            top: -22px;
-            font-weight: bold;
-            color: #3499ff;
-        }
-
-        .fa-check {
-            font-size: 2.5em;
-            color: #3499ff;
-            position: absolute;
-            top: -17px;
-            right: -17px;
-        }
-
-        .close span {
-            font-size: 2.4em;
-        }
-
-        .media-action {
-            display: flex;
-
-        }
-
-
-        .img-src-container{
-            display: flex;
-            min-width: 200px;
-            width: 53%;
-            margin-left: auto;
-            align-items: center;
-        }
-
-        .img-src-container input, .img-src-container button{
-            display: inline;
-        }
-
-        #url{
-            margin-right: 8px;
-        }
-
-        /* - Embedded Page Style -*/
-        #media-images .section-header {
-            padding: 0;
-            height: auto;
-        }
-
-        #media-images .card-body{
-            padding-top: 10px;
-        }
-
-        #media-images #content{
-            padding-top: 0;
+        .no-right-padding{
+            padding-right: 0 !important;
+            margin-right: 0 !important;
         }
     </style>
 @endsection
@@ -113,6 +24,39 @@
 @section('form-title')
     <header>Update User - {{ $user['full_name']}}</header>
 @endsection
+
+
+@section('password')
+    <div class="row" id="toggle-stock">
+        <div class="col-sm-12">
+            <div class="checkbox checkbox-styled">
+                <label class="checkbox-primary" data-toggle="collapse" data-target="#update_password_row">
+                    <input id="change_password" type="checkbox" name="isPasswordUpdate" value="1"
+                           @if( old('isPasswordUpdate') == 1) checked @endif >Update Password?
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="panel-collapse collapse row @if( old('isPasswordUpdate') == 1) in @endif" id="update_password_row">
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
+                <input type="password" class="form-control" value="{{old('password')}}" name="password"
+                       id="password">
+                <label for="password">Password</label>
+                {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group {{ $errors->has('confirm_password') ? 'has-error' : ''}}">
+                <input type="password" class="form-control" value="{{old('confirm_password')}}"
+                       name="confirm_password" id="confirm_password">
+                <label for="confirm-password">Confirm Password</label>
+                {!! $errors->first('confirm_password', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+    </div>
+@endsection
+
 
 @section('form-submit-buttons')
     <button type="submit" id="savebtn" class="btn btn-primary">Update</button>
@@ -147,7 +91,7 @@
                         <div class="row">
                             <!-- BEGIN ALERT - REVENUE -->
                             <div class="col-sm-12">
-                                @include('users::includes.edit-user-inc')
+                                @include('users::includes.add-user-form')
                             </div>
 
                         </div>

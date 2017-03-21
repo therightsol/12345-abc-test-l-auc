@@ -131,7 +131,7 @@ class UsersController extends Controller
             $user = $user[0];
 
         $featured_img = $user->picture;
-        return view('users::edit', compact('user', 'userroles', 'statuses'));
+        return view('users::edit', compact('user', 'userroles', 'statuses', 'featured_img'));
     }
 
     /**

@@ -19,3 +19,10 @@ Step 2:
 Step 3:
     For Single Image:
     Your controller should passed a variable ($featured_img) to display img
+
+Step 4:
+    Please confirm / verify that you should attach custom functions javascript file.
+    I.E:
+        @section('js')
+            <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
+        @endsection

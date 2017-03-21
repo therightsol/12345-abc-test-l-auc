@@ -13,18 +13,23 @@
         <div class="row">
             <div class="col-sm-7">
                 <div class="form-group {{ $errors->has('full_name') ? 'has-error' : ''}}">
-                    <input type="text" class="form-control" value="{{old('full_name')}}" id="full_name"
+                    <input type="text" class="form-control"
+                           value="@if(!empty(old('full_name'))){{old('full_name')}}@elseif(isset($user->full_name)){{$user->full_name}}@endif" id="full_name"
                            name="full_name">
                     <label for="full_name">Full Name</label>
                     {!! $errors->first('full_name', '<p class="help-block">:message</p>') !!}
                 </div>
                 <div class="form-group {{ $errors->has('username') ? 'has-error' : ''}}">
-                    <input type="text" class="form-control" value="{{old('username')}}" name="username" id="username">
+                    <input type="text" class="form-control"
+                           value="@if(!empty(old('username'))){{old('username')}}@elseif(isset($user->username)){{$user->username}}@endif"
+                           name="username" id="username">
                     <label for="username">Username</label>
                     {!! $errors->first('username', '<p class="help-block">:message</p>') !!}
                 </div>
                 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-                    <input type="email" class="form-control" value="{{old('email')}}" name="email" id="email">
+                    <input type="email" class="form-control"
+                           value="@if(!empty(old('email'))){{old('email')}}@elseif(isset($user->email)){{$user->email}}@endif"
+                           name="email" id="email">
                     <label for="email">Email</label>
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                 </div>
@@ -51,49 +56,19 @@
             </div>
             <div class="col-sm-5 text-center">
 
-                <div class="form-group no-margin {{ $errors->has('picture') ? 'has-error' : ''}}">
-                    <div class="img img-thumbnail" id="picture-btn">
-                        <i class="ajax-loader medium animate-spin" style="display: none"></i>
-
-                        <img class="picture"
-                             data-picture="@if(!empty(old('picture'))){{asset(old('picture'))}}@else{{Module::asset('media:images/image-not-found-100x100.png')}}@endif"
-                             id="picture"
-                             src="@if(!empty(old('picture'))){{asset(old('picture'))}}@else{{Module::asset('media:images/image-not-found-100x100.png')}}@endif"
-                             style="    height: 200px;max-width: 290px" alt="profile-image"/>
-                    </div>
-                    <input type="hidden" name="picture" id="picture-val" value="{{old('picture')}}">
-                    {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
-                </div>
-                <p class="text-center no-margin">Click the image to edit or update</p>
+                @yield('insert-image-code')
 
 
             </div>
 
         </div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
-                    <input type="password" class="form-control" value="{{old('password')}}" name="password"
-                           id="password">
-                    <label for="password">Password</label>
-                    {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group {{ $errors->has('confirm_password') ? 'has-error' : ''}}">
-                    <input type="password" class="form-control" value="{{old('confirm_password')}}"
-                           name="confirm_password" id="confirm_password">
-                    <label for="confirm-password">Confirm Password</label>
-                    {!! $errors->first('confirm_password', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-        </div>
+        @yield('password')
 
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('url') ? 'has-error' : ''}}">
-                    <input type="text" class="form-control" value="{{old('url')}}" name="url" id="url">
+                    <input type="text" class="form-control" value="@if(!empty(old('url'))){{old('url')}}@elseif(isset($user->url)){{$user->url}}@endif" name="url" id="url">
                     <label for="url">URL</label>
                     {!! $errors->first('url', '<p class="help-block">:message</p>') !!}
                 </div>
@@ -145,6 +120,12 @@
 
         </div>
     </div>
+
+
+
+
+
+
 
 
     <div class="card-actionbar">

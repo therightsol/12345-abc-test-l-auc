@@ -122,7 +122,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('kilometers') ? ' has-error' : '' }}">
-                    {{ Form::number('kilometers', null ,['class' => 'form-control']) }}
+                    {{ Form::number('kilometers', null ,['min' => 0, 'class' => 'form-control']) }}
                     {{ Form::label('kilometers', 'Kilometer') }}
                     @if ($errors->has('kilometers'))
                         <span class="help-block">

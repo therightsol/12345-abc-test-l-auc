@@ -1,5 +1,5 @@
 <div class="card">
-    @include('media::layoutfiles.embedd')
+
     <div class="card-head style-primary">
         <header>{{ $title }}</header>
         <?php
@@ -11,7 +11,7 @@
             <div class="col-xs-12">
                 <div class="form-group {{ $errors->has('logo') ? ' has-error' : '' }}">
                     {{ Form::label('logo', 'Logo:', ['class' => 'control-label col-sm-4']) }}
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         @yield('insert-image-code')
                     </div>
                 </div>

@@ -53,14 +53,19 @@ class AutoMaticSeed extends Command
         // 2) Dropping tables (If already available)
         $tables = DB::select('SHOW TABLES');
         if (sizeof($tables) > 0){
-            $this->error("Database is already migrated.\n");
-            $this->info("Trying to re-migrate. Please wait ... \n");
+            $this->error("Database is already migrated.");
+            $this->info("Trying to re-migrate. Please wait ... ");
 
             $this->info("\nStep 1: Dropping Tables...\n");
             do{
                 $confirm = $this->ask("Are you sure to delete all tables ? [yes / no]");
                 if (strtolower($confirm) === 'yes') break;
             }while(strtolower($confirm) !== 'no');
+
+            if ( strtolower($confirm) == 'no' ){
+                $this->error('Terminating by user');
+                return;
+            }
 
             $dbTable = 'Tables_in_' . $database_name;
 
