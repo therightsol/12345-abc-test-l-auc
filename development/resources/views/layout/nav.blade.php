@@ -29,12 +29,14 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="index.html"><span class="logo"><span class="primary_text">Automotive</span> <span class="secondary_text">Template</span></span></a> </div>
+                        <a class="navbar-brand" href="{{ url('/') }}"><span class="logo"><span class="primary_text">Automotive</span> <span class="secondary_text">Template</span></span></a> </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav pull-right">
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                            <li class=""><a href="{{ route('auction.index') }}">Auctions</a></li>
+
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Alternate Footers <b class="caret"></b></a>
@@ -97,12 +99,7 @@
                                     <li><a href="portfolio-single-project-wide.html">Portfolio Single Project Wide</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-post.html">Blog Single Post</a></li>
-                                </ul>
-                            </li>
+
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>

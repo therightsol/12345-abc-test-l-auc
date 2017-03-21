@@ -45,7 +45,7 @@
                             <div class="row car_listings">
                                 @foreach($auctions as $auction)
                                 <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
-                                    <a class="inventory" href="inventory-listing.html">
+                                    <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
                                         <div class="title">{{ $auction->car->title }}</div>
                                         <img src="http://demo.themesuite.com/automotive/images/car-1-200x150.jpg" class="preview" alt="preview">
                                         <table class="options-primary">
@@ -128,7 +128,7 @@
 
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                     <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
-                                        <a class="inventory" href="inventory-listing.html">
+                                        <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
                                             <div class="title">{{ $auction->car->title }}</div>
                                             <img src="http://demo.themesuite.com/automotive/images/car-1-200x150.jpg" class="preview" alt="preview">
                                             <table class="options-primary">

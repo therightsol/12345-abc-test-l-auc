@@ -11,102 +11,11 @@
 <section class="content">
     <div class="container">
         <div class="inner-page homepage margin-bottom-none">
-            <section class="car-block-wrap padding-bottom-40">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
-                            <div class="flip margin-bottom-30">
-                                <div class="card">
-                                    <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car1.jpg" alt=""></div>
-                                    <div class="face back">
-                                        <div class='hover_title'>Race Ready</div>
-                                        <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car1-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
-                                </div>
-                            </div>
-                            <h4><a href="#">FACTORY READY FOR TRACK DAY</a></h4>
-                            <p class="margin-bottom-none">Sea veniam lucilius neglegentur ad, an per sumo volum
-                                voluptatibus. Qui cu everti repudiare. Eam ut cibo nobis
-                                aperiam, elit qualisque at cum. Possit antiopam id est.
-                                Illud delicata ea mel, sed novum mucius id. Nullam qua.</p>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
-                            <div class="flip horizontal margin-bottom-30">
-                                <div class="card">
-                                    <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car2.jpg" alt=""></div>
-                                    <div class="face back">
-                                        <div class='hover_title'>Family Oriented</div>
-                                        <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car2-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
-                                </div>
-                            </div>
-                            <h4><a href="#">A SPORT UTILITY FOR THE FAMILY</a></h4>
-                            <p class="margin-bottom-none">Cum ut tractatos imperdiet, no tamquam facilisi qui.
-                                Eum tibique consectetuer in, an legimus referrentur vis,
-                                vocent deseruisse ex mel. Sed te idque graecis. Vel ne
-                                libris dolores, in mel graece dolorum.</p>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
-                            <div class="flip margin-bottom-30">
-                                <div class="card">
-                                    <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car3.jpg" alt=""></div>
-                                    <div class="face back">
-                                        <div class='hover_title'>World Class</div>
-                                        <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car3-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
-                                </div>
-                            </div>
-                            <h4><a href="#">MAKE AN EXECUTIVE STATEMENT</a></h4>
-                            <p class="margin-bottom-none">Te inermis cotidieque cum, sed ea utroque atomorum
-                                sadipscing. Qui id oratio everti scaevola, vim ea augue
-                                ponderum vituperatoribus, quo adhuc abhorreant
-                                omittantur ad. No his fierent perpetua consequat, et nis.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--car-block-wrap ends-->
-            <div class="row parallax_parent design_2 margin-bottom-40 margin-top-30">
-                <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-200" data-image="http://demo.themesuite.com/automotive/images/parallax1.jpg">
-                    <div class="overlay">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-left-none xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInLeft"> <span class="align-center"><i class="fa fa-6x fa-bar-chart-o"></i></span>
-                                    <h3>Results Driven</h3>
-                                    <p>Sed ut perspiciatis unde om nis
-                                        natus error sit volup atem accusant
-                                        dolorem que laudantium. Totam
-                                        aperiam, eaque ipsa quae ai.</p>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInLeft" data-wow-delay=".2s"> <span class="align-center"><i class="fa fa-6x fa-road"></i></span>
-                                    <h3>Proven Technology</h3>
-                                    <p>Sed ut perspiciatis unde om nis
-                                        natus error sit volup atem accusant
-                                        dolorem que laudantium. Totam
-                                        aperiam, eaque ipsa quae ai.</p>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInRight" data-wow-delay=".2s"> <span class="align-center"><i class="fa fa-6x fa-flag-checkered"></i></span>
-                                    <h3>Winning Culture</h3>
-                                    <p>Sed ut perspiciatis unde om nis
-                                        natus error sit volup atem accusant
-                                        dolorem que laudantium. Totam
-                                        aperiam, eaque ipsa quae ai.</p>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 padding-right-none scroll_effect bounceInRight"> <span class="align-center"><i class="fa fa-6x fa-dashboard"></i></span>
-                                    <h3>Top Performance</h3>
-                                    <p>Sed ut perspiciatis unde om nis
-                                        natus error sit volup atem accusant
-                                        dolorem que laudantium. Totam
-                                        aperiam, eaque ipsa quae ai.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!--car-info-wrap ends-->
             <section class="welcome-wrap padding-top-30 sm-horizontal-15">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 welcome padding-left-none padding-bottom-40 scroll_effect fadeInUp">
-                        <h4 class="margin-bottom-25 margin-top-none"><strong>WELCOME</strong> TO YOUR NEW WEBSITE</h4>
+                        <h4 class="margin-bottom-25 margin-top-none"><strong>WELCOME</strong> TO PAK AUCTION</h4>
                         <p>Lorem ipsum dolor sit amet, falli tollit cetero te eos. Ea ullum liber aperiri mi, impetus
                             ate philosophia ad duo, quem regione ne ius. Vis quis lobortis dissentias ex, in du aft
                             philosophia, malis necessitatibus no mei. Volumus sensibus qui ex, eum duis doming
@@ -125,122 +34,217 @@
                     </div>
                     <!--invetory ends-->
                 </div>
-
-                @include('home.listing')
-
-                <!-- Footer Map -->
-                <div class='fullwidth_element_parent margin-top-30 padding-bottom-40'>
-                    <div id='google-map-listing' class='fullwidth_element' data-longitude='-79.38' data-latitude='43.65' data-zoom='12' style='height: 390px;' data-scroll='false' data-style='[{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"stylers":[{"hue":"#F0F0F0"},{"saturation":-100},{"gamma":2.15},{"lightness":12}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":24}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":57}]}]'></div>
-                </div>
-                <div class="car-rate-block clearfix margin-top-30 padding-bottom-40">
-                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none padding-left-none scroll_effect bounceInLeft">
-                        <div class="small-block clearfix">
-                            <h4 class="margin-bottom-25 margin-top-none">Financing.</h4>
-                            <a href="#"><span class="align-center"><i class="fa fa-tag fa-7x"></i></span></a> </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInLeft" data-wow-delay=".2s">
-                        <div class="small-block clearfix">
-                            <h4 class="margin-bottom-25 margin-top-none">Warranty.</h4>
-                            <a href="#"><span class="align-center"><i class="fa fa-cogs fa-7x"></i></span></a> </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-left-none padding-right-none hours_operation">
-                        <div class="small-block clearfix">
-                            <h4 class="margin-bottom-25 margin-top-none">What are our Hours of Operation?</h4>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-40 md-margin-bottom-none scroll_effect bounceInUp" data-wow-delay=".4s">
-                                    <table class="table table-bordered no-border font-13px margin-bottom-none">
-                                        <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>Sales Department</strong></td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Mon:</td>
-                                            <td>8:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tue:</td>
-                                            <td>8:00am - 9:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Wed:</td>
-                                            <td>8:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Thu:</td>
-                                            <td>8:00am - 9:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fri:</td>
-                                            <td>8:00am - 6:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sat:</td>
-                                            <td>9:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sun:</td>
-                                            <td>Closed</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInUp" data-wow-delay=".4s">
-                                    <table class="table table-bordered no-border font-13px margin-bottom-none">
-                                        <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>Service Department</strong></td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Mon:</td>
-                                            <td>8:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tue:</td>
-                                            <td>8:00am - 9:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Wed:</td>
-                                            <td>8:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Thu:</td>
-                                            <td>8:00am - 9:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fri:</td>
-                                            <td>8:00am - 6:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sat:</td>
-                                            <td>9:00am - 5:00pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sun:</td>
-                                            <td>Closed</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                <div class="row parallax_parent design_2 margin-bottom-40 margin-top-30">
+                    <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-200" data-image="http://demo.themesuite.com/automotive/images/parallax1.jpg">
+                        <div class="overlay">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-left-none xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInLeft"> <span class="align-center"><i class="fa fa-6x fa-car"></i></span>
+                                        <h3>Top Cars</h3>
+                                        <p>Sed ut perspiciatis unde om nis
+                                            natus error sit volup atem accusant
+                                            dolorem que laudantium. Totam
+                                            aperiam, eaque ipsa quae ai.</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInLeft" data-wow-delay=".2s"> <span class="align-center"><i class="fa fa-6x fa-road"></i></span>
+                                        <h3>Proven Technology</h3>
+                                        <p>Sed ut perspiciatis unde om nis
+                                            natus error sit volup atem accusant
+                                            dolorem que laudantium. Totam
+                                            aperiam, eaque ipsa quae ai.</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 scroll_effect bounceInRight" data-wow-delay=".2s"> <span class="align-center"><i class="fa fa-6x fa-credit-card"></i></span>
+                                        <h3>Online Payment</h3>
+                                        <p>Sed ut perspiciatis unde om nis
+                                            natus error sit volup atem accusant
+                                            dolorem que laudantium. Totam
+                                            aperiam, eaque ipsa quae ai.</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 xs-margin-bottom-none xs-padding-top-30 padding-right-none scroll_effect bounceInRight"> <span class="align-center"><i class="fa fa-6x fa-apple"></i></span>
+                                        <h3>Perspiciatis unde</h3>
+                                        <p>Sed ut perspiciatis unde om nis
+                                            natus error sit volup atem accusant
+                                            dolorem que laudantium. Totam
+                                            aperiam, eaque ipsa quae ai.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInRight" data-wow-delay=".2s">
-                        <div class="small-block clearfix">
-                            <h4 class="margin-bottom-25 margin-top-none">About Us.</h4>
-                            <a href="#"><span class="align-center"><i class="fa fa-users fa-7x"></i></span></a> </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none padding-right-none scroll_effect bounceInRight">
-                        <div class="small-block clearfix">
-                            <h4 class="margin-bottom-25 margin-top-none">Find Us.</h4>
-                            <a href="#"><span class="align-center"><i class="fa fa-map-marker fa-7x"></i></span></a> </div>
-                    </div>
                 </div>
+                <section class="car-block-wrap padding-bottom-40">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
+                                <div class="flip margin-bottom-30">
+                                    <div class="card">
+                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car1.jpg" alt=""></div>
+                                        <div class="face back">
+                                            <div class='hover_title'>Race Ready</div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car1-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                    </div>
+                                </div>
+                                <h4><a href="#">FACTORY READY FOR TRACK DAY</a></h4>
+                                <p class="margin-bottom-none">Sea veniam lucilius neglegentur ad, an per sumo volum
+                                    voluptatibus. Qui cu everti repudiare. Eam ut cibo nobis
+                                    aperiam, elit qualisque at cum. Possit antiopam id est.
+                                    Illud delicata ea mel, sed novum mucius id. Nullam qua.</p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
+                                <div class="flip horizontal margin-bottom-30">
+                                    <div class="card">
+                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car2.jpg" alt=""></div>
+                                        <div class="face back">
+                                            <div class='hover_title'>Family Oriented</div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car2-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                    </div>
+                                </div>
+                                <h4><a href="#">A SPORT UTILITY FOR THE FAMILY</a></h4>
+                                <p class="margin-bottom-none">Cum ut tractatos imperdiet, no tamquam facilisi qui.
+                                    Eum tibique consectetuer in, an legimus referrentur vis,
+                                    vocent deseruisse ex mel. Sed te idque graecis. Vel ne
+                                    libris dolores, in mel graece dolorum.</p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
+                                <div class="flip margin-bottom-30">
+                                    <div class="card">
+                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car3.jpg" alt=""></div>
+                                        <div class="face back">
+                                            <div class='hover_title'>World Class</div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car3-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                    </div>
+                                </div>
+                                <h4><a href="#">MAKE AN EXECUTIVE STATEMENT</a></h4>
+                                <p class="margin-bottom-none">Te inermis cotidieque cum, sed ea utroque atomorum
+                                    sadipscing. Qui id oratio everti scaevola, vim ea augue
+                                    ponderum vituperatoribus, quo adhuc abhorreant
+                                    omittantur ad. No his fierent perpetua consequat, et nis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class='fullwidth_element_parent margin-top-30 padding-bottom-40'>
+                    <div id='google-map-listing' class='fullwidth_element' data-longitude='-79.38' data-latitude='43.65' data-zoom='12' style='height: 390px;' data-scroll='false' data-style='[{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"stylers":[{"hue":"#F0F0F0"},{"saturation":-100},{"gamma":2.15},{"lightness":12}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":24}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":57}]}]'></div>
+                </div>
+                @include('home.listing')
+
+                {{--<div class="car-rate-block clearfix margin-top-30 padding-bottom-40">--}}
+                    {{--<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none padding-left-none scroll_effect bounceInLeft">--}}
+                        {{--<div class="small-block clearfix">--}}
+                            {{--<h4 class="margin-bottom-25 margin-top-none">Financing.</h4>--}}
+                            {{--<a href="#"><span class="align-center"><i class="fa fa-tag fa-7x"></i></span></a> </div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInLeft" data-wow-delay=".2s">--}}
+                        {{--<div class="small-block clearfix">--}}
+                            {{--<h4 class="margin-bottom-25 margin-top-none">Warranty.</h4>--}}
+                            {{--<a href="#"><span class="align-center"><i class="fa fa-cogs fa-7x"></i></span></a> </div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-left-none padding-right-none hours_operation">--}}
+                        {{--<div class="small-block clearfix">--}}
+                            {{--<h4 class="margin-bottom-25 margin-top-none">What are our Hours of Operation?</h4>--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-40 md-margin-bottom-none scroll_effect bounceInUp" data-wow-delay=".4s">--}}
+                                    {{--<table class="table table-bordered no-border font-13px margin-bottom-none">--}}
+                                        {{--<thead>--}}
+                                        {{--<tr>--}}
+                                            {{--<td colspan="2"><strong>Sales Department</strong></td>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Mon:</td>--}}
+                                            {{--<td>8:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Tue:</td>--}}
+                                            {{--<td>8:00am - 9:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Wed:</td>--}}
+                                            {{--<td>8:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Thu:</td>--}}
+                                            {{--<td>8:00am - 9:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Fri:</td>--}}
+                                            {{--<td>8:00am - 6:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Sat:</td>--}}
+                                            {{--<td>9:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Sun:</td>--}}
+                                            {{--<td>Closed</td>--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
+                                {{--</div>--}}
+                                {{--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInUp" data-wow-delay=".4s">--}}
+                                    {{--<table class="table table-bordered no-border font-13px margin-bottom-none">--}}
+                                        {{--<thead>--}}
+                                        {{--<tr>--}}
+                                            {{--<td colspan="2"><strong>Service Department</strong></td>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+                                        {{--<tbody>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Mon:</td>--}}
+                                            {{--<td>8:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Tue:</td>--}}
+                                            {{--<td>8:00am - 9:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Wed:</td>--}}
+                                            {{--<td>8:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Thu:</td>--}}
+                                            {{--<td>8:00am - 9:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Fri:</td>--}}
+                                            {{--<td>8:00am - 6:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Sat:</td>--}}
+                                            {{--<td>9:00am - 5:00pm</td>--}}
+                                        {{--</tr>--}}
+                                        {{--<tr>--}}
+                                            {{--<td>Sun:</td>--}}
+                                            {{--<td>Closed</td>--}}
+                                        {{--</tr>--}}
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none scroll_effect bounceInRight" data-wow-delay=".2s">--}}
+                        {{--<div class="small-block clearfix">--}}
+                            {{--<h4 class="margin-bottom-25 margin-top-none">About Us.</h4>--}}
+                            {{--<a href="#"><span class="align-center"><i class="fa fa-users fa-7x"></i></span></a> </div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none padding-right-none scroll_effect bounceInRight">--}}
+                        {{--<div class="small-block clearfix">--}}
+                            {{--<h4 class="margin-bottom-25 margin-top-none">Find Us.</h4>--}}
+                            {{--<a href="#"><span class="align-center"><i class="fa fa-map-marker fa-7x"></i></span></a> </div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                <!-- Footer Map -->
+
             </section>
             <!--welcome-wrap ends-->
+
+
+            <!--car-block-wrap ends-->
+
+
 
             <div class="row parallax_parent margin-top-30">
                 <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-300" data-no-repeat="true" data-image="http://demo.themesuite.com/automotive/images/parallax2.jpg">

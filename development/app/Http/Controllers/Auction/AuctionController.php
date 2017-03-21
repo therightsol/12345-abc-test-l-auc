@@ -34,4 +34,11 @@ class AuctionController extends Controller
             compact('auctions','manufacturing_years', 'models', 'companies',
             'bid_starting_amounts','city_of_registration','kilometers','body_types'))->withInput($request->all());
     }
+
+    public function show($id)
+    {
+        $auction = Auction::whereId($id)->with(['car.engineType', 'car.carModel.carCompany','car.features'])
+            ->firstOrFail();
+        return view('auction.show', compact('auction'));
+    }
 }

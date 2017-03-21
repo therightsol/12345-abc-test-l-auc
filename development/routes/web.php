@@ -14,4 +14,5 @@
 Route::get('/', 'HomeController@index');
 Route::group(['middleware' => ['web']], function () {
     Route::match(['get','post'],'auction', 'Auction\AuctionController@index')->name('auction.index');
+    Route::get('view-auction/{id}', 'Auction\AuctionController@show')->name('auction.show');
 });
