@@ -32,17 +32,16 @@
 
 @section('insert-image-gallery')
     <div class="image_gallery_container" id="image_gallery_container">
-        @if(isset($product->post->images))
-            @php($imagesArr = json_decode($product->post->images, true))
+        @if(isset($imagesArr) and !empty($imagesArr))
             @php($img_ids = [])
-            @foreach($imagesArr as $img)
+            @foreach($imagesArr as $id => $path)
                 <div class="img gallery-img img-thumbnail">
-                    <img data-id="{{$img['id']}}" class="picture id-{{$img['id']}}"
-                         src="{{url('/') . '/' . $img['img_path']}}"
+                    <img data-id="{{$id}}" class="picture id-{{$id}}"
+                         src="{{url('/') . '/' . $path}}"
                          style="height: 80px;max-width: 80px; width: 80px" alt="gallery-images" />
                     <i class="fa gallery_img_remove fa-close"></i>
                 </div>
-                @php($img_ids[] = $img['id'])
+                @php($img_ids[] = $id)
             @endforeach
             @php($img_ids = implode(",", $img_ids))
 

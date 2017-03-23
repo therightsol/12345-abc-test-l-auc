@@ -17,6 +17,7 @@ use Modules\Cars\Entities\Category;
 use Modules\Cars\Http\Filters\CarFilter;
 use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
+use Modules\Media\Entities\Post;
 
 class CarsController extends Controller
 {
@@ -68,7 +69,6 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
         $this->validate($request,[
             'title' => 'required',
             'car_model_id' => 'required',
@@ -83,8 +83,10 @@ class CarsController extends Controller
                 'kilometers', 'number_plate','engine_number', 'chassis_number',
                 'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
+        $gallery = explode(',', $request->input('gallery_images_ids'));
         $isSuccess->meta()->saveMany([
-            new CarMeta(['meta_key' => 'picture', 'meta_value' => $request->input('picture')])
+            new CarMeta(['meta_key' => 'picture', 'meta_value' => $request->input('picture')]),
+            new CarMeta(['meta_key' => 'gallery', 'meta_value' => $gallery])
         ]);
         $isSuccess->categories()->attach($request->input('categories'));
         $isSuccess->features()->attach($request->input('features'));
@@ -121,10 +123,14 @@ class CarsController extends Controller
 
         $carMeta = $car->meta->pluck('meta_value', 'meta_key');
         $featured_img = isset($carMeta['picture'])?$carMeta['picture']:false;
+        $imagesArr = isset($carMeta['gallery'])?$carMeta['gallery']:false;
+
+        if(!empty($imagesArr)){
+            $imagesArr = Post::whereIn('id', $imagesArr)->pluck('content', 'id');
+        }
         $carCompanyModels = CarModel::where('car_company_id', $car->carModel->carCompany->id)->pluck('model_name', 'id');
 
-
-        return view('cars::edit', compact('featured_img','car','carCompanies','carCompanyModels', 'categories','engine_types', 'features'));
+        return view('cars::edit', compact('imagesArr','featured_img','car','carCompanies','carCompanyModels', 'categories','engine_types', 'features'));
     }
 
     /**
@@ -148,7 +154,12 @@ class CarsController extends Controller
                 'kilometers', 'number_plate','engine_number', 'chassis_number',
                 'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
-
+        $car->meta()->forceDelete();
+        $gallery = explode(',', $request->input('gallery_images_ids'));
+        $car->meta()->saveMany([
+            new CarMeta(['meta_key' => 'picture', 'meta_value' => $request->input('picture')]),
+            new CarMeta(['meta_key' => 'gallery', 'meta_value' => $gallery])
+        ]);
         ($request->input('categories'))
             ? $car->categories()->sync($request->input('categories'))
             : $car->categories()->detach();

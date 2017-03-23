@@ -1,4 +1,6 @@
 @extends('commonbackend::layouts.admin_app')
+@include('media::layoutfiles.embedd')
+
 @section('style')
     <link href="{{Module::asset('commonbackend:admin_assets/bootstrap3-editable/css/bootstrap-editable.css')}}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/multi-select/multi-select.css?1424887857') }}" />
@@ -9,7 +11,6 @@
         }
     </style>
     @endsection
-@include('media::layoutfiles.embedd')
 
 @section('content')
     <div id="content">
