@@ -17,8 +17,9 @@ class GeneralSettingsController extends Controller
     {
 
         $settings = GeneralSetting::all();
-
-        return view('generalsettings::index', compact('settings'));
+        if (!empty($settings)) $settings = $settings->pluck('value', 'key');
+        $featured_img = isset($settings['picture']) ? $settings['picture'] : null;
+        return view('generalsettings::index', compact('settings', 'featured_img'));
     }
 
     /**

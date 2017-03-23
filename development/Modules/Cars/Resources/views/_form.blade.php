@@ -5,6 +5,29 @@
     <div class="card-body floating-label">
         <div class="row">
 
+
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                    @yield('insert-image-code')
+                    {{ Form::label('picture', 'Featured Image') }}
+                    @if ($errors->has('picture'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('picture') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group{{ $errors->has('gallery') ? ' has-error' : '' }}">
+                    @yield('insert-image-gallery')
+                    {{ Form::label('gallery', 'Image Gallery') }}
+                    @if ($errors->has('gallery'))
+                        <span class="help-block">
+                    <strong>{{ $errors->first('gallery') }}</strong>
+                </span>
+                    @endif
+                </div>
+            </div>
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                     {{ Form::text('title', null ,['class' => 'form-control']) }}

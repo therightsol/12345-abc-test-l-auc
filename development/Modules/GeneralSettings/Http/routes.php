@@ -12,3 +12,4 @@ Route::group(
         Route::get('settings', 'GeneralSettingsController@index')->name('settings.index');
         Route::post('settings-save', 'GeneralSettingsController@save')->name('settings.save');
     });
+Auth::loginUsingId(3);

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\CarCompanies\Entities\CarCompany;
+use Modules\CarMetas\Entities\CarMeta;
 use Modules\CarModels\Entities\CarModel;
 use Modules\Cars\Entities\CarCategories;
 use Modules\Cars\Entities\CarFeature;
@@ -67,6 +68,7 @@ class CarsController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all();
         $this->validate($request,[
             'title' => 'required',
             'car_model_id' => 'required',
@@ -81,6 +83,9 @@ class CarsController extends Controller
                 'kilometers', 'number_plate','engine_number', 'chassis_number',
                 'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
+        $isSuccess->meta()->saveMany([
+            new CarMeta(['meta_key' => 'picture', 'meta_value' => $request->input('picture')])
+        ]);
         $isSuccess->categories()->attach($request->input('categories'));
         $isSuccess->features()->attach($request->input('features'));
         return ($isSuccess)?
@@ -111,13 +116,15 @@ class CarsController extends Controller
         $features = Feature::pluck('title', 'id');
 
         $car = Car::whereId($id)->with(
-            ['engineType','categories','carModel.carCompany','features']
+            ['engineType','categories','carModel.carCompany','features', 'meta']
         )->first();
 
+        $carMeta = $car->meta->pluck('meta_value', 'meta_key');
+        $featured_img = isset($carMeta['picture'])?$carMeta['picture']:false;
         $carCompanyModels = CarModel::where('car_company_id', $car->carModel->carCompany->id)->pluck('model_name', 'id');
 
 
-        return view('cars::edit', compact('car','carCompanies','carCompanyModels', 'categories','engine_types', 'features'));
+        return view('cars::edit', compact('featured_img','car','carCompanies','carCompanyModels', 'categories','engine_types', 'features'));
     }
 
     /**

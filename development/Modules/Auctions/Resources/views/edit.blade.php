@@ -33,8 +33,18 @@
     <script src="{{ Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.js') }}"></script>
 
     <script>
-        $('input[name=start_date]').datetimepicker({format: 'dd MM yyyy -- hh:ii:ss'});
-        $('input[name=end_date]').datetimepicker({format: 'dd MM yyyy -- hh:ii:ss'});
+        $('input[name=start_date]').datetimepicker({
+            format: 'dd MM yyyy -- hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startDate: "{{ \Carbon\Carbon::now() }}",
+        });
+        $('input[name=end_date]').datetimepicker({
+            format: 'dd MM yyyy -- hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startDate: "{{ \Carbon\Carbon::now() }}",
+        });
 
     </script>
 

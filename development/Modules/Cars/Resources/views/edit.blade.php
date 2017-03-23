@@ -1,4 +1,6 @@
 @extends('commonbackend::layouts.admin_app')
+@include('media::layoutfiles.embedd')
+
 @section('style')
     <link href="{{Module::asset('commonbackend:admin_assets/bootstrap3-editable/css/bootstrap-editable.css')}}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ Module::asset('commonbackend:admin_assets/css/theme-default/libs/multi-select/multi-select.css?1424887857') }}" />
@@ -38,6 +40,7 @@
 @section('js')
     <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/multi-select/jquery.multi-select.js') }}"></script>
+    <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
 
     <script>
         $('#allCategories').multiSelect({
@@ -75,7 +78,7 @@
                     $('select[name=car_model_id]').find('option')
                             .remove()
                             .end()
-                            .append(render_options(data, {{ $car->carModel->id }}));
+                            .append(render_options(data, {{ old('car_model_id')?:$car->carModel->id }}));
 
                 },
                 beforeSend: function () {
@@ -85,7 +88,7 @@
                     spinner.hide();
                 }
             }  );
-        });
+        }).trigger('change');
 
         function render_options ( arr , model_id ) {
             console.log(arr);

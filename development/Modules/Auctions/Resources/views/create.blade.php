@@ -1,7 +1,8 @@
 @extends('commonbackend::layouts.admin_app')
 @section('style')
-    <link href="{{Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
-    @endsection
+    <link href="{{Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.css')}}"
+          rel="stylesheet">
+@endsection
 @section('content')
     <div id="content">
         <section class="">
@@ -26,14 +27,25 @@
                 </div>
             </div>
         </section>
+
     </div>
 @endsection
 @section('js')
     <script src="{{ Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.js') }}"></script>
 
     <script>
-        $('input[name=start_date]').datetimepicker({format: 'dd MM yyyy -- hh:ii:ss'});
-        $('input[name=end_date]').datetimepicker({format: 'dd MM yyyy -- hh:ii:ss'});
+        $('input[name=start_date]').datetimepicker({
+            format: 'dd MM yyyy -- hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startDate: "{{ \Carbon\Carbon::now() }}",
+        });
+        $('input[name=end_date]').datetimepicker({
+            format: 'dd MM yyyy -- hh:ii:ss',
+            autoclose: true,
+            todayBtn: true,
+            startDate: "{{ \Carbon\Carbon::now() }}",
+        });
 
     </script>
 

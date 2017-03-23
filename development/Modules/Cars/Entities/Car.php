@@ -3,6 +3,7 @@
 namespace Modules\Cars\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\CarMetas\Entities\CarMeta;
 use Modules\CarModels\Entities\CarModel;
 use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
@@ -22,6 +23,11 @@ class Car extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function meta()
+    {
+        return $this->hasMany(CarMeta::class);
     }
 
     public function engineType()

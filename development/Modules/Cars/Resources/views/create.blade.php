@@ -9,6 +9,8 @@
         }
     </style>
     @endsection
+@include('media::layoutfiles.embedd')
+
 @section('content')
     <div id="content">
         <section class="">
@@ -36,6 +38,8 @@
     </div>
 @endsection
 @section('js')
+    <script src="{{Module::asset("media:js/custom-functions.js")}}"></script>
+
     <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ Module::asset('commonbackend:admin_assets/js/libs/multi-select/jquery.multi-select.js') }}"></script>
 
@@ -72,7 +76,7 @@
                         $('select[name=car_model_id]').find('option')
                                 .remove()
                                 .end()
-                                .append(render_options(data, null));
+                                .append(render_options(data, {{ old('car_model_id')?:"undefined" }}));
 
                     },
                     beforeSend: function () {
@@ -82,7 +86,7 @@
                         spinner.hide();
                     }
                 }  );
-            });
+            }).trigger('change');
 
         function render_options ( arr , model_id ) {
             var strOptions,selected;
