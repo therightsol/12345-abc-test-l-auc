@@ -10,7 +10,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Modules\Auctions\Entities\Auction;
-use Modules\Auctions\Http\Filters\AuctionsFilter;
 use Modules\CarModels\Entities\CarModel;
 use Modules\Cars\Entities\Car;
 use Modules\CommonBackend\Http\Filters;
