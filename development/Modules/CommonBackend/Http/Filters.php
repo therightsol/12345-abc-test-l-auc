@@ -1,25 +1,26 @@
 <?php
 
-namespace Modules\Auctions\Http\Filters;
+namespace Modules\CommonBackend\Http;
 
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Modules\Cars\Entities\Car;
+use Modules\CarModels\Entities\CarModel;
 
-class AuctionsFilter
+class Filters
 {
 
     protected $request;
 
     protected $builder;
+    protected $modelPath = '\\App\\';
 
 
     protected $model;
-    protected $belongsToThrough = [];
-    protected $belongsTo = [Car::class =>['title']];
+    public $belongsToThrough = [];
+    public $belongsTo = [];
     protected $tableNames = [];
-    protected $column = ['id','bid_starting_amount', 'average_bid', 'start_date', 'end_date'];
+    public $column = [];
     protected $select = [];
 
     /**
@@ -72,7 +73,6 @@ class AuctionsFilter
         foreach ($this->belongsTo as $model => $value) {
 
             $instance = new $model;
-
             $this->builder->leftJoin(
                 $instance->getTable(),  //regions
                 $this->model->getTable() . '.' . $instance->getForeignKey(), //cities.region_id

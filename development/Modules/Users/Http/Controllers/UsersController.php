@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Modules\CommonBackend\Http\Filters;
 use Modules\Users\Entities\UserModel;
 use Modules\Users\Filters\Table\UsersFilters;
 
@@ -28,10 +29,13 @@ class UsersController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @param Filters $filters
      * @return Response
      */
-    public function index(Request $request, UsersFilters $filters)
+    public function index(Request $request, Filters $filters)
     {
+        $filters->column = ['id', 'full_name','cnic','email','picture', 'contact_number', 'user_role'];
         $limit = ($request->has('limit')) ? $request->input('limit') : 10;
         $users = UserModel::Filter($filters)
             ->paginate($limit);

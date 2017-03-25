@@ -5,7 +5,6 @@ namespace Modules\Users\Entities;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Users\Filters\QueryFilter;
 
 class UserModel extends Model implements Authenticatable
 {
@@ -15,7 +14,7 @@ class UserModel extends Model implements Authenticatable
 
     protected $table = 'users';
 
-    public function scopeFilter($query, QueryFilter $filters)
+    public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
     }

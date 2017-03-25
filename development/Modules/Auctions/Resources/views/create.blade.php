@@ -2,6 +2,12 @@
 @section('style')
     <link href="{{Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.css')}}"
           rel="stylesheet">
+    <style>
+        tr{
+            cursor: pointer;
+
+        }
+    </style>
 @endsection
 @section('content')
     <div id="content">
@@ -10,46 +16,21 @@
                 <h2 class="text-primary">Add Auction</h2>
             </div>
             <div class="section-body">
-                <div class="row">
+                <div class="row" id="auction-wrapper">
                     <div class="col-md-12">
                         @include('commonbackend::layouts._alert-response')
                     </div><!--end .col -->
-                    <div class="col-lg-6 col-lg-offset-2">
-                        {!! Form::open(['route' => Helper::route('store'), 'method'=>'post', 'class' => 'form']) !!}
-
-                        @include('auctions::_form', [
-                        'buttonText' => 'Submit',
-                        'title' => 'Add Auction',
-                        ])
-                        {!! Form::close() !!}
-
+                    @if(session()->has('auction.car'))
+                        @include('auctions::_auction')
+                        @else
+                        @include('auctions::_cars')
+                        @endif
+                    <div class="spinnerLoader">
+                        <i class="ajax-loader medium animate-spin"></i>
                     </div>
                 </div>
             </div>
         </section>
 
     </div>
-@endsection
-@section('js')
-    <script src="{{ Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.js') }}"></script>
-
-    <script>
-        $('input[name=start_date]').datetimepicker({
-            format: 'dd MM yyyy -- hh:ii:ss',
-            autoclose: true,
-            todayBtn: true,
-            startDate: "{{ \Carbon\Carbon::now() }}",
-        });
-        $('input[name=end_date]').datetimepicker({
-            format: 'dd MM yyyy -- hh:ii:ss',
-            autoclose: true,
-            todayBtn: true,
-            startDate: "{{ \Carbon\Carbon::now() }}",
-        });
-
-    </script>
-
-
-
-
 @endsection

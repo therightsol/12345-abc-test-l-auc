@@ -7,11 +7,11 @@
         <thead>
         <tr>
             <th></th>
-            <th class="sorting" data-table="User.full_name">Full Name</th>
-            <th class="sorting" data-table="User.cnic">CNIC</th>
-            <th class="sorting" data-table="User.email">Email Address</th>
-            <th class="sorting" data-table="User.contact_number">Contact #</th>
-            <th class="sorting" data-table="User.user_role">Role</th>
+            <th class="sorting" data-table="UserModel.full_name">Full Name</th>
+            <th class="sorting" data-table="UserModel.cnic">CNIC</th>
+            <th class="sorting" data-table="UserModel.email">Email Address</th>
+            <th class="sorting" data-table="UserModel.contact_number">Contact #</th>
+            <th class="sorting" data-table="UserModel.user_role">Role</th>
             <th>Action</th>
 
         </tr>

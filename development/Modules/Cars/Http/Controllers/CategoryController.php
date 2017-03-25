@@ -8,7 +8,12 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Cars\Http\Filters\CategoryFilter;
 use Modules\Cars\Entities\Category;
+use Modules\CommonBackend\Http\Filters;
 
+/**
+ * Class CategoryController
+ * @package Modules\Cars\Http\Controllers
+ */
 class CategoryController extends Controller
 {
 
@@ -16,12 +21,14 @@ class CategoryController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @param Filters $filter
+     * @param Request $request
      * @return Response
      */
 
-    public function index(CategoryFilter $filter, Request $request)
+    public function index(Filters $filter, Request $request)
     {
-
+        $filter->column = ['id','category'];
         $categories = Category::filter($filter)
             ->paginate(\Helper::limit($request));
 

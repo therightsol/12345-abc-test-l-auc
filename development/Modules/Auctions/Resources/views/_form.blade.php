@@ -1,18 +1,15 @@
 <div class="card">
     <div class="card-head style-primary">
-        <header>{{ $title }}</header>
+        <header>{{ $title }} <small></small></header>
     </div>
     <div class="card-body floating-label">
 
+        <p>
+            Car Title: <b>{{ session('auction.car')->title }}</b>
+        </p>
             <div class="form-group{{ $errors->has('car_id') ? ' has-error' : '' }}">
-                {{ Form::label('car_id', 'Car') }}
-                {{ Form::select('car_id', $cars, null,['class' => 'form-control','placeholder' => 'Select Car']) }}
-                @if ($errors->has('car_id'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('car_id') }}</strong>
-                </span>
-                @endif
-            </div>
+                <input type="hidden" name="car_id" value="{{ session('auction.car')->id }}">
+
 
         <div class="form-group{{ $errors->has('bid_starting_amount') ? ' has-error' : '' }}">
             {{ Form::text('bid_starting_amount', null ,['class' => 'form-control']) }}

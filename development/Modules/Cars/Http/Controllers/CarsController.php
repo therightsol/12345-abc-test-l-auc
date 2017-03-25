@@ -15,6 +15,7 @@ use Modules\Cars\Entities\CarFeature;
 use Modules\Cars\Entities\Car;
 use Modules\Cars\Entities\Category;
 use Modules\Cars\Http\Filters\CarFilter;
+use Modules\CommonBackend\Http\Filters;
 use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
 use Modules\Media\Entities\Post;
@@ -27,8 +28,11 @@ class CarsController extends Controller
      */
     use ValidatesRequests;
 
-    public function index(CarFilter $filter, Request $request)
+    public function index(Filters $filter, Request $request)
     {
+
+        $filter->belongsTo = [CarModel::class => ['model_name']];
+        $filter->column = ['id','title','car_model_id','grade','manufacturing_year'];
 
         $cars = Car::filter($filter)
             ->paginate(\Helper::limit($request));
