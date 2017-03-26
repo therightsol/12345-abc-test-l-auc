@@ -6,7 +6,7 @@
         <tr>
             <th class="sorting" data-table="Auction.id">Id</th>
             <th class="sorting" data-table="Auction.bid_starting_amount">Starting Amount</th>
-            <th class="sorting" data-table="Auction.average_bid">Average Bit</th>
+            <th class="sorting" data-table="Auction.average_bid">Average Bid</th>
             <th class="sorting" data-table="Auction.start_date">Start Date</th>
             <th class="sorting" data-table="Auction.end_date">End Date</th>
             <th>Action</th>

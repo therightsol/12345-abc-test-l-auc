@@ -207,6 +207,7 @@
 
 
 
+
             if ( bulk_selection.length < 1 ) {
                 return false;
             }

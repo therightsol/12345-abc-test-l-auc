@@ -16,7 +16,7 @@
 
 @section('insert-image-code')
 
-    <div class="img img-thumbnail" id="picture-btn">
+    <div class="img img-thumbnail" id="picture-btn" style="position:relative;">
         <i class="ajax-loader single-img medium animate-spin" style="display: none"></i>
 
         <img class="picture" data-picture="@if(!empty(old('picture'))){{asset(old('picture'))}}@elseif(isset($featured_img)){{url('/') . '/' . $featured_img}} @else{{Module::asset('media:images/image-not-found-100x100.png')}}@endif" id="picture"

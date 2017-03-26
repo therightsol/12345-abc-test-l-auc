@@ -123,7 +123,7 @@
             <div class="col-sm-6">
                 <div class="form-group{{ $errors->has('grade') ? ' has-error' : '' }}">
                     {{ Form::label('grade', 'Grade') }}
-                    {{ Form::select('grade', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], isset($car)?$car->grade:null,['class' => 'form-control','placeholder' => 'Select Car Grad']) }}
+                    {{ Form::select('grade', ['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D'], isset($car)?$car->grade:null,['class' => 'form-control','placeholder' => 'Select Car Grade']) }}
 
                 @if ($errors->has('grade'))
                         <span class="help-block">

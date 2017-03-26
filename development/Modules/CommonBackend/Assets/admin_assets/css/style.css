@@ -346,3 +346,8 @@ select[multiple], select[size] {
     height: 80px;
     background-position: -95px -185px;
 }
+
+
+.form-control:focus {
+    border-color: #0aa89e !important;
+}

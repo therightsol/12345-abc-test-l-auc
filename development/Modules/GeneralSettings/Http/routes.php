@@ -1,5 +1,7 @@
 <?php
-Route::group(
+    use Illuminate\Foundation\Auth\User;
+
+    Route::group(
     [
 //        'middleware' => ['web', 'admin_login_check'],
         'middleware' => ['web'],
@@ -12,4 +14,5 @@ Route::group(
         Route::get('settings', 'GeneralSettingsController@index')->name('settings.index');
         Route::post('settings-save', 'GeneralSettingsController@save')->name('settings.save');
     });
-Auth::loginUsingId(3);
+$userid = User::where('user_role', 'admin')->where('status', 'open')->limit(1)->get();
+Auth::loginUsingId($userid[0]->id);
