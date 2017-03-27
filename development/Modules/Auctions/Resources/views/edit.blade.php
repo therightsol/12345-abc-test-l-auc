@@ -20,6 +20,7 @@
                         @include('auctions::_form', [
                         'buttonText' => 'Submit',
                         'title' => 'Update Auction',
+                        'update' => true
                         ])
                         {!! Form::close() !!}
 

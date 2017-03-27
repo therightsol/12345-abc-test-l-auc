@@ -46,20 +46,24 @@
                 <table class="table table-striped table-hover dataTable">
                     <thead>
                     <tr>
-                        <th class="sorting" data-table="Car.id">Id</th>
+                        <th>Id</th>
                         <th class="sorting" data-table="Car.title">Title</th>
                         <th class="sorting" data-table="Car.grade">Grade</th>
                         <th class="sorting" data-table="CarModel.model_name">Model</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @php($i = $cars->firstItem())
+
                     @foreach($cars as $car)
                         <tr data-id="{{ $car->id }}">
-                            <td>{{ $car->id }}</td>
+                            <td>{{ $i }}</td>
                             <td>{{ $car->title }}</td>
                             <td>{{ $car->grade }}</td>
                             <td>{{ $car->model_name }}</td>
                         </tr>
+                        @php($i++)
+
                     @endforeach
                     </tbody>
                 </table>

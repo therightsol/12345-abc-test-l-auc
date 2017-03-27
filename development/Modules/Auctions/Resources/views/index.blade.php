@@ -4,7 +4,8 @@
     <table class="table table-striped table-hover dataTable">
         <thead>
         <tr>
-            <th class="sorting" data-table="Auction.id">Id</th>
+            <th>Id</th>
+            <th class="sorting" data-table="Car.title">Title</th>
             <th class="sorting" data-table="Auction.bid_starting_amount">Starting Amount</th>
             <th class="sorting" data-table="Auction.average_bid">Average Bid</th>
             <th class="sorting" data-table="Auction.start_date">Start Date</th>
@@ -14,13 +15,16 @@
         </tr>
         </thead>
         <tbody>
+        @php($i = $auctions->firstItem())
+
         @foreach($auctions as $auction)
             <tr>
-                <td>{{ $auction->id }}</td>
+                <td>{{ $i }}</td>
+                <td>{{ $auction->title }}</td>
                 <td>{{ $auction->bid_starting_amount }}</td>
                 <td>{{ $auction->average_bid }}</td>
-                <td>{{ $auction->start_date }}</td>
-                <td>{{ $auction->end_date }}</td>
+                <td>{{ $auction->start_date->format('d F Y') }}</td>
+                <td>{{ $auction->end_date->format('d F Y') }}</td>
                 <td width="150">
                     <a href="{{ route(Helper::route('edit'),$auction->id) }}" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
                        data-placement="top" data-original-title="Edit row">
@@ -33,6 +37,8 @@
                     </button>
                 </td>
             </tr>
+
+            @php($i++)
 
         @endforeach
         </tbody>

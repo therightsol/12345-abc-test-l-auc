@@ -2,9 +2,6 @@
 
     <div class="card-head style-primary">
         <header>{{ $title }}</header>
-        <?php
-            if(!empty($settings)) $settings = $settings->pluck('value', 'key');
-            ?>
     </div>
     <div class="card-body form-horizontal">
         <div class="row">

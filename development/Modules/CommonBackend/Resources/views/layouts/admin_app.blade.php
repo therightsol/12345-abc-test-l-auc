@@ -24,6 +24,11 @@
     <!-- END STYLESHEETS -->
 
 
+    <style>
+        .table thead th:first-child{
+            text-transform: uppercase;
+        }
+    </style>
 
 
     <!-- END STYLESHEETS -->

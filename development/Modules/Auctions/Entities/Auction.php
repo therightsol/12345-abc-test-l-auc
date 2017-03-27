@@ -20,4 +20,9 @@ class Auction extends Model
         return $this->belongsTo(Car::class);
     }
 
+    protected $dates = [
+        'start_date',
+        'end_date'
+    ];
+
 }

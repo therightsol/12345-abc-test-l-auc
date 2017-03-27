@@ -42,8 +42,8 @@
                     </a>
                     <!--start submenu -->
                     <ul>
-                        <li><a class="{{ Helper::isActiveResource('admin.users') }}"  href="{{ route('admin.users.index') }}"><span class="title">View Users</span></a></li>
-                        <li><a class="{{ Helper::isActiveResource('admin.users.create') }}"  href="{{ route('admin.users.create') }}"><span class="title">Add User</span></a></li>
+                        <li><a class="{{ Helper::isActiveRoute('admin.users.create') }}"  href="{{ route('admin.users.create') }}"><span class="title">Add User</span></a></li>
+                        <li><a class="{{ Helper::isActiveRoute('admin.users.index') . Helper::isActiveRoute('admin.users.edit') }}"  href="{{ route('admin.users.index') }}"><span class="title">View Users</span></a></li>
                     </ul><!--end /submenu -->
                 </li>
                 <li class="gui-folder">
