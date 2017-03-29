@@ -2,21 +2,66 @@
 
 namespace Modules\Biddings\Http\Controllers;
 
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Auctions\Entities\Auction;
+use Modules\Biddings\Entities\Bidding;
+use Modules\Cars\Entities\Car;
+use Modules\CommonBackend\Http\Filters;
+use Modules\Users\Entities\UserModel;
 
 class BiddingsController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * Display a listing of the resource.
+     * @param Filters $filter
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Filters $filter, Request $request)
     {
-        return view('biddings::index');
+        $filter->column = ['id', 'bid_amount'];
+        $filter->belongsToThrough = [Auction::class => ['bid_starting_amount'], Car::class => ['title']];
+        $filter->belongsTo = [UserModel::class => ['full_name']];
+        $biddings = Bidding::filter($filter)
+            ->paginate(\Helper::limit($request));
+//        return $biddings;
+        return view('biddings::index', compact('biddings'));
     }
+    
+    public function searchAuction(Request $request)
+    {
+        $term = trim($request->search);
 
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $auctions = Auction::with(['car.carModel.carCompany', 'car.meta' => function($query){
+            $query->where('meta_key', 'picture');
+            $query->select('car_id','meta_value');
+        }])
+            ->orWhereHas('car', function($query) use($term){
+                $query->where('title','like', '%'.$term.'%');
+            })->orWhereHas('car.carModel', function($query) use($term){
+                $query->where('model_name', 'like', '%'.$term.'%');
+            })->orWhereHas('car.carModel.carCompany', function($query) use($term){
+                $query->where('company_name', 'like', '%'.$term.'%');
+            })
+            ->limit(20)->latest()->get();
+
+        $formatted_auctions = [];
+
+        foreach ($auctions as $auction) {
+            $formatted_auctions[] = ['id' => $auction->id, 'text' => $auction->car->title, 'info' => $auction->car];
+        }
+
+        return \Response::json($formatted_auctions);
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -33,6 +78,15 @@ class BiddingsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'title' => 'required|unique:engine_types,title',
+        ]);
+
+        $isSuccess = Bidding::create($request->only('title'));
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Bid Created Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -48,9 +102,12 @@ class BiddingsController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('biddings::edit');
+        $bid = Bidding::find($id);
+        if (!$bid) return redirect()->route(Helper::route('index'));
+
+        return view('biddings::edit', compact('bid'));
     }
 
     /**
@@ -58,15 +115,29 @@ class BiddingsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|unique:engine_types,title,' . $id,
+        ]);
+
+        if (!$bid = Bidding::find($id)) return redirect()->route(Helper::route('index'));
+        $isSuccess = $bid->update(
+            $request->only('title')
+        );
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Bid Updated Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        $rec = Bidding::find($id);
+        if (empty($rec)) return;
+        return ($rec->forceDelete()) ? 'true' : 'false';
     }
 }

@@ -92,7 +92,7 @@ class FeaturesController extends Controller
             $request->only('title','icon_path')
         );
         return ($isSuccess) ?
-            back()->with('alert-success', 'Feature Created Successfully')
+            back()->with('alert-success', 'Feature Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
     }
 

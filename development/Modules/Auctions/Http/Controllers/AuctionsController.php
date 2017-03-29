@@ -164,7 +164,7 @@ class AuctionsController extends Controller
             'end_time' => $end_time
         ]);
         return ($isSuccess) ?
-            back()->with('alert-success', 'Auction Created Successfully')
+            back()->with('alert-success', 'Auction Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
     }
 
