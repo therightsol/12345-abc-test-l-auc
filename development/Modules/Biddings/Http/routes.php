@@ -16,4 +16,5 @@ Route::group(
     {
         Route::Resource('biddings', 'BiddingsController', ['names' => Helper::ResourceNames('biddings')]);
         Route::get('searchAuction', 'BiddingsController@searchAuction')->name('searchAuction');
+        Route::get('searchUser', 'BiddingsController@searchUser')->name('searchUser');
     });

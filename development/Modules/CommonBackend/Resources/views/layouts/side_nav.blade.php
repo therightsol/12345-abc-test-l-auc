@@ -69,6 +69,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('admin.biddings.index')}}"  class="{{ Helper::isActiveResource('admin.biddings') }}" >
+                        <div class="gui-icon"><i class="fa fa-money" aria-hidden="true"></i>
+                        </div>
+                        <span class="title">Bidding</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('admin.settings.index')}}"  class="{{ Helper::isActiveResource('admin.settings') }}" >
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
                         <span class="title">Settings</span>

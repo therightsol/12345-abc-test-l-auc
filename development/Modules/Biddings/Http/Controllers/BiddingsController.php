@@ -62,6 +62,27 @@ class BiddingsController extends Controller
 
         return \Response::json($formatted_auctions);
     }
+    public function searchUser(Request $request)
+    {
+        $term = trim($request->search);
+
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $users = UserModel::where('full_name',  'like', '%'.$term.'%')
+        ->orWhere('email',  'like', '%'.$term.'%')
+            ->orWhere('username',  'like', '%'.$term.'%')
+            ->limit(20)->latest()->get();
+
+        $formatted_auctions = [];
+
+        foreach ($users as $user) {
+            $formatted_auctions[] = ['id' => $user->id, 'text' => $user->full_name, 'info' => $user];
+        }
+
+        return \Response::json($formatted_auctions);
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -80,10 +101,12 @@ class BiddingsController extends Controller
     {
 
         $this->validate($request, [
-            'title' => 'required|unique:engine_types,title',
+            'auction_id' => 'required',
+            'user_id' => 'required',
+            'bid_amount' => 'required',
         ]);
 
-        $isSuccess = Bidding::create($request->only('title'));
+        $isSuccess = Bidding::create($request->only('user_id', 'auction_id', 'bid_amount'));
         return ($isSuccess) ?
             back()->with('alert-success', 'Bid Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
@@ -104,7 +127,7 @@ class BiddingsController extends Controller
      */
     public function edit($id)
     {
-        $bid = Bidding::find($id);
+        $bid = Bidding::whereId($id)->with(['auction.car', 'user'])->firstOrFail();
         if (!$bid) return redirect()->route(Helper::route('index'));
 
         return view('biddings::edit', compact('bid'));
@@ -117,14 +140,18 @@ class BiddingsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
-            'title' => 'required|unique:engine_types,title,' . $id,
+            'auction_id' => 'required',
+            'user_id' => 'required',
+            'bid_amount' => 'required',
         ]);
 
         if (!$bid = Bidding::find($id)) return redirect()->route(Helper::route('index'));
         $isSuccess = $bid->update(
-            $request->only('title')
+            $request->only('user_id', 'auction_id', 'bid_amount')
         );
+
         return ($isSuccess) ?
             back()->with('alert-success', 'Bid Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
