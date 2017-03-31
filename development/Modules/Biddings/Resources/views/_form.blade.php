@@ -10,7 +10,7 @@
         </div>
         <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
 
-            {{ Form::select('user_id', isset($bid)?[$bid->user_id=>$bid->user->full_name]:[], null,['class' => 'js-data-user-ajax form-control', 'placeholder' => 'Select Auction']) }}
+            {{ Form::select('user_id', isset($bid)?[$bid->user_id=>$bid->user->full_name]:[], null,['class' => 'js-data-user-ajax form-control', 'placeholder' => 'Select User']) }}
 
         </div>
 
