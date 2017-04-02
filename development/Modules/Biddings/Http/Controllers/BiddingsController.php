@@ -57,7 +57,11 @@ class BiddingsController extends Controller
         $formatted_auctions = [];
 
         foreach ($auctions as $auction) {
-            $formatted_auctions[] = ['id' => $auction->id, 'text' => $auction->car->title, 'info' => $auction->car];
+            $formatted_auctions[] = [
+                'id' => $auction->id,
+                'text' => $auction->car->title,
+                'min' => $auction->bid_starting_amount,
+                'info' => $auction->car];
         }
 
         return \Response::json($formatted_auctions);

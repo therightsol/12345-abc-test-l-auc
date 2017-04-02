@@ -41,42 +41,48 @@ class AuctionsController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        if(!\Session::has('auction.car')){
-            return $this->cars($request);
+        return view('auctions::create', compact('cars'));
+    }
+
+    public function searchCar(Request $request)
+    {
+        $term = trim($request->search);
+
+        if (empty($term)) {
+            return \Response::json([]);
         }
-        $cars = Car::pluck('title', 'id');
-        return view('auctions::create', compact('cars'));
+
+        $cars = Car::with(['carModel.carCompany', 'meta' => function($query){
+            $query->where('meta_key', 'picture');
+            $query->select('car_id','meta_value');
+        }])
+            ->orWhere('title','like', '%'.$term.'%')
+
+            ->orWhereHas('carModel', function($query) use($term){
+                $query->where('model_name', 'like', '%'.$term.'%');
+            })->orWhereHas('carModel.carCompany', function($query) use($term){
+                $query->where('company_name', 'like', '%'.$term.'%');
+            })
+            ->limit(20)->latest()->get();
+
+        $formatted = [];
+
+        foreach ($cars as $car) {
+
+            $formatted[] = [
+                'id' => $car->id,
+                'text' => $car->title,
+                'info' => $car->toArray()
+            ];
+
+        }
+
+
+        return \Response::json($formatted);
     }
 
-
-    public function cars($request)
-    {
-        $filter = new Filters($request);
-        $filter->belongsTo = [CarModel::class => ['model_name']];
-        $filter->column = ['id','title','car_model_id','grade','manufacturing_year'];
-
-        $cars = Car::filter($filter)
-            ->paginate(\Helper::limit($request));
-        return view('auctions::create', compact('cars'));
-    }
-
-    public function getAuctionForm(Request $request)
-    {
-        $this->validate($request, [
-            'id' => 'required'
-        ]);
-        $car = Car::findOrFail($request->id);
-
-        Session::put('auction.car', $car);
-
-        $view = \View::make('auctions::_auction');
-
-        $view = $view . $view->renderSections()['js'];
-        return $view;
-    }
-    
 
     /**
      * Store a newly created resource in storage.

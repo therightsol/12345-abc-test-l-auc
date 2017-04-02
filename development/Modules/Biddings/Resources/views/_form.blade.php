@@ -6,22 +6,32 @@
         <div class="form-group{{ $errors->has('auction_id') ? ' has-error' : '' }}">
 
             {{ Form::select('auction_id', isset($bid)?[$bid->auction_id=>$bid->auction->car->title]:[], null,['class' => 'js-data-example-ajax form-control', 'placeholder' => 'Select Auction']) }}
-
+            @if ($errors->has('auction_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('auction_id') }}</strong>
+                </span>
+            @endif
         </div>
         <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
 
-            {{ Form::select('user_id', isset($bid)?[$bid->user_id=>$bid->user->full_name]:[], null,['class' => 'js-data-user-ajax form-control', 'placeholder' => 'Select Auction']) }}
-
+            {{ Form::select('user_id', isset($bid)?[$bid->user_id=>$bid->user->full_name]:[], null,['class' => 'js-data-user-ajax form-control', 'placeholder' => 'Select User']) }}
+            @if ($errors->has('user_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('user_id') }}</strong>
+                </span>
+            @endif
         </div>
 
         <div class="form-group{{ $errors->has('bid_amount') ? ' has-error' : '' }}">
             {{ Form::text('bid_amount', null ,['class' => 'form-control']) }}
             {{ Form::label('bid_amount', 'Bid Amount:') }}
+            <span id="bidamount"  class="help-block">
+
             @if ($errors->has('bid_amount'))
-                <span class="help-block">
                     <strong>{{ $errors->first('bid_amount') }}</strong>
-                </span>
             @endif
+                            </span>
+
         </div>
 
 
@@ -44,7 +54,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script>
 
-        var publicUrl = '{{ asset('/') }}';
+        var publicUrl = '{{ asset('/') }}',
+                min;
         $(".js-data-example-ajax").select2({
             ajax: {
                 url: "{{ route('admin.searchAuction') }}",
@@ -56,7 +67,6 @@
                     };
                 },
                 processResults: function (data) {
-                    console.log(data);
                     return {
                         results: data
                     };
@@ -66,6 +76,9 @@
             escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
             minimumInputLength: 1,
             templateResult: formatRepo, // omitted for brevity, see the source of this page
+        }).on("select2:select", function (e) {
+            min =  e.params.data.min;
+            $('#bidamount').html('Min bid amount is '+ min);
         });
         $(".js-data-user-ajax").select2({
             ajax: {
@@ -137,6 +150,19 @@
 
             return markup;
         }
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var val = parseInt($('input[name=bid_amount]').val());
+
+            if(min > val){
+                alert('Bid amount should be greater than minimum bid amount of selected auction!');
+            }else{
+                $(this)[0].submit();
+            }
+
+
+        })
 
     </script>
 @endsection

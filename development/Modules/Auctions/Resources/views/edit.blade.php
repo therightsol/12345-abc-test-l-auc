@@ -1,8 +1,5 @@
 @extends('commonbackend::layouts.admin_app')
-@section('style')
-    <link href="{{Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
 
-@endsection
 @section('content')
     <div id="content">
         <section class="">
@@ -14,7 +11,7 @@
                     <div class="col-md-12">
                         @include('commonbackend::layouts._alert-response')
                     </div><!--end .col -->
-                    <div class="col-lg-10 col-lg-offset-1">
+                    <div class="col-lg-6 col-lg-offset-3">
                         {!! Form::model($auction,['route' => [Helper::route('update'), $auction->id], 'method'=>'put', 'class' => 'form']) !!}
 
                         @include('auctions::_form', [
@@ -29,27 +26,4 @@
             </div>
         </section>
     </div>
-@endsection
-@section('js')
-    <script src="{{ Module::asset('commonbackend:admin_assets/timepicker/bootstrap-datetimepicker.min.js') }}"></script>
-
-    <script>
-        $('input[name=start_date]').datetimepicker({
-            format: 'dd MM yyyy -- hh:ii:ss',
-            autoclose: true,
-            todayBtn: true,
-            startDate: "{{ \Carbon\Carbon::now() }}",
-        });
-        $('input[name=end_date]').datetimepicker({
-            format: 'dd MM yyyy -- hh:ii:ss',
-            autoclose: true,
-            todayBtn: true,
-            startDate: "{{ \Carbon\Carbon::now() }}",
-        });
-
-    </script>
-
-
-
-
 @endsection
