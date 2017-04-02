@@ -1,4 +1,4 @@
-<link href="{{url('admin_assets/dropzone/dist/min/dropzone.min.css')}}" type="text/css" rel="stylesheet" />
+<link href="{{Module::asset('media:dropzone/dist/min/dropzone.min.css')}}" type="text/css" rel="stylesheet" />
 
 
 <style>
