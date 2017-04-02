@@ -11,7 +11,7 @@ use Modules\Features\Entities\Feature;
 class Car extends Model
 {
     protected $fillable =
-        ['title', 'average_price','minimum_price', 'manufacturing_year',
+        ['user_id','title', 'average_price','minimum_price', 'manufacturing_year',
             'car_model_id', 'engine_type_id', 'trim','exterior_color', 'interior_color',
             'grade', 'kilometers', 'number_plate', 'engine_number',
             'chassis_number', 'city_of_registration', 'transmission',

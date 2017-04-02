@@ -197,8 +197,8 @@ class DBTables extends Migration
 
             $table->foreign('car_id')
                 ->references('id')->on('cars')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
         });

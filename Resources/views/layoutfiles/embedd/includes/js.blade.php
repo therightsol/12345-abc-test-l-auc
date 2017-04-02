@@ -15,14 +15,9 @@
                 ajax = true ;
         var gallery_images = [];
 
-
-        var pictureElement = null;
-
-        $( document ).on( 'click', '.picture-btn, #picture-btn', function ( e ){
+        $( document ).on( 'click', '#picture-btn', function ( e ){
 
             e.preventDefault();
-
-            pictureElement = $(this);
             $('#media-button-styles').text('#insert-bulk{display: none;} .img-src-container{display: flex}');
 
             $('.ajax-loader.single-img').css('display', 'inline-block');
@@ -170,123 +165,79 @@
         $(document).on('click', '.gallery_img_remove', function (){
             var $this = $(this);
             var img_id = $this.prev().attr('data-id');
-            var img_index = $this.prev().attr('data-index');
 
-            var ids_and_files = $('#gallery_images_ids').val();
+            var ids = $('#gallery_images_ids').val();
 
-            ids_and_files = JSON.parse(ids_and_files);
+            ids = ids.split(",");
 
+            var new_ids = [];
 
-            var new_ids_and_files = [];
-            for(var i = 0; i < ids_and_files.length; i++){
-                if (ids_and_files[i]['data_index'] != img_index){
-                    new_ids_and_files.push(ids_and_files[i]);
+            for(var i = 0; i < ids.length; i++){
+                if (ids[i] != img_id){
+                    new_ids.push(ids[i]);
                 }
             }
 
-            new_ids_and_files = JSON.stringify(new_ids_and_files);
 
-            $('#gallery_images_ids').val(new_ids_and_files);
+            $('#gallery_images_ids').val(new_ids);
 
 
             $this.parent().remove();
 
+
+            // Remove from Database
+            /*$.ajax({
+                url: '' + '/' + img_id,
+                type: 'DELETE',
+                data: {
+                    'file_id': img_id
+                },
+                success: function ( data ){
+                    console.log(data);
+                }
+            });*/
+
+
+
         });
 
 
-        // get old images from post and put them in session_images variable.
-        var session_images = {!! old('gallery_images_ids', $gallery_images) ? : '"";'  !!}
-
-        if(session_images.length > 0){
-
-            if (typeof(session_images) == 'string')
-                session_images = JSON.parse(session_images);
-
-
-
-            //console.log(session_images);
-
-            for (var i = 0; i < session_images.length; i++){
-                //console.log(session_images[i]);   // ids of gallery images
-                //console.log(bulk_selection);  // empty
-
-                if (session_images[i]['id'] == null) continue; // cross check if there is any null id, then we do not need to show it
-
-                 if (session_images[i]['file_name'].length < 1) session_images[i]['file_name'] = 'images/image-not-found-100x100.png'; // if file is empty then add file not found placeholder image.
-
-                var file = {'file_name': session_images[i]['file_name'], 'id': session_images[i]['id'] };
-
-                //console.log(file);
-                bulk_selection.push(file);
-            }
-
-            add_images_in_gallery_images_section();
-        }
 
         $( document ).on( 'click', '#insert-bulk',function () {
+
+
+
+
             if ( bulk_selection.length < 1 ) {
                 return false;
             }
             var $this = $( this );
             $this.attr( 'disabled', true );
 
-            add_images_in_gallery_images_section();
-        } );
-
-
-        // prompt to user that data will lost if you reload page.
-       /* var is_this_submit_event = false;
-        $('form').submit(function (){
-            is_this_submit_event = true;
-        });
-        window.onbeforeunload = function() {
-            if (! is_this_submit_event)
-                return "Data will be lost if you leave the page, are you sure?";
-
-            is_this_submit_event = false;
-            return true;
-        };*/
-
-
-        function add_images_in_gallery_images_section(){
             var parent_elem = $('#image_gallery_container');
-            $('.gallery-img').remove();
 
 
-            console.log(bulk_selection[i]);
             for(var i = 0; i < bulk_selection.length; i++){
 
-                //console.log(bulk_selection[i]);
 
                 var html = '<div class="img gallery-img img-thumbnail">' +
-                        '<img data-index="'+ i +'" data-id="'+ bulk_selection[i]['id'] +'" class="picture id-'+bulk_selection[i]['id']+'" src="{{url("/") . "/"}}' + bulk_selection[i]['file_name'] + '" ' +
+                        '<img data-id="'+ bulk_selection[i]['id'] +'" class="picture id-'+bulk_selection[i]['id']+'" src="{{url("/") . "/"}}' + bulk_selection[i]['file_name'] + '" ' +
                         'style="height: 80px;max-width: 80px; width: 80px" alt="gallery-images" />' +
                         '<i class="fa gallery_img_remove fa-close"></i></div>';
 
-
-                if (i == 0){
-                    gallery_images = [];
-                }
-
-                gallery_images.push({data_index: i, id: bulk_selection[i]['id'], file_name: bulk_selection[i]['file_name']});
-
+                gallery_images.push(bulk_selection[i]['id']);
                 parent_elem.prepend(html);
             }
 
             var ids = $('#gallery_images_ids').val();
-
-
             if (ids.length > 0)
                 ids = ids + ',';
 
-            var value = JSON.stringify( gallery_images );
 
-            $('#gallery_images_ids').val(  value );
+            $('#gallery_images_ids').val( ids + gallery_images );
+            closeModal("#myModal");
+        } );
 
-
-            if (($("#myModal").data('bs.modal') || {}).isShown)
-                closeModal("#myModal");
-        }
 
 
 
@@ -295,7 +246,6 @@
             var $this = $( this ),
                     file_name = $this.find( '.file-name' ).text();
 
-            // remove from bulk_selection if already selected
             if ( $this.hasClass( 'selected' ) ) {
 
 
@@ -321,8 +271,6 @@
 
                 //console.log(bulk_selection);
             }
-
-            //console.log(bulk_selection);
 
             if ( bulk_selection.length > 0 ) {
                 $( '#delete-bulk' ).attr( 'disabled', false );
@@ -351,10 +299,8 @@
 
                 var fullimgsrc = $('#img-src').val();
 
-
-                pictureElement.find('.picture').attr({'src': fullimgsrc, 'data-picture': fullimgsrc});
-                pictureElement.next().val(imgsrc);
-
+                $('#picture').attr({'src': fullimgsrc, 'data-picture': fullimgsrc});
+                $('#picture-val').val(imgsrc);
             }
 
         });
@@ -369,6 +315,7 @@
 
         });
 
+        $(document).find()
 
 
 

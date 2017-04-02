@@ -7,9 +7,9 @@
 
 
             <div class="col-sm-6">
-                <div class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
+                <div style="text-align: center;" class="form-group{{ $errors->has('picture') ? ' has-error' : '' }}">
                     @yield('insert-image-code')
-                    {{ Form::label('picture', 'Featured Image') }}
+                    {{ Form::label('', '') }}
                     @if ($errors->has('picture'))
                         <span class="help-block">
                     <strong>{{ $errors->first('picture') }}</strong>
