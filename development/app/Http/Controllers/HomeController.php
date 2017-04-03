@@ -10,8 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $listings = Auction::with('car')->limit(20)->latest()->get();
+        $listings = Auction::with(['car.meta' => function($q){
+            $q->where('meta_key', 'picture');
+        }])->limit(20)->latest()->get();
 
+//        return $listings;
         return view('home.index', compact('listings'));
     }
 }

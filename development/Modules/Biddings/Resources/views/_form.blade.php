@@ -26,7 +26,7 @@
             {{ Form::text('bid_amount', null ,['class' => 'form-control']) }}
             {{ Form::label('bid_amount', 'Bid Amount:') }}
             <span id="bidamount"  class="help-block">
-
+{{ isset($bid->auction)? 'Min bid amount is '. $bid->auction->bid_starting_amount : null }}
             @if ($errors->has('bid_amount'))
                     <strong>{{ $errors->first('bid_amount') }}</strong>
             @endif
@@ -56,6 +56,8 @@
 
         var publicUrl = '{{ asset('/') }}',
                 min;
+
+        min = {{ isset($bid->auction)? $bid->auction->bid_starting_amount : 0 }}
         $(".js-data-example-ajax").select2({
             ajax: {
                 url: "{{ route('admin.searchAuction') }}",

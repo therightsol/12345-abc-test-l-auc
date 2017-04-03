@@ -36,9 +36,9 @@
                 <h4>Contact us</h4>
                 <div class="footer-contact">
                     <ul>
-                        <li><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, AB 12345</li>
-                        <li><i class="fa fa-phone"></i> <strong>Phone:</strong>1-800-123-4567</li>
-                        <li><i class="fa fa-envelope-o"></i> <strong>Email:</strong><a href="#">sales@company.com</a></li>
+                        <li><i class="fa fa-map-marker"></i> <strong>Address:</strong> {{ isset($settings['address'])?$settings['address']: '107 Sunset Blvd., Beverly Hills, CA  90210' }}</li>
+                        <li><i class="fa fa-phone"></i> <strong>Phone:</strong>{{ isset($settings['phone_number'])?$settings['phone_number']: '1-800-567-0123' }}</li>
+                        <li><i class="fa fa-envelope-o"></i> <strong>Email:</strong><a href="#">{{ isset($settings['email'])?$settings['email']: 'sales@company.com' }}</a></li>
                     </ul>
 
                     <i class="fa fa-location-arrow back_icon"></i>
@@ -57,8 +57,7 @@
                         <h1>Automotive</h1>
                         <span>template</span></a>
                 </div>
-                <p>Copyright &copy; 2014 Theme Suite.  All rights reserved.<br>
-                    <a href="http://gfxfree.net">GFXFree.Net</a></p>
+                <p>{!! isset($settings['copyright'])?$settings['copyright']: 'Copyright &copy; 2017 pakauction.  All rights reserved' !!} </p>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                 <ul class="social margin-bottom-25 md-margin-bottom-25 sm-margin-bottom-20 xs-margin-bottom-20 xs-padding-top-10 clearfix">

@@ -6,16 +6,13 @@
                 <div class="col-lg-6 left_bar">
                     <ul class="left-none">
                         <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                        <li><a href="#"><i class="fa fa-globe"></i> Languages</a></li>
-                        <li><i class="fa fa-search"></i>
-                            <input type="search" placeholder="Search" class="search_box">
-                        </li>
+
                     </ul>
                 </div>
                 <div class="col-lg-6 ">
                     <ul class="right-none pull-right company_info">
-                        <li><a href="tel:18005670123"><i class="fa fa-phone"></i> 1-800-567-0123</a></li>
-                        <li class="address"><a href="contact.html"><i class="fa fa-map-marker"></i> 107 Sunset Blvd., Beverly Hills, CA  90210</a></li>
+                        <li><a href="tel:18005670123"><i class="fa fa-phone"></i> {{ isset($settings['phone_number'])?$settings['phone_number']: '1-800-567-0123' }}</a></li>
+                        <li class="address"><a href="contact.html"><i class="fa fa-map-marker"></i> {{ isset($settings['address'])?$settings['address']: '107 Sunset Blvd., Beverly Hills, CA  90210' }} </a></li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +26,18 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="{{ url('/') }}"><span class="logo"><span class="primary_text">Automotive</span> <span class="secondary_text">Template</span></span></a> </div>
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <span class="logo">
+                                @if(isset($settings['picture']))
+                                    <img style="    height: 61px;" src="{{ $settings['picture'] }}" alt="Auction">
+                                    @else
+                                    <span class="primary_text">Auction</span> <span class="secondary_text">Template</span>
+
+                                @endif
+
+                            </span>
+
+                        </a> </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
