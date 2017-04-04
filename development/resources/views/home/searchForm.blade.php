@@ -201,7 +201,7 @@
                 <label for="check3">Brand New</label>
             </div>
             <div class="form-element">
-                <input type="submit" value="Find My New Vehicle" class="find_new_vehicle pull-right md-button">
+                <input type="submit" value="Find Auction " class="find_new_vehicle pull-right md-button">
             </div>
         </div>
     </form>

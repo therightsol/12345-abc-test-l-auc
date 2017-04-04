@@ -6,7 +6,7 @@
                     <!-- SLIDE  -->
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
                         <!-- MAIN IMAGE -->
-                        <img src="http://demo.themesuite.com/automotive/images/slide-show1.jpg"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                        <img src="{{ asset('images/car1.jpg') }}"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center domainate customin customout start"
@@ -19,7 +19,7 @@
                              data-speed="1000"
                              data-start="500"
                              data-easing="Back.easeInOut"
-                             data-endspeed="300">DOMINATE </div>
+                             data-endspeed="300">Lorem </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption internet  fade"
@@ -31,7 +31,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; letter-spacing: -3px;">THE INTERNET </div>
+                             style="z-index: 6; letter-spacing: -3px;">ipsum dolor </div>
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption attract sfl"
                              data-x="0"
@@ -42,7 +42,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; top: 371px; ">Attract, Engage, &amp; Convert </div>
+                             style="z-index: 6; top: 371px; ">quis dui neque &amp; purus </div>
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption more skewfromright "
                              data-x="100"
@@ -64,11 +64,11 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6">qualified vehicle shoppers </div>
+                             style="z-index: 6">Curabitur in hendrerit sem </div>
                     </li>
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
                         <!-- MAIN IMAGE -->
-                        <img src="http://demo.themesuite.com/automotive/images/slide-show2.jpg" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                        <img src="{{ asset('images/car2.jpg') }}" alt="slidebg1" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center invest start"
@@ -79,7 +79,7 @@
                              data-speed="1000"
                              data-start="500"
                              data-easing="Back.easeInQuart"
-                             data-endspeed="300">Time to invest in a website built to </div>
+                             data-endspeed="300">Ut cursus non orci vitae tincidunt </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption move mediumlarge_light_white_center fade"
@@ -102,7 +102,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; top: 371px; ">YOUR </div>
+                             style="z-index: 6; top: 371px; ">Aliquam  </div>
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption dark_brown mediumlarge_light_white_center skewfromright "
                              data-x="735"
@@ -113,7 +113,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; left:186px;">INVENTORY </div>
+                             style="z-index: 6; left:186px;">commodo  </div>
                         <!-- LAYER NR. 4 -->
                         <div class="tp-caption faster mediumlarge_light_white_center skewfromright"
                              data-x="960"
@@ -124,22 +124,13 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6">FASTER </div>
+                             style="z-index: 6">Fusce  </div>
                         <!-- LAYER NR. 5 -->
-                        <div class="tp-caption brown_line skewfromright"
-                             data-x="482"
-                             data-y="261"
-                             data-speed="800"
-                             data-start="2600"
-                             data-easing="Power4.easeOut"
-                             data-endspeed="300"
-                             data-endeasing="Power1.easeIn"
-                             data-captionhidden="off"
-                             style="z-index: 6"><img src="http://demo.themesuite.com/automotive/images/brown_line.jpg" alt="underline"> </div>
+
                     </li>
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
                         <!-- MAIN IMAGE -->
-                        <img src="http://demo.themesuite.com/automotive/images/slide-show3.jpg"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                        <img src="{{ asset('images/car3.jpg') }}"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                         <!-- LAYERS -->
                         <div class="tp-caption customin customout start green"
@@ -152,7 +143,7 @@
                              data-speed="1000"
                              data-start="500"
                              data-easing="Back.easeInOut"
-                             data-endspeed="300">Wow Factor?</div>
+                             data-endspeed="300">hendrerit </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption big_white fade"
@@ -164,11 +155,11 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6;">STANDARD. </div>
+                             style="z-index: 6;">Pellentesque . </div>
                     </li>
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
                         <!-- MAIN IMAGE -->
-                        <img src="http://demo.themesuite.com/automotive/images/slide-show4.jpg"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                        <img src="{{ asset('images/car4.jpg') }}"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                         <!-- LAYERS -->
                         <div class="tp-caption customin customout start big_white"
@@ -181,7 +172,7 @@
                              data-speed="1000"
                              data-start="500"
                              data-easing="Back.easeInOut"
-                             data-endspeed="300">UNLOCK</div>
+                             data-endspeed="300">metus </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption thin_red fade"
@@ -193,7 +184,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6;">THE POTENTIAL</div>
+                             style="z-index: 6;">conubia nostra</div>
 
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption thin_white skewfromright"
@@ -205,7 +196,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6;">business from your</div>
+                             style="z-index: 6;">Pellentesque ege</div>
 
                         <!-- LAYER NR. 3 -->
                         <div class="tp-caption cursive skewfromright"
@@ -217,12 +208,12 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6;">website</div>
+                             style="z-index: 6;">Nulla </div>
                     </li>
                     <!-- SLIDE  -->
                     <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
                         <!-- MAIN IMAGE -->
-                        <img src="http://demo.themesuite.com/automotive/images/slide-show5.jpg"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+                        <img src="{{ asset('images/car5.jpg') }}"   alt="slidebg1"  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 
                         <!-- LAYERS -->
                         <div class="tp-caption mediumlarge_light_white_center domainate customin customout start"
@@ -235,7 +226,7 @@
                              data-speed="1000"
                              data-start="500"
                              data-easing="Back.easeInOut"
-                             data-endspeed="300">REALITY </div>
+                             data-endspeed="300">Lorem  </div>
 
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption thin_dark_blue fade"
@@ -247,7 +238,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; letter-spacing: 0;">IS JUST</div>
+                             style="z-index: 6; letter-spacing: 0;">in hendrerit </div>
                         <!-- LAYER NR. 2 -->
                         <div class="tp-caption thinner_white sfl"
                              data-x="05"
@@ -258,7 +249,7 @@
                              data-endspeed="300"
                              data-endeasing="Power1.easeIn"
                              data-captionhidden="off"
-                             style="z-index: 6; top: 371px; ">your perception</div>
+                             style="z-index: 6; top: 371px; "> Praesent sed lobortis</div>
                     </li>
                 </ul>
             </div>

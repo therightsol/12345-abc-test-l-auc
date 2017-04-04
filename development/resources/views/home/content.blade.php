@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <h2 class="col-lg-9 col-md-8 col-sm-12 col-xs-12 xs-padding-left-15">Discover a website for car dealers that converts visitors to <span class="alternate-font">customers</span></h2>
-            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="#" class="default-btn pull-right action_button lg-button">Schedule a Test Drive</a> </div>
+            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="#" class="default-btn pull-right action_button lg-button">Schedule a Test Inspection</a> </div>
         </div>
     </div>
     <div class="message-shadow"></div>
@@ -28,14 +28,14 @@
                     </div>
                     <!--welcome ends-->
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-right-none sm-padding-left-none md-padding-left-15 xs-padding-left-none padding-bottom-40 scroll_effect fadeInUp" data-wow-delay='.2s' style="z-index:100">
-                        <h4 class="margin-bottom-25 margin-top-none"><strong>SEARCH</strong> OUR INVENTORY</h4>
+                        <h4 class="margin-bottom-25 margin-top-none"><strong>SEARCH</strong></h4>
 
                         @include('home.searchForm')
                     </div>
                     <!--invetory ends-->
                 </div>
                 <div class="row parallax_parent design_2 margin-bottom-40 margin-top-30">
-                    <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-200" data-image="http://demo.themesuite.com/automotive/images/parallax1.jpg">
+                    <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-200" data-image="{{ asset('images/1.jpg') }}">
                         <div class="overlay">
                             <div class="container">
                                 <div class="row">
@@ -78,10 +78,10 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
                                 <div class="flip margin-bottom-30">
                                     <div class="card">
-                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car1.jpg" alt=""></div>
+                                        <div class="face front"><img class="img-responsive" src="{{ asset('images/car1.jpg') }}" alt=""></div>
                                         <div class="face back">
                                             <div class='hover_title'>Race Ready</div>
-                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car1-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="{{ asset('images/car1.jpg') }}" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
                                     </div>
                                 </div>
                                 <h4><a href="#">FACTORY READY FOR TRACK DAY</a></h4>
@@ -93,10 +93,10 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
                                 <div class="flip horizontal margin-bottom-30">
                                     <div class="card">
-                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car2.jpg" alt=""></div>
+                                        <div class="face front"><img class="img-responsive" src="{{ asset('images/car2.jpg') }}" alt=""></div>
                                         <div class="face back">
                                             <div class='hover_title'>Family Oriented</div>
-                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car2-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="{{ asset('images/car2.jpg') }}" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
                                     </div>
                                 </div>
                                 <h4><a href="#">A SPORT UTILITY FOR THE FAMILY</a></h4>
@@ -108,10 +108,10 @@
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-bottom-none">
                                 <div class="flip margin-bottom-30">
                                     <div class="card">
-                                        <div class="face front"><img class="img-responsive" src="http://demo.themesuite.com/automotive/images/car3.jpg" alt=""></div>
+                                        <div class="face front"><img class="img-responsive" src="{{ asset('images/car3.jpg') }}" alt=""></div>
                                         <div class="face back">
                                             <div class='hover_title'>World Class</div>
-                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="images/car3-lrg.jpg" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
+                                            <a href="inventory-listing.html"><i class="fa fa-link button_icon"></i></a> <a href="{{ asset('images/car3.jpg') }}" class="fancybox"><i class="fa fa-arrows-alt button_icon"></i></a> </div>
                                     </div>
                                 </div>
                                 <h4><a href="#">MAKE AN EXECUTIVE STATEMENT</a></h4>
@@ -247,7 +247,7 @@
 
 
             <div class="row parallax_parent margin-top-30">
-                <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-300" data-no-repeat="true" data-image="http://demo.themesuite.com/automotive/images/parallax2.jpg">
+                <div class="parallax_scroll clearfix" data-velocity="-.5" data-offset="-300" data-no-repeat="true" data-image="{{ asset('images/car4.jpg') }}">
                     <div class="overlay">
                         <div class="container">
 

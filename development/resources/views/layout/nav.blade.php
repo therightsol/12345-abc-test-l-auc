@@ -42,8 +42,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav pull-right">
-                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                            <li class=""><a href="{{ route('auction.index') }}">Auctions</a></li>
+                            <li class="{{ Helper::isActiveRoute('homepage') }}"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="{{ Helper::isActiveRoute('auction.index') }}"><a href="{{ route('auction.index') }}">Auctions</a></li>
 
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
                                 <ul class="dropdown-menu">

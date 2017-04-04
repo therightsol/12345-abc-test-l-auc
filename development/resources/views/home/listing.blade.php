@@ -1,7 +1,7 @@
 <div class="recent-vehicles-wrap margin-top-30 sm-padding-left-none padding-bottom-40">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 recent-vehicles padding-left-none">
-            <h5 class="margin-top-none">Recent Vehicles</h5>
+            <h5 class="margin-top-none">Recent auctions</h5>
             <p>Browse through the vast
                 selection of vehicles that
                 have recently been added
