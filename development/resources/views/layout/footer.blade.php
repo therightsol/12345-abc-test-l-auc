@@ -54,8 +54,8 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="logo-footer margin-bottom-20 md-margin-bottom-20 sm-margin-bottom-10 xs-margin-bottom-20"><a href="#">
-                        <h1>Automotive</h1>
-                        <span>template</span></a>
+                        <h1>PakAuction</h1>
+                        <span>Company Slogan</span></a>
                 </div>
                 <p>{!! isset($settings['copyright'])?$settings['copyright']: 'Copyright &copy; 2017 pakauction.  All rights reserved' !!} </p>
             </div>
@@ -76,4 +76,4 @@
         </div>
     </div>
 </section>
-<div class="back_to_top"> <img src="http://demo.themesuite.com/automotive/images/arrow-up.png" alt="scroll up" /> </div>
+<div class="back_to_top"> <img src="{{url('images/2017/default-images/arrow-up.png')}}" alt="scroll up" /> </div>

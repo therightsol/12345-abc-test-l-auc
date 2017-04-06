@@ -47,7 +47,7 @@
                                 <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
                                     <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
                                         <div class="title">{{ $auction->car->title }}</div>
-                                        <img src="http://demo.themesuite.com/automotive/images/car-1-200x150.jpg" class="preview" alt="preview">
+                                        <img src="{{url('images/2017/default-images')}}/car-1-200x150.jpg" class="preview" alt="preview">
                                         <table class="options-primary">
                                             <tr>
                                                 <td class="option primary">Body Style:</td>
@@ -103,7 +103,7 @@
                                                 <td class="spec">{{ $auction->car->grade }}</td>
                                             </tr>
                                         </table>
-                                        <img src="http://demo.themesuite.com/automotive/images/carfax.png" alt="carfax" class="carfax" />
+                                        <img src="{{url('images/2017/default-images')}}/carfax.png" alt="carfax" class="carfax" />
                                         <div class="price">Min Bid <b>Price:</b><br>
                                             <div class="figure">
                                                 {{ Helper::currencySymbol().$auction->bid_starting_amount }}<br>
@@ -130,7 +130,7 @@
                                     <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
                                         <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
                                             <div class="title">{{ $auction->car->title }}</div>
-                                            <img src="http://demo.themesuite.com/automotive/images/car-1-200x150.jpg" class="preview" alt="preview">
+                                            <img src="{{url('images/2017/default-images')}}/car-1-200x150.jpg" class="preview" alt="preview">
                                             <table class="options-primary">
                                                 <tr>
                                                     <td class="option primary">Body Style:</td>
@@ -153,7 +153,7 @@
                                                 </tr>
                                             </table>
 
-                                            <img src="http://demo.themesuite.com/automotive/images/carfax.png" alt="carfax" class="carfax" />
+                                            <img src="{{url('images/2017/default-images')}}/carfax.png" alt="carfax" class="carfax" />
                                             <div class="price"><b>Price:</b><br>
                                                 <div class="figure">
                                                     {{ Helper::currencySymbol().$auction->bid_starting_amount }}<br>

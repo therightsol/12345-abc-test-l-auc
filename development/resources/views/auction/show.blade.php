@@ -56,42 +56,42 @@
                         <section class="slider home-banner">
                             <div class="flexslider" id="home-slider-canvas">
                                 <ul class="slides">
-                                    <li data-thumb="images/boxster1_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster1_slide.jpg" alt="" data-full-image="images/boxster1.jpg" /> </li>
-                                    <li data-thumb="images/boxster4_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster4_slide.jpg" alt="" data-full-image="images/boxster4.jpg" /> </li>
-                                    <li data-thumb="images/boxster5_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster5_slide.jpg" alt="" data-full-image="images/boxster5.jpg" /> </li>
-                                    <li data-thumb="images/boxster8_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster8_slide.jpg" alt="" data-full-image="images/boxster8.jpg" /> </li>
-                                    <li data-thumb="images/boxster10_slide.jpg"><img src="http://demo.themesuite.com/automotive/images/boxster10_slide.jpg" alt="" data-full-image="images/boxster10.jpg" /> </li>
+                                    <li data-thumb="images/boxster1_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster1_slide.jpg" alt="" data-full-image="images/boxster1.jpg" /> </li>
+                                    <li data-thumb="images/boxster4_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster4_slide.jpg" alt="" data-full-image="images/boxster4.jpg" /> </li>
+                                    <li data-thumb="images/boxster5_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster5_slide.jpg" alt="" data-full-image="images/boxster5.jpg" /> </li>
+                                    <li data-thumb="images/boxster8_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster8_slide.jpg" alt="" data-full-image="images/boxster8.jpg" /> </li>
+                                    <li data-thumb="images/boxster10_slide.jpg"><img src="{{url('images/2017/default-images')}}/boxster10_slide.jpg" alt="" data-full-image="images/boxster10.jpg" /> </li>
                                     <!-- full -->
-                                    <li data-thumb="images/boxster2_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster2_slide.jpg" alt="" data-full-image="images/boxster2.jpg" /> </li>
-                                    <li data-thumb="images/boxster3_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster3_slide.jpg" alt="" data-full-image="images/boxster3.jpg" /> </li>
-                                    <li data-thumb="images/boxster6_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster6_slide.jpg" alt="" data-full-image="images/boxster6.jpg" /> </li>
-                                    <li data-thumb="images/boxster7_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster7_slide.jpg" alt="" data-full-image="images/boxster7.jpg" /> </li>
-                                    <li data-thumb="images/boxster9_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster9_slide.jpg" alt="" data-full-image="images/boxster9.jpg" /> </li>
-                                    <li data-thumb="images/boxster11_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster11_slide.jpg" alt="" data-full-image="images/boxster11.jpg" /> </li>
-                                    <li data-thumb="images/boxster12_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster12_slide.jpg" alt="" data-full-image="images/boxster12.jpg" /> </li>
-                                    <li data-thumb="images/boxster13_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster13_slide.jpg" alt="" data-full-image="images/boxster13.jpg" /> </li>
-                                    <li data-thumb="images/boxster14_slide.jpg"> <img src="http://demo.themesuite.com/automotive/images/boxster14_slide.jpg" alt="" data-full-image="images/boxster14.jpg" /> </li>
+                                    <li data-thumb="images/boxster2_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster2_slide.jpg" alt="" data-full-image="images/boxster2.jpg" /> </li>
+                                    <li data-thumb="images/boxster3_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster3_slide.jpg" alt="" data-full-image="images/boxster3.jpg" /> </li>
+                                    <li data-thumb="images/boxster6_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster6_slide.jpg" alt="" data-full-image="images/boxster6.jpg" /> </li>
+                                    <li data-thumb="images/boxster7_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster7_slide.jpg" alt="" data-full-image="images/boxster7.jpg" /> </li>
+                                    <li data-thumb="images/boxster9_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster9_slide.jpg" alt="" data-full-image="images/boxster9.jpg" /> </li>
+                                    <li data-thumb="images/boxster11_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster11_slide.jpg" alt="" data-full-image="images/boxster11.jpg" /> </li>
+                                    <li data-thumb="images/boxster12_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster12_slide.jpg" alt="" data-full-image="images/boxster12.jpg" /> </li>
+                                    <li data-thumb="images/boxster13_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster13_slide.jpg" alt="" data-full-image="images/boxster13.jpg" /> </li>
+                                    <li data-thumb="images/boxster14_slide.jpg"> <img src="{{url('images/2017/default-images')}}/boxster14_slide.jpg" alt="" data-full-image="images/boxster14.jpg" /> </li>
                                 </ul>
                             </div>
                         </section>
                         <section class="home-slider-thumbs">
                             <div class="flexslider" id="home-slider-thumbs">
                                 <ul class="slides">
-                                    <li data-thumb="images/thumbnail1.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail1.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail2.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail2.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail3.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail3.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail4.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail4.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail5.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail5.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail1.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail1.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail2.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail2.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail3.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail3.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail4.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail4.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail5.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail5.jpg" alt="" /></a> </li>
                                     <!-- full -->
-                                    <li data-thumb="images/thumbnail6.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail6.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail7.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail7.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail8.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail8.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail9.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail9.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail10.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail10.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail11.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail11.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail12.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail12.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail13.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail13.jpg" alt="" /></a> </li>
-                                    <li data-thumb="images/thumbnail14.jpg"> <a href="#"><img src="http://demo.themesuite.com/automotive/images/thumbnail14.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail6.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail6.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail7.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail7.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail8.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail8.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail9.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail9.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail10.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail10.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail11.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail11.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail12.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail12.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail13.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail13.jpg" alt="" /></a> </li>
+                                    <li data-thumb="images/thumbnail14.jpg"> <a href="#"><img src="{{url('images/2017/default-images')}}/thumbnail14.jpg" alt="" /></a> </li>
                                 </ul>
                             </div>
                         </section>
@@ -266,7 +266,7 @@
                                     sed, egestas eget leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam mollis luctus nibh et
                                     bibendum. Morbi congue lectus nec congue congue. Nulla molestie feugiat quam ac sollicitudin. Nulla sed congue lectus. Donec blandit elit
                                     sit amet aliquet laoreet.</p>
-                                <p><img src="http://demo.themesuite.com/automotive/images/engine.png" alt="engine" /></p>
+                                <p><img src="{{url('images/2017/default-images')}}/engine.png" alt="engine" /></p>
                             </div>
                         </div>
                     </div>
@@ -354,7 +354,7 @@
                             <h3>Fuel Efficiency Rating</h3>
                             <ul>
                                 <li class="city_mpg"><small>City MPG:</small> <strong>20</strong></li>
-                                <li class="fuel"><img src="http://demo.themesuite.com/automotive/images/fuel-icon.png" alt="" class="aligncenter"></li>
+                                <li class="fuel"><img src="{{url('images/2017/default-images')}}/images/fuel-icon.png" alt="" class="aligncenter"></li>
                                 <li class="hwy_mpg"><small>Hwy MPG:</small> <strong>28</strong></li>
                             </ul>
                             <p>Actual rating will vary with options, driving conditions,
