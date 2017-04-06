@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auction\AuctionController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\Auctions\Entities\Auction;
@@ -10,11 +11,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $listings = Auction::with(['car.meta' => function($q){
-            $q->where('meta_key', 'picture');
-        }])->limit(20)->latest()->get();
+        $auctions = Auction::with(['car.engineType', 'car.carModel.carCompany', 'car.meta' => function($query){
+            $query->where('meta_key', 'picture');
+        }])
+            ->where('end_date', '>=', date('Y-m-d'))
+            ->latest()->get();
 
-//        return $listings;
-        return view('home.index', compact('listings'));
+        return view('home.index',
+            (new AuctionController())->getFields($auctions))
+            ->withAuctions($auctions);
+
     }
 }

@@ -292,7 +292,7 @@
                                     </tr>
                                     <tr>
                                         <td>ENGINE:</td>
-                                        <td>{{ $auction->car->engineType->title }}</td>
+                                        <td>{{ ($auction->car->engineType)?$auction->car->engineType->title: '' }}</td>
                                     </tr>
                                     <tr>
                                         <td>TRANSMISSION:</td>

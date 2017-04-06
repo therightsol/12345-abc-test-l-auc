@@ -43,11 +43,12 @@
                     <div class="tab-pane fade active in" id="full-width">
                         <div class="content-wrap">
                             <div class="row car_listings">
+                                @if(count($auctions))
                                 @foreach($auctions as $auction)
                                 <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
                                     <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
                                         <div class="title">{{ $auction->car->title }}</div>
-                                        <img src="{{url('images/2017/default-images')}}/car-1-200x150.jpg" class="preview" alt="preview">
+                                        <img src="{{ isset($auction->car->meta[0]) ? asset($auction->car->meta[0]->meta_value) : asset('images/image-not-found-100x100.png') }}" class="preview" alt="preview">
                                         <table class="options-primary">
                                             <tr>
                                                 <td class="option primary">Body Style:</td>
@@ -78,7 +79,6 @@
                                             <tr>
                                                 <td class="option secondary">Exterior Color:</td>
                                                 <td class="spec">
-                                                    {{ $auction->car->exterior_color }}
                                                     <div class="preview-color" style="background-color: {{ $auction->car->exterior_color }};"></div>
 
                                                 </td>
@@ -86,7 +86,6 @@
                                             <tr>
                                                 <td class="option secondary">Interior Color:</td>
                                                 <td class="spec">
-                                                    {{ $auction->car->interior_color }}
                                                     <span class="preview-color" style="background-color: {{ $auction->car->interior_color }};"></span>
                                                 </td>
                                             </tr>
@@ -112,9 +111,14 @@
                                         <div class="view-details gradient_button"><i class='fa fa-plus-circle'></i> View Details </div>
                                         <div class="clearfix"></div>
                                     </a>
-                                    <div class="view-video gradient_button" data-youtube-id="3oh7PBc33dk"><i class="fa fa-video-camera"></i> View Video</div>
                                 </div>
                                 @endforeach
+
+                                    @else
+                                <div class="alert alert-info">
+                                    No Auction Found
+                                </div>
+                                @endif
                             </div>
                         </div>
 
@@ -124,8 +128,8 @@
                     <div class="tab-pane fade" id="box-full-width">
                         <div class="inventory_box car_listings boxed boxed_full">
                             <div class="vehicle_demo clearfix">
+                                @if(count($auctions))
                                 @foreach($auctions as $auction)
-
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                     <div class="inventory margin-bottom-20 clearfix scroll_effect fadeIn">
                                         <a class="inventory" href="{{ route('auction.show', [$auction->id]) }}">
@@ -165,6 +169,11 @@
                                     </div>
                                 </div>
                                 @endforeach
+                                    @else
+                                        <div class="alert alert-info">
+                                            No Auction Found
+                                        </div>
+                                    @endif
                             </div>
                             <div class="clearfix"></div>
                         </div>

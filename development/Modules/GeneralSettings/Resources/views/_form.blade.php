@@ -83,6 +83,7 @@
                         @endif
                     </div>
                 </div>
+
                 <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                     {{ Form::label('address', 'Company Address:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
@@ -95,6 +96,44 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('map_latitude') ? ' has-error' : '' }}">
+                    {{ Form::label('map_latitude', 'Map Latitude:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('map_latitude', isset($settings['map_latitude'])? $settings['map_latitude']: null ,['class' => 'form-control']) }}
+
+                        @if ($errors->has('map_latitude'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('map_latitude') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('map_longitude') ? ' has-error' : '' }}">
+                    {{ Form::label('map_longitude', 'Map Longitude:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('map_longitude', isset($settings['map_longitude'])? $settings['map_longitude']: null ,['class' => 'form-control']) }}
+
+                    @if ($errors->has('map_longitude'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('map_longitude') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('map_zoom') ? ' has-error' : '' }}">
+                    {{ Form::label('map_zoom', 'Map Zoom:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('map_zoom', isset($settings['map_zoom'])? $settings['map_zoom']: null ,['class' => 'form-control']) }}
+
+                    @if ($errors->has('map_zoom'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('map_zoom') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
+
+
                 <div class="form-group{{ $errors->has('copyright') ? ' has-error' : '' }}">
                     {{ Form::label('copyright', 'Copyright Text:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
