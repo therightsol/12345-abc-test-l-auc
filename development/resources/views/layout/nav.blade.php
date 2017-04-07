@@ -29,7 +29,7 @@
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <span class="logo">
                                 @if(isset($settings['picture']))
-                                    <img style="    height: 61px;" src="{{ $settings['picture'] }}" alt="Auction">
+                                    <img style="    height: 61px;" src="{{ asset($settings['picture']) }}" alt="Auction">
                                     @else
                                     <span class="primary_text">Auction</span> <span class="secondary_text">Template</span>
 

@@ -30,6 +30,20 @@ class Car extends Model
         return $this->hasMany(CarMeta::class);
     }
 
+    public function getFeaturedImage()
+    {
+        $record = $this->meta->where('meta_key', 'picture')->first();
+        return ($record)? asset($record->meta_value) : asset('images/image-not-found-100x100.png');
+    }
+
+    public function getGallery()
+    {
+        $record = $this->meta->where('meta_key', 'gallery')->first();
+
+        return ($record)? json_decode($record->meta_value) : [];
+
+    }
+
     public function engineType()
     {
         return $this->belongsTo(EngineType::class);

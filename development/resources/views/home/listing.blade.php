@@ -27,6 +27,12 @@
                         </div>
                         @endfor
 
+                    @else
+
+                    <div class="alert alert-info">
+                        No Auction found
+                    </div>
+
                     @endif
 
 
