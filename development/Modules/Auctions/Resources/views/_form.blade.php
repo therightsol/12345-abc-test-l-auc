@@ -12,7 +12,7 @@
             @endif
         </div>
         <div class="form-group{{ $errors->has('bid_starting_amount') ? ' has-error' : '' }}">
-            {{ Form::number('bid_starting_amount', null ,['class' => 'form-control']) }}
+            {{ Form::number('bid_starting_amount', null ,['min' => 0, 'class' => 'form-control']) }}
             {{ Form::label('bid_starting_amount', 'Starting Amount:') }}
             @if ($errors->has('bid_starting_amount'))
                 <span class="help-block">
