@@ -349,17 +349,21 @@
                                     </div>
                                 </div>
                                 <div class="efficiency-rating text-center padding-vertical-15 margin-bottom-40">
-                                    <h3>Fuel Efficiency Rating</h3>
+                                    <h3>Bid statistic</h3>
                                     <ul>
-                                        <li class="city_mpg">
-                                            <small>City MPG:</small>
-                                            <strong>20</strong></li>
-                                        <li class="fuel"><img
-                                                    src="{{url('images/2017/default-images')}}/images/fuel-icon.png"
-                                                    alt="" class="aligncenter"></li>
+
                                         <li class="hwy_mpg">
-                                            <small>Hwy MPG:</small>
-                                            <strong>28</strong></li>
+                                            <small>Min Allowed Bid:</small>
+                                            <strong>{{ Helper::currencySymbol().$auction->bid_starting_amount }}</strong></li>
+                                        <li class="hwy_mpg">
+                                            <small>Average Bid:</small>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->average('bid_amount') }}</strong></li>
+                                        <li class="city_mpg">
+                                        <small>Min Bid:</small>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->min('bid_amount') }}</strong></li>
+                                        <li class="hwy_mpg">
+                                            <small>Max Bid:</small>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->max('bid_amount') }}</strong></li>
                                     </ul>
                                     <p>Actual rating will vary with options, driving conditions,
                                         driving habits and vehicle condition.</p>

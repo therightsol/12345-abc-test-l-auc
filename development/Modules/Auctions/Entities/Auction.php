@@ -3,6 +3,7 @@
 namespace Modules\Auctions\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Biddings\Entities\Bidding;
 use Modules\Cars\Entities\Car;
 
 class Auction extends Model
@@ -18,6 +19,11 @@ class Auction extends Model
     public function car()
     {
         return $this->belongsTo(Car::class);
+    }
+
+    public function bidding()
+    {
+        return $this->hasMany(Bidding::class);
     }
 
     protected $dates = [

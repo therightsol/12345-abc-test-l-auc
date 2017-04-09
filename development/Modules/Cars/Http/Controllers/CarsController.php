@@ -106,7 +106,7 @@ class CarsController extends Controller
         $isSuccess->categories()->attach($request->input('categories'));
         $isSuccess->features()->attach($request->input('features'));
         return ($isSuccess)?
-            back()->with('alert-success', 'CarsModel Created Successfully')
+            back()->with('alert-success', 'Car Created Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
 
     }

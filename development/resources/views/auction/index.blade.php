@@ -71,7 +71,7 @@
                                             <tr>
                                                 <td class="option primary">Mileage:</td>
                                                 <td class="spec">
-                                                    {{ number_format( (float)$auction->car->kilometers) }}
+                                                    {{ number_format( (float)$auction->car->kilometers) }} (km)
                                                 </td>
                                             </tr>
                                         </table>
@@ -152,7 +152,7 @@
                                                 <tr>
                                                     <td class="option primary">Mileage:</td>
                                                     <td class="spec">
-                                                        {{ number_format( (float)$auction->car->kilometers) }}
+                                                        {{ number_format( (float)$auction->car->kilometers) }}  (km)
                                                     </td>
                                                 </tr>
                                             </table>

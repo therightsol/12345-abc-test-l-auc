@@ -27,11 +27,10 @@ class AuctionController extends Controller
 
     public function show($id)
     {
-        $auction = Auction::whereId($id)->with(['car.engineType', 'car.carModel.carCompany','car.features'])
+        $auction = Auction::whereId($id)->with(['bidding','car.engineType', 'car.carModel.carCompany','car.features'])
             ->where('end_date', '>=', date('Y-m-d'))
             ->firstOrFail();
 
-        
         return view('auction.show', compact('auction'));
     }
 

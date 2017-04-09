@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('bid_amount') ? ' has-error' : '' }}">
-            {{ Form::text('bid_amount', null ,['class' => 'form-control']) }}
+            {{ Form::number('bid_amount', null ,['class' => 'form-control']) }}
             {{ Form::label('bid_amount', 'Bid Amount:') }}
             <span id="bidamount"  class="help-block">
 {{ isset($bid->auction)? 'Min bid amount is '. $bid->auction->bid_starting_amount : null }}
