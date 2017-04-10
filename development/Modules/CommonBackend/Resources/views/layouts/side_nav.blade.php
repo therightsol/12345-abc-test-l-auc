@@ -75,6 +75,18 @@
                         <span class="title">Bidding</span>
                     </a>
                 </li>
+
+                <li class="gui-folder">
+                    <a>
+                        <div class="gui-icon"><i class="fa fa-file fa-fw"></i></div>
+                        <span class="title">Pages</span>
+                    </a>
+                    <!--start submenu -->
+                    <ul>
+                        <li><a class="{{ Helper::isActiveRoute('admin.helpPage') }}"  href="{{ route('admin.helpPage') }}"><span class="title">Help</span></a></li>
+                        <li><a class="{{ Helper::isActiveRoute('admin.rulesPage') }}" href="{{ route('admin.rulesPage') }}"><span class="title">Rules</span></a></li>
+                    </ul><!--end /submenu -->
+                </li>
                 <li>
                     <a href="{{route('admin.settings.index')}}"  class="{{ Helper::isActiveResource('admin.settings') }}" >
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
