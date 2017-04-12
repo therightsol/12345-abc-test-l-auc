@@ -1,6 +1,13 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'inspectionrequests', 'namespace' => 'Modules\InspectionRequests\Http\Controllers'], function()
-{
-    Route::get('/', 'InspectionRequestsController@index');
-});
+Route::group(
+    [
+        'middleware' => ['web'],
+        'prefix' => Helper::dashboardName(),
+        'as'    =>  'admin.',
+        'namespace' => 'Modules\InspectionRequests\Http\Controllers'
+    ],
+    function()
+    {
+        Route::Resource('inspection', 'InspectionRequestsController', ['names' => Helper::ResourceNames('inspection')]);
+    });

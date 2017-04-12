@@ -75,6 +75,13 @@
                         <span class="title">Bidding</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.inspection.index')}}"  class="{{ Helper::isActiveResource('admin.inspection') }}" >
+                        <div class="gui-icon"><i class="fa fa-money" aria-hidden="true"></i>
+                        </div>
+                        <span class="title">Request Inspection</span>
+                    </a>
+                </li>
 
                 <li class="gui-folder">
                     <a>
