@@ -2,7 +2,7 @@
 
 Route::group(
     [
-        'middleware' => ['web'],
+        'middleware' => ['web','has_role:admin,staff'],
         'prefix' => Helper::dashboardName(),
         'as'    =>  'admin.',
         'namespace' => 'Modules\InspectionRequests\Http\Controllers'

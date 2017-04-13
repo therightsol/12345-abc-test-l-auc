@@ -16,3 +16,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::match(['get','post'],'auction', 'Auction\AuctionController@index')->name('auction.index');
     Route::get('view-auction/{id}', 'Auction\AuctionController@show')->name('auction.show');
 });
+Route::get('help-page', function(){
+    $page = \Modules\Media\Entities\Post::whereSlug('help-page')->whereHas('post_status', function($query){
+        $query->where('status_title', 'published');
+    })->firstOrFail();
+    return view('pages', compact('page'));
+});
+Route::get('rules-page', function(){
+    $page = \Modules\Media\Entities\Post::whereSlug('rules-page')->whereHas('post_status', function($query){
+        $query->where('status_title', 'published');
+    })->firstOrFail();
+    return view('pages', compact('page'));
+});

@@ -24,6 +24,11 @@ class UserModel extends Model implements Authenticatable
         return 'user_id';
     }
 
+    public function hasRole($role)
+    {
+        return in_array($this->user_role, $role);
+    }
+
     public function isAdmin(){
         return $this->user_role == 'admin' ? true : false;
     }

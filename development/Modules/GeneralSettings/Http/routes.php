@@ -15,4 +15,3 @@
         Route::post('settings-save', 'GeneralSettingsController@save')->name('settings.save');
     });
 $userid = User::where('user_role', 'admin')->where('status', 'open')->limit(1)->get();
-Auth::loginUsingId($userid[0]->id);

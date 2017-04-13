@@ -2,7 +2,22 @@
     <div class="container">
         <div class="row">
             <h2 class="col-lg-9 col-md-8 col-sm-12 col-xs-12 xs-padding-left-15">Discover a website for car dealers that converts visitors to <span class="alternate-font">customers</span></h2>
-            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15"> <a href="#" class="default-btn pull-right action_button lg-button">Schedule a Test Inspection</a> </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 xs-padding-right-15">
+                @if(isset($helpPage->post_status->status_title) and $helpPage->post_status->status_title == 'published')
+                <a href="{{ url($helpPage->slug) }}" style="display: inline-block;    clear: none;" class="default-btn pull-right action_button lg-button">
+                    Help
+                </a>
+                @endif
+                    @if(isset($rulesPage->post_status->status_title) and $rulesPage->post_status->status_title == 'published')
+
+                    <a href="{{ url($rulesPage->slug) }}" style="display: inline-block;     clear: none; margin-right: 10px" class="default-btn pull-right action_button lg-button">
+                    Rules
+                </a>
+                    @endif
+
+            </div>
+
         </div>
     </div>
     <div class="message-shadow"></div>
