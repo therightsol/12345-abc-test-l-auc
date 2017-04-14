@@ -5,10 +5,11 @@ namespace Modules\Cars\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Modules\CarMetas\Entities\CarMeta;
 use Modules\CarModels\Entities\CarModel;
+use Modules\CommonBackend\Entities\BaseModel;
 use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
 
-class Car extends Model
+class Car extends BaseModel
 {
     protected $fillable =
         ['user_id','title', 'average_price','minimum_price', 'manufacturing_year',

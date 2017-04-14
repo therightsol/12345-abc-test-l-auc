@@ -2,11 +2,11 @@
 
 namespace Modules\Auctions\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Modules\Biddings\Entities\Bidding;
 use Modules\Cars\Entities\Car;
+use Modules\CommonBackend\Entities\BaseModel;
 
-class Auction extends Model
+class Auction extends BaseModel
 {
     protected $fillable = ['bid_starting_amount','car_id', 'average_bit', 'start_date', 'end_date','start_time', 'end_time','winner_user_id'];
 

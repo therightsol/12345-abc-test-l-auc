@@ -4,7 +4,7 @@
     Route::group(
     [
 //        'middleware' => ['web', 'admin_login_check'],
-        'middleware' => ['web'],
+            'middleware' => ['web','has_role:admin,staff'],
         'prefix' => Helper::dashboardName(),
         'as'    =>  'admin.',
         'namespace' => 'Modules\GeneralSettings\Http\Controllers'

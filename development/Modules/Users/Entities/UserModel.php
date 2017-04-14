@@ -5,8 +5,9 @@ namespace Modules\Users\Entities;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\CommonBackend\Entities\BaseModel;
 
-class UserModel extends Model implements Authenticatable
+class UserModel extends BaseModel implements Authenticatable
 {
     use softDeletes;
 
