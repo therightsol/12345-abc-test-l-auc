@@ -5,8 +5,23 @@
             <div class="row">
                 <div class="col-lg-6 left_bar">
                     <ul class="left-none">
-                        <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
 
+                        @if(show_login())
+                            <li><a href="{{route('frontend-login')}}"><i class="fa fa-user"></i>Login/Register</a></li>
+                        @endif
+
+
+                        @if(show_logout())
+                            <li><a href="{{route('frontend-logout')}}"><i class="fa fa-sign-out"></i>Logout</a></li>
+                        @endif
+
+
+                        @if (is_page_active('help-page'))
+                            <li><a href="{{url('help-page')}}">Help Page</a></li>
+                        @endif
+                        @if (is_page_active('rules-page'))
+                            <li><a href="{{url('rules-page')}}">Rules Page</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="col-lg-6 ">

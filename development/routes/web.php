@@ -11,6 +11,11 @@
 |
 */
 
+
+
+
+
+
 Route::get('/', 'HomeController@index')->name('homepage');
 Route::group(['middleware' => ['web']], function () {
     Route::match(['get','post'],'auction', 'Auction\AuctionController@index')->name('auction.index');
@@ -28,3 +33,15 @@ Route::get('rules-page', function(){
     })->firstOrFail();
     return view('pages', compact('page'));
 });
+
+Route::get('/login/{params?}', 'Auth@index')->name('frontend-login');
+Route::get('/logout', 'Auth@logout')->name('frontend-logout');
+Route::post('/register', 'Auth@do_register')->name('frontend-do_register');
+Route::post('/login', 'Auth@do_login')->name('frontend-do_login');
+Route::get('/reset', 'Auth@show_reset_form')->name('frontend-reset');
+Route::post('/reset', 'Auth@do_reset')->name('frontend-do_reset');
+
+	//Route::post('reset-password', "LoginController@do_reset")->name('reset-password');
+	
+	Route::get('password/reset/{token}', 'Auth@showResetForm')->name('frontend-password-reset-with-token');
+	Route::post('password/reset', 'Auth@postReset')->name('frontend-reset-post');
