@@ -13,6 +13,6 @@ Route::group(
         Route::Resource('cars', 'CarsController', ['names' => Helper::ResourceNames('cars')]);
         Route::Resource('category', 'CategoryController', ['names' => Helper::ResourceNames('category')]);
 
-        Route::post('get-models', 'CarsController@getModels')->name('getModels');
     });
 
+Route::post('get-models', 'Modules\Cars\Http\Controllers\CarsController@getModels')->name('admin.getModels');

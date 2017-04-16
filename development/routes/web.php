@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::match(['get','post'],'auction', 'Auction\AuctionController@index')->name('auction.index');
     Route::get('view-auction/{id}', 'Auction\AuctionController@show')->name('auction.show');
 });
+Route::Resource('inspection', 'InspectionController', ['names' => Helper::ResourceNames('inspection')]);
 Route::get('help-page', function(){
     $page = \Modules\Media\Entities\Post::whereSlug('help-page')->whereHas('post_status', function($query){
         $query->where('status_title', 'published');
@@ -33,6 +34,7 @@ Route::get('rules-page', function(){
     })->firstOrFail();
     return view('pages', compact('page'));
 });
+
 
 Route::get('/login/{params?}', 'Auth@index')->name('frontend-login');
 Route::get('/logout', 'Auth@logout')->name('frontend-logout');
