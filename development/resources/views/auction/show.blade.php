@@ -8,6 +8,13 @@
             height: 15px;
             margin-left: 15px;
         }
+        .media{
+            display: flex;
+        }
+        .media-body{
+            margin-left: 20px;
+            width: 100%;
+        }
     </style>
 
 @endsection
@@ -34,6 +41,8 @@
     <div class="clearfix"></div>
     <section class="content">
         <div class="container">
+            @include('commonbackend::layouts._alert-response')
+
             <div class="inner-page inventory-listing">
                 <div class="inventory-heading margin-bottom-10 clearfix">
                     <div class="row">
@@ -267,6 +276,24 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+
+                            <h4>Bids</h4>
+                            @foreach($auction->bidding as $bid)
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img src="{{ $bid->user->picture or asset('images/image-not-found-100x100.png') }}" class="media-object" style="width:60px">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="media-heading"
+                                        >User Name: <b>{{ $bid->user->username }}</b>
+                                            <span style="display: inline;font-size: 12px;color: darkred;">{{ $bid->created_at->format('F d, Y') }}</span>
+
+                                        </p>
+                                        <p class="media-heading">Bid Amount: <b>{{ Helper::currencySymbol().$bid->bid_amount }}</b></p>
+                                    </div>
+                                </div>
+
+                                @endforeach
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 right-content padding-right-none">
                             <div class="side-content">
@@ -370,58 +397,7 @@
                                 </div>
 
                                 <div class="clearfix"></div>
-                                <div class="financing_calculator margin-top-40">
-                                    <h3>FINANCING CALCULATOR</h3>
-                                    <div class="table-responsive">
-                                        <table class="table no-border no-margin">
-                                            <tbody>
-                                            <tr>
-                                                <td>Cost of Vehicle ($):</td>
-                                                <td><input type="text" class="number cost" placeholder="10000"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Down Payment ($):</td>
-                                                <td><input type="text" class="number down_payment" placeholder="1000"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Annual Interest Rate (%):</td>
-                                                <td><input type="text" class="number interest" placeholder="7"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Term of Loan in Years:</td>
-                                                <td><input type="text" class="number loan_years" placeholder="5"/></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="bi_weekly clearfix">
-                                        <div class="pull-left">Frequency of Payments:</div>
-                                        <div class="dropdown_container ">
-                                            <select class="frequency css-dropdowns">
-                                                <option value='0'>Bi-Weekly</option>
-                                                <option value='1'>Weekly</option>
-                                                <option value='2'>Monthly</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <a class="btn-inventory pull-right calculate">Calculate My Payment</a>
-                                    <div class="clear"></div>
-                                    <div class="calculation">
-                                        <div class="table-responsive">
-                                            <table>
-                                                <tr>
-                                                    <td><strong>NUMBER OF PAYMENTS:</strong></td>
-                                                    <td><strong class="payments">60</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><strong>PAYMENT AMOUNT:</strong></td>
-                                                    <td><strong class="payment_amount">$ 89.11</strong></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('auction._bidForm')
                             </div>
                         </div>
                     </div>

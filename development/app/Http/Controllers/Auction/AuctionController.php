@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auction;
 
+use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\Auctions\Entities\Auction;
+use Modules\Biddings\Entities\Bidding;
 use Modules\Cars\Entities\Car;
+use Modules\GeneralSettings\Entities\GeneralSetting;
 
 class AuctionController extends Controller
 {
@@ -27,11 +30,22 @@ class AuctionController extends Controller
 
     public function show($id)
     {
-        $auction = Auction::whereId($id)->with(['bidding','car.engineType', 'car.carModel.carCompany','car.features'])
+        $auction = Auction::whereId($id)->with(['bidding.user','car.engineType', 'car.carModel.carCompany','car.features'])
             ->where('end_date', '>=', date('Y-m-d'))
             ->firstOrFail();
 
-        return view('auction.show', compact('auction'));
+
+        \Session::put('currentAuction', $auction);
+        $can = false;
+        if(\Auth::check()){
+            $maxBids = GeneralSetting::where('key', 'max_allowed_bits')->first();
+            if (!$maxBids){
+                $can = true;
+            }else{
+                $can = $auction->bidding->where('user_id', \Auth::user()->id)->count() < $maxBids->value;
+            }
+        }
+        return view('auction.show', compact('auction','can'));
     }
 
     /**
@@ -51,4 +65,19 @@ class AuctionController extends Controller
             'companies' => $auctionFilter->sortByDesc('car.carModel.carCompany.company_name')->pluck('car.carModel.carCompany.company_name', 'car.carModel.carCompany.company_name')->unique());
     }
 
+    public function addBid(Request $request)
+    {
+        $this->validate($request, [
+            'bid_amount' => 'required|numeric',
+        ]);
+
+        $isSuccess = Bidding::create([
+            'bid_amount' => $request->bid_amount,
+            'user_id' => \Auth::user()->id,
+            'auction_id' => \Session::get('currentAuction')->id
+        ]);
+        return ($isSuccess) ?
+            back()->with('alert-success', 'Bid Successfully')
+            : back()->with('alert-danger', 'Error: please try again.');
+    }
 }
