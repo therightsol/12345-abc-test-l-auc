@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('max_allowed_bits') ? ' has-error' : '' }}">
-                    {{ Form::label('max_allowed_bits', 'Max Allowed Bits:', ['class' => 'control-label col-sm-4']) }}
+                    {{ Form::label('max_allowed_bits', 'Max Allowed Bids:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
                         {{ Form::text('max_allowed_bits', isset($settings['max_allowed_bits'])? $settings['max_allowed_bits']: null,['class' => 'form-control']) }}
                     @if ($errors->has('max_allowed_bits'))

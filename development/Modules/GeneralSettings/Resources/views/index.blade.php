@@ -1,5 +1,14 @@
 @extends('commonbackend::layouts.admin_app')
 @include('media::layoutfiles.embedd')
+
+@section('style')
+    <style>
+        .picture{
+            height: auto !important;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div id="content">
         <section class="">

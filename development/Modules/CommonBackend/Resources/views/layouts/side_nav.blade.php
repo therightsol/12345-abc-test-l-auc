@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="expanded">
-            <a href="#">
+            <a href="{{route('homepage')}}">
                 <span class="text-lg text-bold text-primary ">PakAuction</span>
             </a>
         </div>

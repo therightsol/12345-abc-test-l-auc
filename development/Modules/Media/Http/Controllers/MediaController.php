@@ -244,7 +244,6 @@ class MediaController extends Controller
                 }
 
             }
-
             $post_status = PostStatus::where('status_title', 'published')->get(['id']);
 
             $post = new \Modules\Media\Entities\Post();
@@ -252,10 +251,9 @@ class MediaController extends Controller
             $post->content = $url . '/' . $filename;
             $post->post_type = 'attachment';
             $post->mime_type = $mime;
-            $post->status = 'publish';
+            $post->post_status_id = $post_status[0]->id;;
             $post->short_description = json_encode(['image-folder' => 'images/users']);
-            $post->status = $post_status[0]->id;
-
+ 
             if ( $post->save() )
                 return json_encode([ ['filename' => $post->content, 'id' => $post->id, 'mime_type' => $post->mime_type], 'status' => 'success']);
 

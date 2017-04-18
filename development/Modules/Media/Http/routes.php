@@ -18,7 +18,7 @@
 	
 	Route::group(
 		[
-			'middleware' => ['web', 'admin_login_check'],
+			'middleware' => ['web'],
 			'prefix' => 'backend',
 			'as'    =>  'admin.',
 			'namespace' => 'Modules\Media\Http\Controllers'
