@@ -30,3 +30,17 @@ Route::group(
     Route::get('/logout', 'CommonBackendController@logout')->name('logout');
 
 });
+Route::group(
+    [
+        'middleware' => ['web','has_role:bidder,auctioneer'],
+        'prefix' => 'account',
+        'as'    =>  'user.',
+        'namespace' => 'Modules\Biddings\Http\Controllers'
+    ],
+    function(  )
+    {
+
+        Route::get('/', function(){
+            return view('commonbackend::index');
+        })->name('account');
+    });

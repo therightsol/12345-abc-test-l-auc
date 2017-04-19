@@ -70,7 +70,7 @@
                             <li class="{{ Helper::isActiveRoute('auction.index') }}"><a
                                         href="{{ route('auction.index') }}">Auctions</a></li>
                             @if(Auth::check())
-                                <li ><a href="{{ route('auctioneer.account') }}">Account</a></li>
+                                <li ><a href="{{ route('user.account') }}">Account</a></li>
                             @endif
 
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b

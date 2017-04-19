@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                    <h2>{{ $auction->car->title }}</h2>
+                    <h2>{{ $auction->car->title }} </h2>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 ">
                     <ul class="breadcrumb">
@@ -47,7 +47,12 @@
                 <div class="inventory-heading margin-bottom-10 clearfix">
                     <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                            <h2>{{ $auction->car->title }}</h2>
+                            <h2>{{ $auction->car->title }}
+                                @if($auction->end_date < \Carbon\Carbon::now())
+                                <small style="color: red;">Closed</small>
+                                    @endif
+
+                            </h2>
                         <span class="margin-top-10">
                         </span>
                         </div>
@@ -397,7 +402,9 @@
                                 </div>
 
                                 <div class="clearfix"></div>
+                                @if($auction->end_date > \Carbon\Carbon::now())
                                 @include('auction._bidForm')
+                                    @endif
                             </div>
                         </div>
                     </div>

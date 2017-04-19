@@ -130,6 +130,15 @@
                     </a>
                 </li>
             @endif
+            @if(Auth::user()->hasRole(['bidder']))
+                <li>
+                    <a href="{{route('bidder.bidding')}}"
+                       class="{{ Helper::isActiveResource('bidder.bidding') }}">
+                        <div class="gui-icon"><i class="fa fa-gears"></i></div>
+                        <span class="title">Bidding</span>
+                    </a>
+                </li>
+            @endif
 
             <li>
                 <a href="{{route('logout')}}" class="{{ Helper::isActiveRoute('logout') }}">

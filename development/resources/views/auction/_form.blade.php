@@ -50,6 +50,10 @@
             {{ Form::select('price', $bid_starting_amounts, Request::input('price'),
           ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'All Prices']) }}
         </div>
+        <div class="my-dropdown prices-dropdown">
+            {{ Form::select('closed', ['true' => 'Closed'], Request::input('closed'),
+          ['class' => 'css-dropdowns', 'tabindex' => 1, 'placeholder' => 'Opened']) }}
+        </div>
     </div>
     <div class="select-wrapper pagination clearfix">
         <div class="row">

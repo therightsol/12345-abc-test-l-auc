@@ -14,13 +14,19 @@ class AuctionController extends Controller
 {
     public function index(Request $request, Filters $filter)
     {
-        $auctions = Auction::filter($filter)->with(
+        $query = Auction::query();
+        $query->filter($filter)->with(
             ['car.engineType', 'car.meta' => function($query){
                 $query->where('meta_key', 'picture');
-            }])
-            ->where('end_date', '>=', date('Y-m-d'))
-            ->latest()
-            ->paginate(\Helper::limit($request));
+            }])->latest();
+        if($request->has('closed')){
+            $query->where('end_date', '<=', date('Y-m-d'));
+        }else{
+            $query->where('end_date', '>=', date('Y-m-d'));
+        }
+
+
+        $auctions = $query->paginate(\Helper::limit($request));
 
         $auctionFilter = Auction::with(['car.engineType', 'car.carModel.carCompany'])
             ->where('end_date', '>=', date('Y-m-d'))
@@ -31,7 +37,6 @@ class AuctionController extends Controller
     public function show($id)
     {
         $auction = Auction::whereId($id)->with(['bidding.user','car.engineType', 'car.carModel.carCompany','car.features'])
-            ->where('end_date', '>=', date('Y-m-d'))
             ->firstOrFail();
 
 
@@ -45,6 +50,8 @@ class AuctionController extends Controller
                 $can = $auction->bidding->where('user_id', \Auth::user()->id)->count() < $maxBids->value;
             }
         }
+
+
         return view('auction.show', compact('auction','can'));
     }
 
