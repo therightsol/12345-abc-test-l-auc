@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <h2>{{ $auction->car->title }}
-                                @if($auction->end_date < \Carbon\Carbon::now())
+                                @if($auction->end_date < \Carbon\Carbon::now() or $auction->winner_user_id)
                                 <small style="color: red;">Closed</small>
                                     @endif
 
@@ -281,6 +281,29 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+
+                            @if($auction->winner_user_id)
+                                @php($winner = $auction->bidding->where('user_id', $auction->winner_user_id)->first())
+                                @if($winner)
+                                <h4>Winner</h4>
+                                <div class="media" style="    border: 2px solid green;
+    background: #e6f9e6;">
+                                    <div class="media-left">
+                                        <img src="{{ $winner->user->picture or asset('images/image-not-found-100x100.png') }}" class="media-object" style="width:60px">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="media-heading"
+                                        >User Name: <b>{{ $winner->user->username }}</b>
+                                            <span style="display: inline;font-size: 12px;color: darkred;">{{ $winner->created_at->format('F d, Y') }}</span>
+
+                                        </p>
+                                        <p class="media-heading">Bid Amount: <b>{{ Helper::currencySymbol().$winner->bid_amount }}</b></p>
+                                    </div>
+                                </div>
+
+                                @endif
+                                @endif
+
 
                             <h4>Bids</h4>
                             @foreach($auction->bidding as $bid)

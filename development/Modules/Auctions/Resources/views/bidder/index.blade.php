@@ -12,7 +12,7 @@
                                     My Bidding
                                 </header>
                             </div>
-                            @php($obj = $biddings)
+                            @php($obj = $auctions)
                             <div class="card-body dataTables_wrapper" style="padding-top: 0;">
                                 <form id="filters" action="#">
                                     @include('commonbackend::layouts._table-header')
@@ -20,31 +20,29 @@
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th class="sorting" data-table="Bidding.bid_amount">Amount Bid</th>
-                                            <th class="sorting" data-table="Auction.bid_starting_amount">Bid Starting Amount</th>
-                                            <th class="sorting" data-table="Auction.id">Auction</th>
-                                            <th>Action</th>
+                                            <th class="sorting" data-table="Car.title">Title</th>
+                                            <th>Bidding Amount</th>
+                                            <th>view</th>
 
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @php($i = $biddings->firstItem())
+                                        @php($i = $auctions->firstItem())
 
-                                        @foreach($biddings as $bid)
+                                        @foreach($auctions as $auction)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $bid->bid_amount }}</td>
-                                                <td>{{ $bid->bid_starting_amount }}</td>
-                                                <td><a href="{{ url('view-auction/'.$bid->id) }}" target="_blank">{{ $bid->title }}</a></td>
+                                                <td>{{ $auction->title }}</td>
+                                                <td>{{ $auction->bidding->first()->bid_amount }}</td>
                                                 <td width="150">
-
-                                                    <a target="_blank" href="{{ url('view-auction/'.$bid->id) }}"  class="btn delete-row btn-icon-toggle"
-                                                            >
+                                                    <a target="_blank" href="{{ url('view-auction/'.$auction->id) }}"  class="btn delete-row btn-icon-toggle">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 </td>
                                             </tr>
+
                                             @php($i++)
+
                                         @endforeach
                                         </tbody>
                                     </table>

@@ -133,9 +133,16 @@
             @if(Auth::user()->hasRole(['bidder']))
                 <li>
                     <a href="{{route('bidder.bidding')}}"
-                       class="{{ Helper::isActiveResource('bidder.bidding') }}">
+                       class="{{ Helper::isActiveRoute('bidder.bidding') }}">
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
                         <span class="title">Bidding</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('bidder.wonAuctions')}}"
+                       class="{{ Helper::isActiveRoute('bidder.wonAuctions') }}">
+                        <div class="gui-icon"><i class="fa fa-gears"></i></div>
+                        <span class="title">Won Auctions</span>
                     </a>
                 </li>
             @endif

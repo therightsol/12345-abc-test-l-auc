@@ -13,3 +13,17 @@ Route::group(
         Route::post('getAuctionForm', 'AuctionsController@getAuctionForm')->name('getAuctionForm');
         Route::get('searchCar', 'AuctionsController@searchCar')->name('searchCar');
     });
+
+Route::group(
+    [
+        'middleware' => ['web','has_role:bidder'],
+        'prefix' => 'account',
+        'as'    =>  'bidder.',
+        'namespace' => 'Modules\Auctions\Http\Controllers'
+    ],
+    function(  )
+    {
+
+        Route::get('won-auctions', 'BidderAuctionController@index')->name('wonAuctions');
+
+    });

@@ -43,14 +43,18 @@ class AuctionController extends Controller
         \Session::put('currentAuction', $auction);
         $can = false;
         if(\Auth::check()){
+
             $maxBids = GeneralSetting::where('key', 'max_allowed_bits')->first();
             if (!$maxBids){
                 $can = true;
             }else{
-                $can = $auction->bidding->where('user_id', \Auth::user()->id)->count() < $maxBids->value;
+
+                if(!$auction->bidding->where('user_id', \Auth::user()->id)->count() and !$auction->winner_user_id){
+
+                    $can = Bidding::where('user_id', \Auth::user()->id)->count() < $maxBids->value;
+                }
             }
         }
-
 
         return view('auction.show', compact('auction','can'));
     }

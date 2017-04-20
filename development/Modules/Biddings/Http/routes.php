@@ -2,7 +2,6 @@
 
 Route::group(
     [
-//        'middleware' => ['web', 'admin_login_check'],
         'middleware' => ['web','has_role:admin,staff'],
         'prefix' => Helper::dashboardName(),
         'as'    =>  'admin.',
@@ -26,6 +25,4 @@ Route::group(
 
         Route::get('all-bids', 'BidderBiddingController@index')->name('bidding');
 
-//        Route::resource('inspection', 'AuctioneerInspectionRequestsController',['names' => Helper::ResourceNames('inspection')]);
-//        Route::post('storeCar', 'AuctioneerInspectionRequestsController@storeCar')->name('storeCar');
     });

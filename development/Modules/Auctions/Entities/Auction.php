@@ -2,6 +2,7 @@
 
 namespace Modules\Auctions\Entities;
 
+use Illuminate\Foundation\Auth\User;
 use Modules\Biddings\Entities\Bidding;
 use Modules\Cars\Entities\Car;
 use Modules\CommonBackend\Entities\BaseModel;
@@ -24,6 +25,11 @@ class Auction extends BaseModel
     public function bidding()
     {
         return $this->hasMany(Bidding::class);
+    }
+
+    public function winnerUser()
+    {
+        return $this->belongsTo(User::class, 'winner_user_id');
     }
 
     protected $dates = [
