@@ -8,10 +8,12 @@
             height: 15px;
             margin-left: 15px;
         }
-        .media{
+
+        .media {
             display: flex;
         }
-        .media-body{
+
+        .media-body {
             margin-left: 20px;
             width: 100%;
         }
@@ -48,12 +50,12 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                             <h2>{{ $auction->car->title }}
-                                @if($auction->end_date < \Carbon\Carbon::now() or $auction->winner_user_id)
-                                <small style="color: red;">Closed</small>
-                                    @endif
+                                @if(!$auction->isActive())
+                                    <small style="color: red;">Closed</small>
+                                @endif
 
                             </h2>
-                        <span class="margin-top-10">
+                            <span class="margin-top-10">
                         </span>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 text-right">
@@ -73,7 +75,8 @@
 
                                             <li data-thumb="{{ $auction->car->getFeaturedImage() }}"><img
                                                         src="{{ $auction->car->getFeaturedImage() }}"
-                                                        alt="" data-full-image="{{ $auction->car->getFeaturedImage() }}"/></li>
+                                                        alt=""
+                                                        data-full-image="{{ $auction->car->getFeaturedImage() }}"/></li>
 
                                             @foreach($auction->car->getGallery() as $img)
                                                 <li data-thumb="{{ asset($img->file_name) }}"><img
@@ -285,43 +288,57 @@
                             @if($auction->winner_user_id)
                                 @php($winner = $auction->bidding->where('user_id', $auction->winner_user_id)->first())
                                 @if($winner)
-                                <h4>Winner</h4>
-                                <div class="media" style="    border: 2px solid green;
+                                    <h4>Winner</h4>
+                                    <div class="media" style="    border: 2px solid green;
     background: #e6f9e6;">
-                                    <div class="media-left">
-                                        <img src="{{ $winner->user->picture or asset('images/image-not-found-100x100.png') }}" class="media-object" style="width:60px">
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="media-heading"
-                                        >User Name: <b>{{ $winner->user->username }}</b>
-                                            <span style="display: inline;font-size: 12px;color: darkred;">{{ $winner->created_at->format('F d, Y') }}</span>
+                                        <div class="media-left">
+                                            <img src="{{ $winner->user->picture or asset('images/image-not-found-100x100.png') }}"
+                                                 class="media-object" style="width:60px">
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="media-heading"
+                                            >User Name: <b>{{ $winner->user->username }}</b>
+                                                <span style="display: inline;font-size: 12px;color: darkred;">{{ $winner->created_at->format('F d, Y') }}</span>
 
-                                        </p>
-                                        <p class="media-heading">Bid Amount: <b>{{ Helper::currencySymbol().$winner->bid_amount }}</b></p>
+                                            </p>
+                                            <p class="media-heading">Bid Amount:
+                                                <b>{{ Helper::currencySymbol().$winner->bid_amount }}</b></p>
+                                        </div>
                                     </div>
-                                </div>
 
                                 @endif
-                                @endif
+                            @endif
 
 
                             <h4>Bids</h4>
                             @foreach($auction->bidding as $bid)
                                 <div class="media">
                                     <div class="media-left">
-                                        <img src="{{ $bid->user->picture or asset('images/image-not-found-100x100.png') }}" class="media-object" style="width:60px">
+                                        <img src="{{ $bid->user->picture or asset('images/image-not-found-100x100.png') }}"
+                                             class="media-object" style="width:60px">
                                     </div>
                                     <div class="media-body">
                                         <p class="media-heading"
                                         >User Name: <b>{{ $bid->user->username }}</b>
                                             <span style="display: inline;font-size: 12px;color: darkred;">{{ $bid->created_at->format('F d, Y') }}</span>
-
                                         </p>
-                                        <p class="media-heading">Bid Amount: <b>{{ Helper::currencySymbol().$bid->bid_amount }}</b></p>
+                                        <div class="media-heading">Bid Amount:
+                                        @if(Auth::check() and Auth::user()->id == $bid->user->id and $auction->isActive())
+                                            <form style="display: inline-block" method="post" action="{{ route('bidder.updateBid', ['id'=> $bid->id]) }}">
+                                                {{ csrf_field() }}
+                                                <input name="amount" style="float: none; width: 200px" type="number"
+                                                       value="{{ $bid->bid_amount }}">
+                                                <input type="submit" value="update">
+                                            </form>
+                                        @else
+                                            <b>{{ Helper::currencySymbol().$bid->bid_amount }}</b>
+                                            @endif
+
+                                            </div>
                                     </div>
                                 </div>
 
-                                @endforeach
+                            @endforeach
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 right-content padding-right-none">
                             <div class="side-content">
@@ -409,16 +426,20 @@
 
                                         <li class="hwy_mpg">
                                             <small>Min Allowed Bid:</small>
-                                            <strong>{{ Helper::currencySymbol().$auction->bid_starting_amount }}</strong></li>
+                                            <strong>{{ Helper::currencySymbol().$auction->bid_starting_amount }}</strong>
+                                        </li>
                                         <li class="hwy_mpg">
                                             <small>Average Bid:</small>
-                                            <strong>{{ Helper::currencySymbol().$auction->bidding->average('bid_amount') }}</strong></li>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->average('bid_amount') }}</strong>
+                                        </li>
                                         <li class="city_mpg">
-                                        <small>Min Bid:</small>
-                                            <strong>{{ Helper::currencySymbol().$auction->bidding->min('bid_amount') }}</strong></li>
+                                            <small>Min Bid:</small>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->min('bid_amount') }}</strong>
+                                        </li>
                                         <li class="hwy_mpg">
                                             <small>Max Bid:</small>
-                                            <strong>{{ Helper::currencySymbol().$auction->bidding->max('bid_amount') }}</strong></li>
+                                            <strong>{{ Helper::currencySymbol().$auction->bidding->max('bid_amount') }}</strong>
+                                        </li>
                                     </ul>
                                     <p>Actual rating will vary with options, driving conditions,
                                         driving habits and vehicle condition.</p>
@@ -426,8 +447,8 @@
 
                                 <div class="clearfix"></div>
                                 @if($auction->end_date > \Carbon\Carbon::now())
-                                @include('auction._bidForm')
-                                    @endif
+                                    @include('auction._bidForm')
+                                @endif
                             </div>
                         </div>
                     </div>

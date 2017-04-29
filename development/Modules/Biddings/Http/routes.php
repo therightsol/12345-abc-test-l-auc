@@ -24,5 +24,6 @@ Route::group(
     {
 
         Route::get('all-bids', 'BidderBiddingController@index')->name('bidding');
+        Route::post('update-bid/{id}', 'BidderBiddingController@update')->name('updateBid');
 
     });

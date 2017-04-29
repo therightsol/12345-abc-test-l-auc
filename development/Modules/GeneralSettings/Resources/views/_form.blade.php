@@ -35,6 +35,18 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('inspection_unique_id') ? ' has-error' : '' }}">
+                    {{ Form::label('inspection_unique_id', 'Inspection Unique ID:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('inspection_unique_id', isset($settings['inspection_unique_id'])? $settings['inspection_unique_id']: null ,['class' => 'form-control']) }}
+
+                    @if ($errors->has('inspection_unique_id'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('inspection_unique_id') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('currency') ? ' has-error' : '' }}">
                     {{ Form::label('currency', 'Currency:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
