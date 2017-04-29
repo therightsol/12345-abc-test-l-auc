@@ -8,7 +8,7 @@
                 <tbody>
                 <tr>
                     <td>Max Allowed Bids:</td>
-                    <td>{{ isset($settings['max_allowed_bits'])?$settings['max_allowed_bits']: 'Unlimited' }}</td>
+                    <td>{{ isset($settings['max_allowed_bids'])?$settings['max_allowed_bids']: 'Unlimited' }}</td>
                 </tr>
                 <tr>
                     <td>Bid Amount({{ Helper::currencySymbol() }}) start from {{ $auction->bid_starting_amount }}:</td>

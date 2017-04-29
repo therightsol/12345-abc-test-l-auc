@@ -54,8 +54,8 @@
                                     <img style="    height: 61px;" src="{{ asset($settings['picture']) }}"
                                          alt="Auction">
                                 @else
-                                    <span class="primary_text">Auction</span> <span
-                                            class="secondary_text">Template</span>
+                                    <span class="primary_text">PakAuction</span> <span
+                                            class="secondary_text">Starter Business</span>
 
                                 @endif
 

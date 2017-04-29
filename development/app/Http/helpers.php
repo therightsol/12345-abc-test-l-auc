@@ -27,3 +27,22 @@
 	function show_logout(){
 		return (\Auth::check());
 	}
+	
+	function get_usercolumn( $column = false ){
+		if ($column)
+			return strtoupper(Auth::getUser()->$column);
+		
+		return '';
+	}
+	
+	function get_user_img(){
+		$user = Auth::getUser();
+		
+		// if image not found
+		if (empty($user->picture))
+			return ( url('/' ) . '/images/image-not-found-100x100.png' );
+		
+		
+		//if image found.
+		return ( url('/' ) . '/' . $user->picture );
+	}

@@ -44,7 +44,7 @@ class AuctionController extends Controller
         $can = false;
         if(\Auth::check()){
 
-            $maxBids = GeneralSetting::where('key', 'max_allowed_bits')->first();
+            $maxBids = GeneralSetting::where('key', 'max_allowed_bids')->first();
             if (!$maxBids){
                 $can = true;
             }else{

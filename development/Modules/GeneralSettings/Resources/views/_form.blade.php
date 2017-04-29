@@ -12,13 +12,13 @@
                         @yield('insert-image-code')
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('max_allowed_bits') ? ' has-error' : '' }}">
-                    {{ Form::label('max_allowed_bits', 'Max Allowed Bids:', ['class' => 'control-label col-sm-4']) }}
+                <div class="form-group{{ $errors->has('max_allowed_bids') ? ' has-error' : '' }}">
+                    {{ Form::label('max_allowed_bids', 'Max Allowed Bids:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
-                        {{ Form::text('max_allowed_bits', isset($settings['max_allowed_bits'])? $settings['max_allowed_bits']: null,['class' => 'form-control']) }}
-                    @if ($errors->has('max_allowed_bits'))
+                        {{ Form::text('max_allowed_bids', isset($settings['max_allowed_bids'])? $settings['max_allowed_bids']: null,['class' => 'form-control']) }}
+                    @if ($errors->has('max_allowed_bids'))
                             <span class="help-block">
-                    <strong>{{ $errors->first('max_allowed_bits') }}</strong>
+                    <strong>{{ $errors->first('max_allowed_bids') }}</strong>
                 </span>
                         @endif
                     </div>
