@@ -37,8 +37,12 @@ class UsersController extends Controller
     {
         $filters->column = ['id', 'full_name','cnic','email','picture', 'contact_number', 'user_role'];
         $limit = ($request->has('limit')) ? $request->input('limit') : 10;
-        $users = UserModel::Filter($filters)
-            ->paginate($limit);
+        $query = UserModel::query();
+        $query->Filter($filters);
+        if(\Auth::user()->hasRole(['staff'])){
+            $query->where('user_role', '!=', 'admin');
+        }
+        $users = $query->paginate($limit);
 
         $perPage = $users->perPage();
         return view('users::index', compact('users','perPage'));

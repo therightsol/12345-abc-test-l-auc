@@ -123,6 +123,13 @@
             @endif
             @if(Auth::user()->hasRole(['auctioneer']))
                 <li>
+                    <a href="{{route('account.auctioneerProfile')}}"
+                       class="{{ Helper::isActiveRoute('account.auctioneerProfile') }}">
+                        <div class="gui-icon"><i class="fa fa-user"></i></div>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('auctioneer.inspection.index')}}"
                        class="{{ Helper::isActiveResource('auctioneer.inspection') }}">
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
@@ -138,6 +145,14 @@
                 </li>
             @endif
             @if(Auth::user()->hasRole(['bidder']))
+                <li>
+                    <a href="{{route('account.bidderProfile')}}"
+                       class="{{ Helper::isActiveRoute('account.bidderProfile') }}">
+                        <div class="gui-icon"><i class="fa fa-user"></i></div>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{route('bidder.bidding')}}"
                        class="{{ Helper::isActiveRoute('bidder.bidding') }}">

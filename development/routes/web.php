@@ -30,6 +30,8 @@ Route::get('rules-page', function () {
     })->firstOrFail();
     return view('pages', compact('page'));
 });
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact', 'ContactController@sendEmail')->name('contact');
 
 
 Route::group(

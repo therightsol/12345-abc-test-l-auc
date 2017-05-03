@@ -2,6 +2,8 @@
 
 namespace Modules\Auctions\Http\Controllers;
 
+use App\Notifications\EndAuction;
+use App\Notifications\NewAuction;
 use Carbon\Carbon;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -29,8 +31,7 @@ class AuctionsController extends Controller
     {
         $filter->belongsTo = [Car::class => ['title']];
         $filter->column = ['id', 'bid_starting_amount', 'average_bid', 'start_date', 'end_date'];
-        $auctions = Auction::filter($filter)
-            ->paginate(\Helper::limit($request));
+        $auctions = Auction::filter($filter)->paginate(\Helper::limit($request));
         Session::forget('auction.car');
 
         return view('auctions::index', compact('auctions'));
@@ -56,12 +57,10 @@ class AuctionsController extends Controller
 
         $query = Car::query();
 
-        $query->with(['carModel.carCompany','user', 'meta' => function ($query) {
+        $query->with(['carModel.carCompany', 'user', 'meta' => function ($query) {
             $query->where('meta_key', 'picture');
             $query->select('car_id', 'meta_value');
-        }])
-            ->doesntHave('auction')
-            ->where(function ($q) use ($term) {
+        }])->doesntHave('auction')->where(function ($q) use ($term) {
                 $q->where('title', 'like', '%' . $term . '%');
                 $q->orWhereHas('carModel', function ($query) use ($term) {
                     $query->where('model_name', 'like', '%' . $term . '%');
@@ -70,20 +69,16 @@ class AuctionsController extends Controller
                     $query->where('company_name', 'like', '%' . $term . '%');
                 });
             });
-        if (!$request->has('inspection_completed')){
+        if (!$request->has('inspection_completed')) {
             $query->where('is_inspection_complete', 1);
         }
-          $cars = $query->limit(20)->latest()->get();
+        $cars = $query->limit(20)->latest()->get();
 
         $formatted = [];
 
         foreach ($cars as $car) {
 
-            $formatted[] = [
-                'id' => $car->id,
-                'text' => $car->title,
-                'info' => $car->toArray()
-            ];
+            $formatted[] = ['id' => $car->id, 'text' => $car->title, 'info' => $car->toArray()];
 
         }
 
@@ -99,11 +94,7 @@ class AuctionsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'car_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-        ]);
+        $this->validate($request, ['car_id' => 'required', 'start_date' => 'required', 'end_date' => 'required',]);
 
         $sdate = explode('--', $request->input('start_date'));
         $edate = explode('--', $request->input('end_date'));
@@ -112,18 +103,14 @@ class AuctionsController extends Controller
         $end_date = Carbon::createFromFormat('d F Y', trim($edate[0]));
         $end_time = trim($edate[1]);
 
-        $isSuccess = Auction::create([
-            'car_id' => $request->input('car_id'),
-            'bid_starting_amount' => $request->input('bid_starting_amount'),
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'start_time' => $start_time,
-            'end_time' => $end_time
-        ]);
+        $car = Car::where('id', $request->input('car_id'))->first();
+
+        $isSuccess = Auction::create(['car_id' => $request->input('car_id'), 'bid_starting_amount' => $request->input('bid_starting_amount'), 'start_date' => $start_date, 'end_date' => $end_date, 'start_time' => $start_time, 'end_time' => $end_time]);
+//        dd($car->user);
+
+        UserModel::find($car->user_id)->notify(new NewAuction($isSuccess));
         Session::forget('auction.car');
-        return ($isSuccess) ?
-            back()->with('alert-success', 'Auction Created Successfully')
-            : back()->with('alert-danger', 'Error: please try again.');
+        return ($isSuccess) ? back()->with('alert-success', 'Auction Created Successfully') : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -142,7 +129,8 @@ class AuctionsController extends Controller
     public function edit($id)
     {
         $auction = Auction::find($id);
-        if (!$auction) return redirect()->route(Helper::route('index'));
+        if (!$auction)
+            return redirect()->route(Helper::route('index'));
         $cars = Car::pluck('title', 'id');
 
         return view('auctions::edit', compact('auction', 'cars'));
@@ -155,11 +143,7 @@ class AuctionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'car_id' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-        ]);
+        $this->validate($request, ['car_id' => 'required', 'start_date' => 'required', 'end_date' => 'required',]);
         $sdate = explode('--', $request->input('start_date'));
         $edate = explode('--', $request->input('end_date'));
 
@@ -168,18 +152,10 @@ class AuctionsController extends Controller
         $end_date = Carbon::createFromFormat('d F Y', trim($edate[0]));
         $end_time = trim($edate[1]);
 
-        if (!$auction = Auction::find($id)) return redirect()->route(Helper::route('index'));
-        $isSuccess = $auction->update([
-            'car_id' => $request->input('car_id'),
-            'bid_starting_amount' => $request->input('bid_starting_amount'),
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'start_time' => $start_time,
-            'end_time' => $end_time
-        ]);
-        return ($isSuccess) ?
-            back()->with('alert-success', 'Auction Updated Successfully')
-            : back()->with('alert-danger', 'Error: please try again.');
+        if (!$auction = Auction::find($id))
+            return redirect()->route(Helper::route('index'));
+        $isSuccess = $auction->update(['car_id' => $request->input('car_id'), 'bid_starting_amount' => $request->input('bid_starting_amount'), 'start_date' => $start_date, 'end_date' => $end_date, 'start_time' => $start_time, 'end_time' => $end_time]);
+        return ($isSuccess) ? back()->with('alert-success', 'Auction Updated Successfully') : back()->with('alert-danger', 'Error: please try again.');
     }
 
     /**
@@ -189,7 +165,23 @@ class AuctionsController extends Controller
     public function destroy($id)
     {
         $rec = Auction::find($id);
-        if (empty($rec)) return;
+        if (empty($rec))
+            return;
         return ($rec->forceDelete()) ? 'true' : 'false';
+    }
+
+    public function auctionEndNotify()
+    {
+        $pendingNotifyAuctions = Auction::where('end_date', '<=', date('Y-m-d'))->where('end_time', '<=', date('H:i:s'))->whereNull('is_notify')->with(['car.user', 'bidding' => function ($q) {
+                $q->orderBy('bid_amount', 'desc');
+                $q->take(1);
+            }, 'bidding.user'])->get();
+
+        foreach ($pendingNotifyAuctions as $pendingNotifyAuction) {
+            $pendingNotifyAuction->car->user->notify(new EndAuction($pendingNotifyAuction));
+            $pendingNotifyAuction->update([
+                'is_notify' => 1
+            ]);
+        }
     }
 }

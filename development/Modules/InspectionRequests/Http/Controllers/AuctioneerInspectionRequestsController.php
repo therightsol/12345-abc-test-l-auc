@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Auctions\Entities\Auction;
 use Modules\CarCompanies\Entities\CarCompany;
 use Modules\CarMetas\Entities\CarMeta;
 use Modules\Cars\Entities\Car;
@@ -30,12 +31,7 @@ class AuctioneerInspectionRequestsController extends Controller
      */
     public function index(Filters $filter, Request $request)
     {
-//        $filter->belongsTo = [Car::class =>['title', 'is_inspection_complete']];
-//        $filter->belongsTo = [UserModel::class =>['username']];
-//        $filter->column = ['id','date_of_inspection', 'time_of_inspection'];
-//        $inspections = InspectionRequest::filter($filter)
-//            ->where('user_id', \Auth::user()->id)
-//            ->paginate(\Helper::limit($request));
+
 
         $filter->belongsTo = [UserModel::class => ['username'], Car::class => ['title', 'is_inspection_complete']];
         $filter->column = ['id', 'date_of_inspection', 'time_of_inspection'];

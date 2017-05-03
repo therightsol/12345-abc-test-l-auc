@@ -6,31 +6,24 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Modules\GeneralSettings\Entities\GeneralSetting;
 
-class InspectionCompleted extends Notification
+class NewAuction extends Notification
 {
     use Queueable;
     /**
      * @var
      */
-    private $inspection;
-    private $inspection_id;
+    private $auction;
 
     /**
      * Create a new notification instance.
      *
-     * @param $inspection
+     * @param $auction
      */
-    public function __construct($inspection)
+    public function __construct($auction)
     {
         //
-        $this->inspection = $inspection;
-        $inspection_unique_id = GeneralSetting::where('key', 'inspection_unique_id')->first();
-        if ($inspection_unique_id) {
-            $this->inspection_id = $inspection_unique_id->value ?: $inspection->id;
-
-        }
+        $this->auction = $auction;
     }
 
     /**
@@ -53,9 +46,9 @@ class InspectionCompleted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Your car inspection has been completed.')
-                    ->line('Your Inspection id is ('.$this->inspection_id.$this->inspection->id.')')
-                    ->line('Thank you for using our application!');
+            ->line('Your Car '.$this->auction->car->title .' has been added in Auction.')
+            ->action('Click to view auction', route('auction.show', ['id' => $this->auction->id]))
+            ->line('Thank you for using our application!');
     }
 
     /**

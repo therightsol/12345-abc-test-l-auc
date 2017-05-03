@@ -64,7 +64,7 @@
 
 
 @section('form-open')
-    <form class="form" action="{{route('admin.users.update', ['id' => $user->id])}}" enctype="multipart/form-data" data-uid="" method="post" >
+    <form class="form" action="{{ (isset($updateRoute)) ? $updateRoute : route('admin.users.update', ['id' => $user->id]) }}" enctype="multipart/form-data" data-uid="" method="post" >
         <input name="_method" type="hidden" value="PUT">
 @endsection
 

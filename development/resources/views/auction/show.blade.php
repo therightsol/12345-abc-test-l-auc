@@ -78,6 +78,7 @@
                                                         alt=""
                                                         data-full-image="{{ $auction->car->getFeaturedImage() }}"/></li>
 
+                                            {{--{{ dd($auction->car->getGallery()) }}--}}
                                             @foreach($auction->car->getGallery() as $img)
                                                 <li data-thumb="{{ asset($img->file_name) }}"><img
                                                             src="{{ asset($img->file_name) }}"
@@ -430,7 +431,7 @@
                                         </li>
                                         <li class="hwy_mpg">
                                             <small>Average Bid:</small>
-                                            <strong>{{ Helper::currencySymbol().$auction->bidding->average('bid_amount') }}</strong>
+                                            <strong>{{ Helper::currencySymbol().round($auction->bidding->average('bid_amount'), 2) }}</strong>
                                         </li>
                                         <li class="city_mpg">
                                             <small>Min Bid:</small>

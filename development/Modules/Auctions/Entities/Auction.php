@@ -10,7 +10,7 @@ use Modules\CommonBackend\Entities\BaseModel;
 
 class   Auction extends BaseModel
 {
-    protected $fillable = ['bid_starting_amount','car_id', 'average_bit', 'start_date', 'end_date','start_time', 'end_time','winner_user_id'];
+    protected $fillable = ['bid_starting_amount','car_id', 'average_bit', 'start_date', 'end_date','start_time', 'end_time','winner_user_id', 'is_notify'];
 
 
     public function scopeFilter($query, $filters)
@@ -35,7 +35,7 @@ class   Auction extends BaseModel
 
     public function isActive()
     {
-        return $this->end_date > Carbon::now() or !$this->winner_user_id;
+        return $this->end_date > Carbon::now() and !$this->winner_user_id;
     }
 
     protected $dates = [

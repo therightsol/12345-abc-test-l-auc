@@ -53,7 +53,7 @@ class CommonBackendController extends Controller
     public function logout()
     {
 
-        if (\Auth::user()->hasRole(['auctioneer'])){
+        if (\Auth::user()->hasRole(['auctioneer', 'bidder'])){
             \Auth::logout();
             return redirect(url('/'));
         }

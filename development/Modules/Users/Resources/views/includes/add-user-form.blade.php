@@ -75,6 +75,7 @@
             </div>
 
 
+            @if(isset($userroles))
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('user_role') ? 'has-error' : ''}}">
 
@@ -96,7 +97,9 @@
 
                 </div>
             </div>
+            @endif
 
+            @if(isset($statuses))
             <div class="col-sm-4">
                 <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
 
@@ -117,6 +120,7 @@
 
                 </div>
             </div>
+                @endif
 
         </div>
     </div>

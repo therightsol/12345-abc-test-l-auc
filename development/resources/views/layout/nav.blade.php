@@ -72,7 +72,22 @@
                             @if(Auth::check())
                                 <li ><a href="{{ route('user.account') }}">Account</a></li>
                             @endif
+                            @if(isset($helpPage->post_status->status_title) and $helpPage->post_status->status_title == 'published')
+                                <li>
+                                    <a href="{{ url($helpPage->slug) }}">
+                                        Help
+                                    </a>
+                                </li>
 
+                                @endif
+                            @if(isset($rulesPage->post_status->status_title) and $rulesPage->post_status->status_title == 'published')
+                                <li>
+                                    <a href="{{ url($rulesPage->slug) }}">
+                                        Rules
+                                    </a>
+                                </li>
+
+                                @endif
                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b
                                             class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -96,59 +111,10 @@
                                     <li><a href="pricing-tables.html">Pricing Tables</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory <b
-                                            class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="demo.html">Select View Demo</a></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Boxed
-                                            Layout <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="inventory-boxed-fullwidth.html">Boxed Fullwidth</a></li>
-                                            <li><a href="inventory-boxed-sidebar-left.html">Boxed Sidebar Left</a></li>
-                                            <li><a href="inventory-boxed-sidebar-right.html">Boxed Sidebar Right</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Wide
-                                            Layout <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="inventory-wide-fullwidth.html">Wide Fullwidth</a></li>
-                                            <li><a href="inventory-wide-sidebar-left.html">Wide Sidebar Left</a></li>
-                                            <li><a href="inventory-wide-sidebar-right.html">Wide Sidebar Right</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="inventory-listing.html">Individual Listing</a></li>
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Vehicle
-                                            Comparison <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="inventory-2-listing-comparison.html">2 Listing Comparison</a>
-                                            </li>
-                                            <li><a href="inventory-3-listing-comparison.html">3 Listing Comparison</a>
-                                            </li>
-                                            <li><a href="inventory-4-listing-comparison.html">4 Listing Comparison</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="service.html">Services</a></li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b
-                                            class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="portfolio-2-column.html">2 Column Portfolio</a></li>
-                                    <li><a href="portfolio-2-column-details.html">2 Column Portfolio Details</a></li>
-                                    <li><a href="portfolio-3-column.html">3 Column Portfolio</a></li>
-                                    <li><a href="portfolio-3-column-details.html">3 Column Portfolio Details</a></li>
-                                    <li><a href="portfolio-4-column.html">4 Column Portfolio</a></li>
-                                    <li><a href="portfolio-4-column-details.html">4 Column Portfolio Details</a></li>
-                                    <li><a href="portfolio-single-project-split.html">Portfolio Single Project Split</a>
-                                    </li>
-                                    <li><a href="portfolio-single-project-wide.html">Portfolio Single Project Wide</a>
-                                    </li>
-                                </ul>
-                            </li>
 
-                            <li><a href="contact.html">Contact</a></li>
+
+
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

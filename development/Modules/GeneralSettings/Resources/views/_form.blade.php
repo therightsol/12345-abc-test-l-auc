@@ -83,6 +83,18 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('contactUsEmail') ? ' has-error' : '' }}">
+                    {{ Form::label('contactUsEmail', 'Contact us email:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::text('contactUsEmail', isset($settings['contactUsEmail'])? $settings['contactUsEmail']: null ,['class' => 'form-control']) }}
+
+                    @if ($errors->has('contactUsEmail'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('contactUsEmail') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     {{ Form::label('email', 'Company Email Address:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">

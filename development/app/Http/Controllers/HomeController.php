@@ -19,12 +19,10 @@ class HomeController extends Controller
             ->where('end_date', '>=', date('Y-m-d'))
             ->latest()->get();
 
-        $helpPage = Post::where('slug' , 'help-page')->with('post_status')->first();
-        $rulesPage = Post::where('slug' , 'rules-page')->with('post_status')->first();
 
         return view('home.index',
             (new AuctionController())->getFields($auctions))
-            ->withAuctions($auctions)->with(['helpPage' => $helpPage, 'rulesPage' => $rulesPage]);
+            ->withAuctions($auctions);
 
     }
 }

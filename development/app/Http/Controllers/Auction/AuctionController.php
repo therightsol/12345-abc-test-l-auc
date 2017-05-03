@@ -21,8 +21,10 @@ class AuctionController extends Controller
             }])->latest();
         if($request->has('closed')){
             $query->where('end_date', '<=', date('Y-m-d'));
+            $query->orWhereNotNull('winner_user_id');
         }else{
             $query->where('end_date', '>=', date('Y-m-d'));
+            $query->whereNull('winner_user_id');
         }
 
 
@@ -42,7 +44,7 @@ class AuctionController extends Controller
 
         \Session::put('currentAuction', $auction);
         $can = false;
-        if(\Auth::check()){
+        if(\Auth::check() and \Auth::user()->hasRole(['bidder'])){
 
             $maxBids = GeneralSetting::where('key', 'max_allowed_bids')->first();
             if (!$maxBids){
@@ -56,6 +58,7 @@ class AuctionController extends Controller
             }
         }
 
+//        return $auction;
         return view('auction.show', compact('auction','can'));
     }
 
@@ -87,6 +90,8 @@ class AuctionController extends Controller
             'user_id' => \Auth::user()->id,
             'auction_id' => \Session::get('currentAuction')->id
         ]);
+        $isSuccess->updateAverageBid();
+
         return ($isSuccess) ?
             back()->with('alert-success', 'Bid Successfully')
             : back()->with('alert-danger', 'Error: please try again.');

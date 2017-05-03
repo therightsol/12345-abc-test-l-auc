@@ -30,6 +30,35 @@ Route::group(
         //Route::get('/login', 'UsersController@login')->name($dashboardName . '-login');
     });
 
+Route::group(
+    [
+        'middleware' => ['web','has_role:auctioneer'],
+        'prefix' => 'backend',
+        'as'    =>  'account.',
+        'namespace' => 'Modules\Users\Http\Controllers'
+    ],
+    function(  ) use ($dashboardName, $prefixedResourceNames)
+    {
 
-// For Base Controllers
+        Route::get('Auctioneer-profile', 'AuctioneerController@edit')->name('auctioneerProfile');
+        Route::put('Auctioneer-profile', 'AuctioneerController@update')->name('auctioneerProfileUpdate');
+
+    });
+
+Route::group(
+    [
+        'middleware' => ['web','has_role:bidder'],
+        'prefix' => 'backend',
+        'as'    =>  'account.',
+        'namespace' => 'Modules\Users\Http\Controllers'
+    ],
+    function(  ) use ($dashboardName, $prefixedResourceNames)
+    {
+
+        Route::get('bidder-profile', 'BidderController@edit')->name('bidderProfile');
+        Route::put('bidder-profile', 'BidderController@update')->name('bidderProfileUpdate');
+
+    });
+
+
 

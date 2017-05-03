@@ -10,6 +10,7 @@ use Modules\CarModels\Entities\CarModel;
 use Modules\CommonBackend\Entities\BaseModel;
 use Modules\EngineTypes\Entities\EngineType;
 use Modules\Features\Entities\Feature;
+use Modules\Users\Entities\UserModel;
 
 class Car extends BaseModel
 {
@@ -30,7 +31,7 @@ class Car extends BaseModel
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserModel::class);
     }
 
     public function auction()
@@ -50,9 +51,10 @@ class Car extends BaseModel
 
     public function getGallery()
     {
-        $record = $this->meta->where('meta_key', 'gallery')->first();
+        $record = $this->meta->where('meta_key', 'gallery')->pluck('meta_value');
 
-        return ($record)? json_decode($record->meta_value) : [];
+//        dd($record);
+        return (count($record) and $record[0])? json_decode($record) : [];
 
     }
 

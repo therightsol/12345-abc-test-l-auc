@@ -25,4 +25,11 @@ class Bidding extends BaseModel
     {
         return $this->belongsTo(UserModel::class);
     }
+
+    public function updateAverageBid()
+    {
+        $this->auction->average_bid = $this->auction->bidding->average('bid_amount');
+        $this->auction->save();
+
+    }
 }

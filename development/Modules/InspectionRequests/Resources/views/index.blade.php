@@ -24,7 +24,9 @@
                 <td>{{ $inspection->date_of_inspection->format('d F Y') }}</td>
                 <td>{{ $inspection->time_of_inspection }}</td>
                 <td width="150">
-                    @if(\Auth::user()->hasRole(['auctioneer']) and ($inspection->date_of_inspection->format('Y-m-d') . ' '. $inspection->time_of_inspection > \Carbon\Carbon::now()->addDay()) )
+                    @if(\Auth::user()->hasRole(['auctioneer'])
+                    and ($inspection->date_of_inspection->format('Y-m-d') . ' '. $inspection->time_of_inspection > \Carbon\Carbon::now()->addDay())
+                     and !$inspection->is_inspection_complete)
                     <a href="{{ route(Helper::route('edit'),$inspection->id) }}" type="button"
                        class="btn btn-icon-toggle" data-toggle="tooltip"
                        data-placement="top" data-original-title="Edit row">

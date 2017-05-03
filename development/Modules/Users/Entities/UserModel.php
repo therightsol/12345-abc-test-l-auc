@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Modules\Biddings\Entities\Bidding;
 use Modules\CommonBackend\Entities\BaseModel;
 
 class UserModel extends BaseModel implements Authenticatable, CanResetPassword
@@ -35,6 +36,11 @@ class UserModel extends BaseModel implements Authenticatable, CanResetPassword
 
     public function isAdmin(){
         return $this->user_role == 'admin' ? true : false;
+    }
+
+    public function biddings()
+    {
+        return $this->hasMany(Bidding::class);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Modules\GeneralSettings\Entities\GeneralSetting;
+use Modules\Media\Entities\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +22,10 @@ class AppServiceProvider extends ServiceProvider
             \Log::info($sql->sql);
         });
         \View::composer('*', function ($view) {
+            $helpPage = Post::where('slug' , 'help-page')->with('post_status')->first();
+            $rulesPage = Post::where('slug' , 'rules-page')->with('post_status')->first();
             $settings = GeneralSetting::pluck('value', 'key');
-            $view->with(compact('settings'));
+            $view->with(compact('settings', 'helpPage', 'rulesPage'));
         });
         Schema::defaultStringLength(191);
     }

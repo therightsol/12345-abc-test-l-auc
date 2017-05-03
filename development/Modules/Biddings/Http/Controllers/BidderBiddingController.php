@@ -65,10 +65,13 @@ class BidderBiddingController extends Controller
         }
         $bid->bid_amount = $request->amount;
         $isSuccess = $bid->save();
+        $bid->updateAverageBid();
 
         return ($isSuccess) ?
             back()->with('alert-success', 'Bid Updated Successfully')
             : back()->with('alert-danger', 'Error: please try again.');
     }
+
+
 
 }
