@@ -88,29 +88,8 @@
                                 </li>
 
                                 @endif
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b
-                                            class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Alternate
-                                            Footers <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li class="active"><a href="index.html">Footer 1</a></li>
-                                            <li><a href="index-footer-2.html">Footer 2</a></li>
-                                            <li><a href="index-footer-3.html">Footer 3</a></li>
-                                            <li><a href="index-footer-4.html">Footer 4</a></li>
-                                            <li><a href="index-footer-5.html">Footer 5</a></li>
-                                            <li><a href="index-footer-6.html">Footer 6</a></li>
-                                            <li><a href="index-no-footer.html">No Footer</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="404.html">404</a></li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="page-fullwidth.html">Fullwidth Page</a></li>
-                                    <li><a href="page-sidebar.html">Sidebar Page</a></li>
-                                    <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+
 
 
 

@@ -31,6 +31,9 @@ Route::get('rules-page', function () {
     return view('pages', compact('page'));
 });
 Route::get('/contact', 'ContactController@index')->name('contact');
+Route::get('/about', function(){
+    return view('about');
+})->name('about');
 Route::post('/contact', 'ContactController@sendEmail')->name('contact');
 
 
@@ -39,7 +42,8 @@ Route::group(
     function () {
         Route::post('add_bid', 'Auction\AuctionController@addBid');
     });
-
+Route::get('/payment', 'PaymentController@index');
+Route::post('/payment', 'PaymentController@store')->name('payment');
 Route::get('/login/{params?}', 'Auth@index')->name('frontend-login');
 Route::get('/logout', 'Auth@logout')->name('frontend-logout');
 Route::post('/register', 'Auth@do_register')->name('frontend-do_register');
