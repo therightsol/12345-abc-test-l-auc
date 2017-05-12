@@ -4,32 +4,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding-left-none md-padding-left-none sm-padding-left-15 xs-padding-left-15">
-                <h4>newsletter</h4>
-                <p>By subscribing to our company newsletter
-                    you will always be up-to-date on our latest
-                    promotions, deals and vehicle inventory!</p>
-                <form method="post" action="" class="form_contact">
-                    <input type="text" value="" name="MERGE0" placeholder="Email Address">
-                    <input type="submit" value="Subscribe" class="md-button">
-                    <input type="hidden" name="u" value="">
-                    <input type="hidden" name="id" value="">
-                </form>
+                <h4>About Us</h4>
+                {!! isset($settings['about_us'])?$settings['about_us']: '' !!}
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <h4>Latest tweets</h4>
+                <h4>Latest auction</h4>
                 <div class="latest-tweet">
-                    <div><i class="fa fa-twitter"></i>
-                        <p>Put your tweet message here.  Make it
-                            compelling to attract other <a href="#">@people</a> to
-                            read and click on your <a href="#">http://links</a> to
-                            your site. <a href="#">#hashtag</a></p>
-                    </div>
-                    <div><i class="fa fa-twitter"></i>
-                        <p>Put your tweet message here.  Make it
-                            compelling to attract other <a href="#">@people</a> to
-                            read and click on your <a href="#">http://links</a> to
-                            your site. <a href="#">#hashtag</a></p>
-                    </div>
+                    @foreach($latestAuctions as $latestAuction)
+                        <div>
+                            <div style="float: left; width: 60px; margin-right: 10px">
+                                <a href="{{ route('auction.show', [$latestAuction->id]) }}">
+                                    <img src="{{ isset($latestAuction->car->meta[0]) ? asset($latestAuction->car->meta[0]->meta_value) : asset('images/image-not-found-100x100.png') }}"  alt="" class="img-responsive">
+                                </a>
+                            </div>
+                            <div>
+                                <div><strong>{{ $latestAuction->car->title }}</strong></div>
+                                <div>{{ Helper::currencySymbol() }} {{ $latestAuction->bid_starting_amount }}</div>
+                            </div>
+                        </div>
+
+                        @endforeach
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding-right-none md-padding-right-none sm-padding-right-15 xs-padding-right-15">

@@ -1,5 +1,4 @@
 @extends('commonbackend::layouts.admin_app')
-
 @section('content')
     <div id="content">
         <section class="">
@@ -22,35 +21,38 @@
                                             <th>Id</th>
                                             <th class="sorting" data-table="Car.title">Title</th>
                                             <th>Bidding Amount</th>
+                                            <th>Is Paid</th>
                                             <th>view</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @php($i = $auctions->firstItem())
-
                                         @foreach($auctions as $auction)
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $auction->title }}</td>
                                                 <td>{{ $auction->bidding->first()->bid_amount }}</td>
+                                                <td>
+                                                    @if($auction->is_paid)
+                                                        Yes
+                                                    @else
+                                                        <a href="{{ route('bidder.payment.index', ['id' => $auction->bidding->first()->id]) }}">Pay now</a>
+                                                @endif
+                                                </td>
                                                 <td width="150">
-                                                    <a target="_blank" href="{{ url('view-auction/'.$auction->id) }}"  class="btn delete-row btn-icon-toggle">
+                                                    <a target="_blank" href="{{ url('view-auction/'.$auction->id) }}"
+                                                       class="btn delete-row btn-icon-toggle">
                                                         <i class="fa fa-eye"></i>
                                                     </a>
                                                 </td>
                                             </tr>
-
                                             @php($i++)
-
                                         @endforeach
                                         </tbody>
                                     </table>
-
                                 </form>
                             </div><!--end .card-body -->
                             @include('commonbackend::layouts._table-footer')
-
                         </div>
                     </div>
                 </div>
@@ -58,7 +60,6 @@
         </section>
     </div>
     @include('commonbackend::layouts.confirm-modal')
-
 @endsection
 @section('js')
     <script src="{{ Module::asset('commonbackend:admin_assets/js/includes/h-functions.js') }}"></script>
@@ -68,7 +69,7 @@
             $('table.dataTable').setTableOrder({
                 form: 'form#filters'
             });
-{{--            deleteRow('{{ route(Helper::route('destroy'), '') }}');--}}
+            {{--            deleteRow('{{ route(Helper::route('destroy'), '') }}');--}}
         })
     </script>
 @endsection

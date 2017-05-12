@@ -12,6 +12,7 @@ Route::group(
         Route::Resource('auctions', 'AuctionsController', ['names' => Helper::ResourceNames('auctions')]);
         Route::post('getAuctionForm', 'AuctionsController@getAuctionForm')->name('getAuctionForm');
         Route::get('searchCar', 'AuctionsController@searchCar')->name('searchCar');
+        Route::get('paid/{id}', 'AuctionsController@paid')->name('auctions.paid');
     });
 
 Route::group(

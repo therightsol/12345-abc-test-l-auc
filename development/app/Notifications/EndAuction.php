@@ -49,13 +49,13 @@ class EndAuction extends Notification
             return (new MailMessage)
                 ->line('Your Car '.$this->auction->car->title .' Auction is end.')
                 ->line('Max Bid Amount is '.$this->auction->bidding[0]->bid_amount .' by '.$this->auction->bidding[0]->user->username)
-                ->action('Click to view auction', route('auction.show', ['id' => $this->auction->id]))
+                ->action('Click to view auction', url('view-auction/'.$this->auction->id))
                 ->line('Thank you for using our application!');
         }else{
             return (new MailMessage)
                 ->line('Your Car '.$this->auction->car->title .' Auction is end.')
                 ->line('Sorry! not bid on auction')
-                ->action('Click to view auction', route('auction.show', ['id' => $this->auction->id]))
+                ->action('Click to view auction', url('view-auction/'.$this->auction->id))
                 ->line('Thank you for using our application!');
         }
 

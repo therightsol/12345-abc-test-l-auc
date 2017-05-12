@@ -89,17 +89,17 @@ class CarsController extends Controller
 
 //		return $request->all();
 		
-		$inputArr = $request->only(
-			'title','user_id', 'car_model_id', 'engine_type_id', 'trim',
-			'exterior_color', 'interior_color', 'grade','manufacturing_year',
-			'kilometers', 'number_plate','engine_number', 'chassis_number',
-			'city_of_registration', 'transmission', 'body_type', 'drivetrain');
+
 		
-		$inputArr['user_id'] = \Auth::id();
+//		$inputArr['user_id'] = \Auth::id();
 		
 		
 		$isSuccess = Car::create(
-           $inputArr
+            $request->only(
+                'title','user_id', 'car_model_id', 'engine_type_id', 'trim',
+                'exterior_color', 'interior_color', 'grade','manufacturing_year',
+                'kilometers', 'number_plate','engine_number', 'chassis_number',
+                'city_of_registration', 'transmission', 'body_type', 'drivetrain')
         );
 		
         $isSuccess->meta()->saveMany([

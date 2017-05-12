@@ -20,3 +20,4 @@
     function ValOrNull(&$variable){
         return (isset($variable))? $variable: null;
     }
+

@@ -34,6 +34,13 @@
     </div>
 </form>
     @endif
+
+@if(!\Auth::check())
+    <div class="alert alert-info">
+        Please <a href="{{ url('login') }}">Login</a> to bid
+    </div>
+    @endif
+
 @section('js')
     @parent
 

@@ -102,7 +102,12 @@
                                                 <td class="spec">{{ $auction->car->grade }}</td>
                                             </tr>
                                         </table>
-                                        <div class="price">Min Bid <b>Price:</b><br>
+
+                                        <div class="price">
+                                            <span class="timer" data-time="{{ $auction->end_date->format("M j, Y H:i:s O") }}">
+
+                                        </span>
+                                            Min Bid <b>Price:</b><br>
                                             <div class="figure">
                                                 {{ Helper::currencySymbol().$auction->bid_starting_amount }}<br>
                                             </div>

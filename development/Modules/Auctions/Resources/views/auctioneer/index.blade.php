@@ -24,6 +24,8 @@
                                             <th class="sorting" data-table="Auction.bid_starting_amount">Bidding Starting Amount</th>
                                             <th>Total Bids</th>
                                             <th>Status</th>
+                                            <th>Is Paid</th>
+
                                             <th>view All Bids</th>
 
                                         </tr>
@@ -38,6 +40,13 @@
                                                 <td>{{ $auction->bid_starting_amount }}</td>
                                                 <td>{{ $auction->bidding->count() }}</td>
                                                 <td>{{ ($auction->winner_user_id)? 'Closed': 'Opened' }}</td>
+                                                <td>
+                                                    @if($auction->is_paid)
+                                                        Yes
+                                                    @else
+                                                        No
+                                                    @endif
+                                                </td>
                                                 <td width="150">
                                                     <a  href="{{ route('auctioneer.auctionBids', ['id' => $auction->id]) }}"  class="btn btn-icon-toggle">
                                                         <i class="fa fa-eye"></i>

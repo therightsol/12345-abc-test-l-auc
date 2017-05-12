@@ -157,7 +157,18 @@
                     </div>
                 </div>
 
+                <div class="form-group{{ $errors->has('about_us') ? ' has-error' : '' }}">
+                    {{ Form::label('about_us', 'Footer About Us:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::textarea('about_us', isset($settings['about_us'])? $settings['about_us']: null ,['class' => 'form-control', 'rows' => 3]) }}
 
+                        @if ($errors->has('about_us'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('about_us') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('copyright') ? ' has-error' : '' }}">
                     {{ Form::label('copyright', 'Copyright Text:', ['class' => 'control-label col-sm-4']) }}
                     <div class="col-sm-8">
@@ -166,6 +177,30 @@
                     @if ($errors->has('copyright'))
                             <span class="help-block">
                     <strong>{{ $errors->first('copyright') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('cash_payment') ? ' has-error' : '' }}">
+                    {{ Form::label('cash_payment', 'Cash Payment Detail:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::textarea('cash_payment', isset($settings['cash_payment'])? $settings['cash_payment']: null ,['class' => 'form-control', 'rows' => 3]) }}
+
+                    @if ($errors->has('cash_payment'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('cash_payment') }}</strong>
+                </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group{{ $errors->has('bank_detail') ? ' has-error' : '' }}">
+                    {{ Form::label('bank_detail', 'Bank Payment Detail:', ['class' => 'control-label col-sm-4']) }}
+                    <div class="col-sm-8">
+                        {{ Form::textarea('bank_detail', isset($settings['bank_detail'])? $settings['bank_detail']: null ,['class' => 'form-control', 'rows' => 3]) }}
+
+                    @if ($errors->has('bank_detail'))
+                            <span class="help-block">
+                    <strong>{{ $errors->first('bank_detail') }}</strong>
                 </span>
                         @endif
                     </div>

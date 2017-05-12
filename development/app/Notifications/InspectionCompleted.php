@@ -28,8 +28,9 @@ class InspectionCompleted extends Notification
         $this->inspection = $inspection;
         $inspection_unique_id = GeneralSetting::where('key', 'inspection_unique_id')->first();
         if ($inspection_unique_id) {
-            $this->inspection_id = $inspection_unique_id->value ?: $inspection->id;
-
+            $this->inspection_id = $inspection_unique_id->value;
+        }else{
+            $this->inspection_id = '';
         }
     }
 

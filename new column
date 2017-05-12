@@ -2,4 +2,6 @@ table       column                      type
 
 cars        is_inspection_complete      tinyint (1) nullable
 auctions    is_notify                   tinyint (1) nullable
+auctions    is_paid                     tinyint (1) nullable
+
 

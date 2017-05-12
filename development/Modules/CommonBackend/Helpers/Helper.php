@@ -125,5 +125,11 @@ class Helper
 
         return self::$symbol;
     }
-
+    public static function option($name){
+        $rec = \Modules\GeneralSettings\Entities\GeneralSetting::where('key',$name)->first();
+        if($rec){
+            $rec = $rec->value;
+        }
+        return $rec;
+    }
 }

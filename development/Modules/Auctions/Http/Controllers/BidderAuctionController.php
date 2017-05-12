@@ -28,15 +28,15 @@ class BidderAuctionController extends Controller
     public function index(Filters $filter, Request $request)
     {
         $filter->belongsTo = [Car::class =>['title']];
-        $filter->column = ['id'];
+        $filter->column = ['id', 'is_paid'];
         $auctions = Auction::filter($filter)
             ->with(['bidding' => function($q){{
-                $q->where('user_id', \Auth::user()->id)->first();
+                $q->where('user_id', \Auth::id());
             }}])
-            ->where('winner_user_id', \Auth::user()->id)
+            ->where('winner_user_id', \Auth::id())
             ->paginate(\Helper::limit($request));
 
-//        return $auctions;
+
         return view('auctions::bidder.index', compact('auctions'));
     }
 

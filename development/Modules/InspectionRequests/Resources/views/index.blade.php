@@ -27,27 +27,27 @@
                     @if(\Auth::user()->hasRole(['auctioneer'])
                     and ($inspection->date_of_inspection->format('Y-m-d') . ' '. $inspection->time_of_inspection > \Carbon\Carbon::now()->addDay())
                      and !$inspection->is_inspection_complete)
-                    <a href="{{ route(Helper::route('edit'),$inspection->id) }}" type="button"
-                       class="btn btn-icon-toggle" data-toggle="tooltip"
-                       data-placement="top" data-original-title="Edit row">
-                        <i class="fa fa-pencil"></i>
-                    </a>
-                        @else
+                        <a href="{{ route(Helper::route('edit'),$inspection->id) }}" type="button"
+                           class="btn btn-icon-toggle" data-toggle="tooltip"
+                           data-placement="top" data-original-title="Edit row">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    @else
 
                         @if(!$inspection->is_inspection_complete)
-                        Time up (Pending)
-                            @else
+                            Pending
+                        @else
                             Complete
-                            @endif
-                            <br>
+                        @endif
+                        <br>
 
                     @endif
                     @if(\Auth::user()->hasRole(['admin', 'staff']) )
-                    <a href="{{ route(Helper::route('edit'),$inspection->id) }}" type="button"
-                       class="btn btn-icon-toggle" data-toggle="tooltip"
-                       data-placement="top" data-original-title="Edit row">
-                        <i class="fa fa-pencil"></i>
-                    </a>
+                        <a href="{{ route(Helper::route('edit'),$inspection->id) }}" type="button"
+                           class="btn btn-icon-toggle" data-toggle="tooltip"
+                           data-placement="top" data-original-title="Edit row">
+                            <i class="fa fa-pencil"></i>
+                        </a>
                     @endif
                     @if(!\Auth::user()->hasRole(['auctioneer']))
                         <button type="button" class="btn delete-row btn-icon-toggle"

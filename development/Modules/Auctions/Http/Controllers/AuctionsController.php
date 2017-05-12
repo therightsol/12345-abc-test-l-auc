@@ -30,7 +30,7 @@ class AuctionsController extends Controller
     public function index(Filters $filter, Request $request)
     {
         $filter->belongsTo = [Car::class => ['title']];
-        $filter->column = ['id', 'bid_starting_amount', 'average_bid', 'start_date', 'end_date'];
+        $filter->column = ['id','is_paid', 'bid_starting_amount', 'average_bid', 'start_date', 'end_date'];
         $auctions = Auction::filter($filter)->paginate(\Helper::limit($request));
         Session::forget('auction.car');
 
@@ -183,5 +183,14 @@ class AuctionsController extends Controller
                 'is_notify' => 1
             ]);
         }
+    }
+
+    public function paid($id)
+    {
+        $auction = Auction::findorFail($id);
+        $auction->is_paid = 1;
+        $auction->save();
+        return back()->with('alert-success', 'Paid Successfully');
+
     }
 }

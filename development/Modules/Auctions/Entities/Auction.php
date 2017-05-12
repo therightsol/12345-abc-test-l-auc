@@ -10,7 +10,7 @@ use Modules\CommonBackend\Entities\BaseModel;
 
 class   Auction extends BaseModel
 {
-    protected $fillable = ['bid_starting_amount','car_id', 'average_bit', 'start_date', 'end_date','start_time', 'end_time','winner_user_id', 'is_notify'];
+    protected $fillable = ['bid_starting_amount','car_id', 'average_bit', 'start_date', 'end_date','start_time', 'end_time','winner_user_id', 'is_notify', 'is_paid'];
 
 
     public function scopeFilter($query, $filters)

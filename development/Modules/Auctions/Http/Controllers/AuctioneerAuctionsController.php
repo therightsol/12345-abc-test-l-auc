@@ -25,7 +25,7 @@ class AuctioneerAuctionsController extends Controller
     public function index(Filters $filter, Request $request)
     {
         $filter->belongsTo = [Car::class => ['title']];
-        $filter->column = ['id', 'bid_starting_amount','winner_user_id', 'average_bid', 'start_date', 'end_date'];
+        $filter->column = ['id','is_paid','bid_starting_amount','winner_user_id', 'average_bid', 'start_date', 'end_date'];
         $auctions = Auction::filter($filter)
             ->whereHas('car', function ($q) {
                 $q->where('user_id', \Auth::user()->id);
