@@ -162,6 +162,8 @@ class DBTables extends Migration
             $table->date('end_date')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
+			$table->tinyInteger('is_notify', false, true)->nullable()->unsigned();
+			$table->tinyInteger('is_paid', false, true)->nullable()->unsigned();
             $table->bigInteger('car_id', false, true)->unsigned()->nullable();
             $table->double('bid_starting_amount', 10,2)->nullable();
             $table->bigInteger('winner_user_id', false, true)->unsigned()->nullable();

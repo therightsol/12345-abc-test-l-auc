@@ -123,6 +123,13 @@
             <?php endif; ?>
             <?php if(Auth::user()->hasRole(['auctioneer'])): ?>
                 <li>
+                    <a href="<?php echo e(route('account.auctioneerProfile')); ?>"
+                       class="<?php echo e(Helper::isActiveRoute('account.auctioneerProfile')); ?>">
+                        <div class="gui-icon"><i class="fa fa-user"></i></div>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
+                <li>
                     <a href="<?php echo e(route('auctioneer.inspection.index')); ?>"
                        class="<?php echo e(Helper::isActiveResource('auctioneer.inspection')); ?>">
                         <div class="gui-icon"><i class="fa fa-gears"></i></div>
@@ -138,6 +145,14 @@
                 </li>
             <?php endif; ?>
             <?php if(Auth::user()->hasRole(['bidder'])): ?>
+                <li>
+                    <a href="<?php echo e(route('account.bidderProfile')); ?>"
+                       class="<?php echo e(Helper::isActiveRoute('account.bidderProfile')); ?>">
+                        <div class="gui-icon"><i class="fa fa-user"></i></div>
+                        <span class="title">Profile</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="<?php echo e(route('bidder.bidding')); ?>"
                        class="<?php echo e(Helper::isActiveRoute('bidder.bidding')); ?>">

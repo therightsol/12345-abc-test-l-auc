@@ -35,8 +35,7 @@
     <script type="text/javascript" src="<?php echo e(asset( "frontend/js/jquery.themepunch.tools.min.js" )); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset( "frontend/js/jquery.themepunch.revolution.min.js" )); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset( "frontend/js/wow.min.js" )); ?>"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key&amp;sensor=false"></script>
-
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6e79YqJi36-GzwJwYvg6eLnTqx5CqL8g&sensor=false"></script>
     <!-- END STYLESHEETS -->
     <?php echo $__env->yieldContent('style'); ?>
 
@@ -71,6 +70,7 @@
 <script src="<?php echo e(asset( "frontend/js/jquery.selectbox-0.2.js" )); ?>" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo e(asset( "frontend/js/jquery.mousewheel.js" )); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset( "frontend/js/jquery.easing.js" )); ?>"></script>
+
 <!-- END JAVASCRIPT -->
 <?php echo $__env->yieldContent('js'); ?>
 <?php echo $__env->yieldContent('after-js'); ?>

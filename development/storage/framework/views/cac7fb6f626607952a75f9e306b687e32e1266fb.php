@@ -1,4 +1,7 @@
 <?php $__env->startSection('table'); ?>
+    <div>
+        <?php echo $__env->make('commonbackend::layouts._alert-response', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div><!--end .col -->
     <table class="table table-striped table-hover dataTable">
         <thead>
         <tr>
@@ -8,8 +11,8 @@
             <th class="sorting" data-table="Auction.average_bid">Average Bid</th>
             <th class="sorting" data-table="Auction.start_date">Start Date</th>
             <th class="sorting" data-table="Auction.end_date">End Date</th>
+            <th>Is Paid</th>
             <th>Action</th>
-
         </tr>
         </thead>
         <tbody>
@@ -23,6 +26,13 @@
                 <td><?php echo e($auction->average_bid); ?></td>
                 <td><?php echo e($auction->start_date->format('d F Y')); ?></td>
                 <td><?php echo e($auction->end_date->format('d F Y')); ?></td>
+                <td>
+                    <?php if($auction->is_paid): ?>
+                        Yes
+                    <?php else: ?>
+                        <a href="<?php echo e(route('admin.auctions.paid', ['id' => $auction->id])); ?>"> Paid ?</a>
+                    <?php endif; ?>
+                </td>
                 <td width="150">
                     <a href="<?php echo e(route(Helper::route('edit'),$auction->id)); ?>" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"
                        data-placement="top" data-original-title="Edit row">
@@ -35,24 +45,16 @@
                     </button>
                 </td>
             </tr>
-
             <?php ($i++); ?>
-
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 <?php $__env->stopSection(); ?>
-
-
-
 <?php $__env->startSection('js'); ?>
     ##parent-placeholder-93f8bb0eb2c659b85694486c41717eaf0fe23cd4##
-
     <script>
-
     </script>
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('style'); ?>
     <style>
 

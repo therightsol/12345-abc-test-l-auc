@@ -78,6 +78,7 @@
                                                         alt=""
                                                         data-full-image="<?php echo e($auction->car->getFeaturedImage()); ?>"/></li>
 
+                                            
                                             <?php $__currentLoopData = $auction->car->getGallery(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li data-thumb="<?php echo e(asset($img->file_name)); ?>"><img
                                                             src="<?php echo e(asset($img->file_name)); ?>"
@@ -108,9 +109,7 @@
                                 <ul id="myTab" class="nav nav-tabs">
                                     <li class="active"><a href="#features" data-toggle="tab">Features &amp; Options</a>
                                     </li>
-                                    <li><a href="#technical" data-toggle="tab">Technical Specifications</a></li>
-                                    <li><a href="#location" data-toggle="tab">Vehicle Location</a></li>
-                                    <li><a href="#comments" data-toggle="tab">Other Comments</a></li>
+
                                 </ul>
                                 <div id="myTabContent" class="tab-content margin-top-15 margin-bottom-20">
                                     <div class="tab-pane fade active in" id="features">
@@ -121,166 +120,7 @@
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     </div>
-                                    <div class="tab-pane fade" id="technical">
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Engine</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Layout / number of cylinders</td>
-                                                <td>6</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Displacement</td>
-                                                <td>3.4 l</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Engine Layout</td>
-                                                <td>Mid-engine</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Horespower</td>
-                                                <td>315 hp</td>
-                                            </tr>
-                                            <tr>
-                                                <td>@ rpm</td>
-                                                <td>6,700 rpm</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Torque</td>
-                                                <td>266 lb.-ft.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Compression ratio</td>
-                                                <td>12.5 : 1</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Performance</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Top Track Speed</td>
-                                                <td>173 mph</td>
-                                            </tr>
-                                            <tr>
-                                                <td>0 - 60 mph</td>
-                                                <td>4.8 s</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Transmission</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Manual Gearbox</td>
-                                                <td>6-speed with dual-mass flywheel and self-adjusting clutch</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Fuel consumption</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>City (estimate)</td>
-                                                <td>20</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Highway (estimate)</td>
-                                                <td>28</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Body</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Length</td>
-                                                <td>172.2 in.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Width</td>
-                                                <td>70.9 in.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Height</td>
-                                                <td>50.4 in.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Wheelbase</td>
-                                                <td>97.4 in.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Maximum payload</td>
-                                                <td>739 lbs</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Curb weight</td>
-                                                <td>2910 lbs</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <table class="technical">
-                                            <thead>
-                                            <tr>
-                                                <th>Capacities</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>Luggage compartment volume</td>
-                                                <td>5.3 cu. ft. (front) / 4.6 cu. ft. (rear)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fuel Tank Capacity</td>
-                                                <td>16.9 gal.</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="location">
-                                        <div id='google-map-listing' class="contact" data-longitude='-79.38'
-                                             data-latitude='43.65' data-zoom='11' style="height: 350px;"
-                                             data-parallax="false"></div>
-                                    </div>
-                                    <div class="tab-pane fade" id="comments">
-                                        <p>Vestibulum sit amet ligula eget nibh cursus bibendum et id eros. Nam congue,
-                                            dui quis consectetur blandit, neque neque mattis diam,
-                                            vitae egestas urna lectus eu turpis. In vitae commodo sem. Etiam vehicula
-                                            sed ligula malesuada cursus. Cras augue elit, tempus at dignissim
-                                            sed, egestas eget leo. Vestibulum ante ipsum primis in faucibus orci luctus
-                                            et ultrices posuere cubilia Curae; Nam mollis luctus nibh et
-                                            bibendum. Morbi congue lectus nec congue congue. Nulla molestie feugiat quam
-                                            ac sollicitudin. Nulla sed congue lectus. Donec blandit elit
-                                            sit amet aliquet laoreet.</p>
-                                        <p><img src="<?php echo e(url('images/2017/default-images')); ?>/engine.png" alt="engine"/>
-                                        </p>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -431,7 +271,7 @@
                                         </li>
                                         <li class="hwy_mpg">
                                             <small>Average Bid:</small>
-                                            <strong><?php echo e(Helper::currencySymbol().$auction->bidding->average('bid_amount')); ?></strong>
+                                            <strong><?php echo e(Helper::currencySymbol().round($auction->bidding->average('bid_amount'), 2)); ?></strong>
                                         </li>
                                         <li class="city_mpg">
                                             <small>Min Bid:</small>

@@ -141,6 +141,8 @@ $factory(\Modules\Auctions\Entities\Auction::class, function ($faker) {
         'start_time' => getRandomTime(),
         'end_time' => getRandomTime(),
         'car_id'    => mt_rand($car_asc[0]->id, $car_des[0]->id),
+        'is_notify'    => mt_rand(0,1),
+        'is_paid'    => mt_rand(0,1),
         'bid_starting_amount'   => $bid_starting_amount,
         'winner_user_id'    => $faker->randomElement([null, $uid]),
         'average_bid'   => ( $bid_starting_amount + mt_rand(80000, 500000) ),

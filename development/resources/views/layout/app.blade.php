@@ -35,7 +35,7 @@
     <script type="text/javascript" src="{{ asset( "frontend/js/jquery.themepunch.tools.min.js" )}}"></script>
     <script type="text/javascript" src="{{ asset( "frontend/js/jquery.themepunch.revolution.min.js" )}}"></script>
     <script type="text/javascript" src="{{ asset( "frontend/js/wow.min.js" )}}"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY1f-OSi7eawF6BFawvFI4kLUB39lQ8UY&sensor=false"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6e79YqJi36-GzwJwYvg6eLnTqx5CqL8g&sensor=false"></script>
     <!-- END STYLESHEETS -->
     @yield('style')
 

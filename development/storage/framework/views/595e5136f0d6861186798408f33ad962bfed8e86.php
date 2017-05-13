@@ -155,24 +155,24 @@
                                     <i class="fa fa-car"></i>
 
                                     <span class="animate_number margin-vertical-15">
-                                        <span class="number">2,000</span>
+                                        <span class="number"><?php echo e($totalCars); ?></span>
                                     </span>
 
-                                    Cars Sold
+                                    Total Cars
                                 </div>
 
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-vertical-60">
-                                    <i class="fa fa-money"></i>
+                                    <i class="fa fa-gavel"></i>
 
                                     <span class="animate_number margin-vertical-15">
-                                        $<span class="number">750,000</span>
+                                        <span class="number"><?php echo e($totalAuctions); ?></span>
                                     </span>
 
-                                    Amount Sold
+                                    Total Auctions
                                 </div>
 
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 margin-vertical-60">
-                                    <i class="fa fa-users"></i>
+                                    <i class="fa fa-user"></i>
 
                                     <span class="animate_number margin-vertical-15">
                                         <span class="number">100</span>%
@@ -182,13 +182,13 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padding-right-none margin-vertical-60">
-                                    <i class="fa fa-tint"></i>
+                                    <i class="fa fa-users"></i>
 
                                     <span class="animate_number margin-vertical-15">
-                                        <span class="number">3,600</span>
+                                        <span class="number"><?php echo e($totalUsers); ?></span>
                                     </span>
 
-                                    Oil Changes
+                                    Total Customers
                                 </div>
 
                             </div>
