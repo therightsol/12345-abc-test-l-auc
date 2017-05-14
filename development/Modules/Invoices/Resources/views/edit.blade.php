@@ -11,6 +11,15 @@
                     @if(session()->has('alert-success'))
                         {{ session('alert-success') }}
                         @else
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                     <div class="card">
                         <div class="card-head style-primary">
