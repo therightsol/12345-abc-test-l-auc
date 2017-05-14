@@ -28,6 +28,7 @@
                                         <tbody>
                                         @php($i = $auctions->firstItem())
                                         @foreach($auctions as $auction)
+                                            @if(count($auction->bidding))
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $auction->title }}</td>
@@ -47,6 +48,7 @@
                                                 </td>
                                             </tr>
                                             @php($i++)
+                                            @endif
                                         @endforeach
                                         </tbody>
                                     </table>
