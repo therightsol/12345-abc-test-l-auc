@@ -82,7 +82,7 @@ class BidderInvoiceController extends Controller
                 "description" => "Charge for mason.taylor@example.com"
             ]);
         } catch (Card $e) {
-            return redirect()->route('order')
+            return redirect()->back()
                 ->withErrors($e->getMessage())
                 ->withInput();
         }
