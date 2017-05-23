@@ -141,6 +141,7 @@
                                                 <span style="display: inline;font-size: 12px;color: darkred;">{{ $winner->created_at->format('F d, Y') }}</span>
 
                                             </p>
+
                                             <p class="media-heading">Bid Amount:
                                                 <b>{{ Helper::currencySymbol().$winner->bid_amount }}</b></p>
                                         </div>
@@ -162,19 +163,21 @@
                                         >User Name: <b>{{ $bid->user->username }}</b>
                                             <span style="display: inline;font-size: 12px;color: darkred;">{{ $bid->created_at->format('F d, Y') }}</span>
                                         </p>
+
                                         <div class="media-heading">Bid Amount:
-                                        @if(Auth::check() and Auth::user()->id == $bid->user->id and $auction->isActive())
-                                            <form style="display: inline-block" method="post" action="{{ route('bidder.updateBid', ['id'=> $bid->id]) }}">
-                                                {{ csrf_field() }}
-                                                <input name="amount" style="float: none; width: 200px" type="number"
-                                                       value="{{ $bid->bid_amount }}">
-                                                <input type="submit" value="update">
-                                            </form>
-                                        @else
-                                            <b>{{ Helper::currencySymbol().$bid->bid_amount }}</b>
+                                            @if(Auth::check() and Auth::user()->id == $bid->user->id and $auction->isActive())
+                                                <form id="update_bidding" style="display: inline-block" method="post"
+                                                      action="{{ route('bidder.updateBid', ['id'=> $bid->id]) }}">
+                                                    {{ csrf_field() }}
+                                                    <input name="amount" style="float: none; width: 200px" type="number"
+                                                           value="{{ $bid->bid_amount }}">
+                                                    <input type="submit" value="update">
+                                                </form>
+                                            @else
+                                                <b>{{ Helper::currencySymbol().$bid->bid_amount }}</b>
                                             @endif
 
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -301,4 +304,26 @@
     <!--content ends-->
     <div class="clearfix"></div>
 
+@endsection
+@section('js')
+    @parent
+
+    <script>
+        <?php
+          $bidStartingAmount = 0;
+                        if($auction->bidding->count()){
+                            $bidStartingAmount = $auction->bidding->max('bid_amount');
+                        }
+                    $bidStartingAmount = $bidStartingAmount + 1;
+        ?>
+        $('#update_bidding').submit(function (e) {
+            e.preventDefault();
+            var amount = {{ $bidStartingAmount or 0 }};
+            if (parseInt($('input[name=amount]').val()) < amount) {
+                alert('Min Bid Amount Is ' + amount);
+                return false;
+            }
+            $(this)[0].submit();
+        })
+    </script>
 @endsection

@@ -17,8 +17,16 @@
                 </tr>
                 @endif
                 <tr>
-                    <td>Bid Amount start from ({{ Helper::currencySymbol() }}){{ $auction->bid_starting_amount }}:</td>
-                    <td><input type="number" name="bid_amount" id="bidinput" class="number cost" placeholder="{{ $auction->bid_starting_amount }}"/></td>
+                    <?php
+                        $bidStartingAmount = 0;
+                        if($auction->bidding->count()){
+                            $bidStartingAmount = $auction->bidding->max('bid_amount');
+                        }
+                    $bidStartingAmount = $bidStartingAmount + 1;
+
+                    ?>
+                    <td>Bid Amount start from ({{ Helper::currencySymbol() }}){{ $bidStartingAmount }}:</td>
+                    <td><input type="number" name="bid_amount" id="bidinput" class="number cost" placeholder="{{ $bidStartingAmount }}"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -47,7 +55,7 @@
     <script>
         $('#add_bid').submit(function (e) {
             e.preventDefault();
-            var amount = {{ $auction->bid_starting_amount or 0 }};
+            var amount = {{ $bidStartingAmount or 0 }};
             if (parseInt($('#bidinput').val()) < amount) {
                 alert('Min Bid Amount Is ' + amount);
                 return false;

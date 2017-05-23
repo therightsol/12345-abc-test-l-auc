@@ -58,7 +58,7 @@ class AuctionController extends Controller
             }
         }
 
-//        return $auction;
+//        return $auction->bidding->max('bid_amount');
         return view('auction.show', compact('auction','can'));
     }
 
