@@ -18,7 +18,7 @@
                 @endif
                 <tr>
                     <?php
-                        $bidStartingAmount = 0;
+                    $bidStartingAmount = $auction->bid_starting_amount;
                         if($auction->bidding->count()){
                             $bidStartingAmount = $auction->bidding->max('bid_amount');
                         }

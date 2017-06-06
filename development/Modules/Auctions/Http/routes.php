@@ -26,10 +26,24 @@ Route::group(
     {
 
         Route::get('my-auctions', 'AuctioneerAuctionsController@index')->name('auctions');
+        Route::post('auction-winner/{id}', 'AuctioneerAuctionsController@winner')->name('auctionWinner');
+
+    });
+
+Route::group(
+    [
+        'middleware' => ['web','has_role:auctioneer,admin,staff'],
+        'prefix' => 'account',
+        'as'    =>  'auctioneer.',
+        'namespace' => 'Modules\Auctions\Http\Controllers'
+    ],
+    function(  )
+    {
         Route::get('auction-bids/{id}', 'AuctioneerAuctionsController@auctionBids')->name('auctionBids');
         Route::post('auction-winner/{id}', 'AuctioneerAuctionsController@winner')->name('auctionWinner');
 
     });
+
 Route::group(
     [
         'middleware' => ['web','has_role:bidder'],

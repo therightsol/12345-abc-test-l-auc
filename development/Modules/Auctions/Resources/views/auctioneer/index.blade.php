@@ -23,10 +23,11 @@
                                             <th class="sorting" data-table="Car.title">Title</th>
                                             <th class="sorting" data-table="Auction.bid_starting_amount">Bidding Starting Amount</th>
                                             <th>Total Bids</th>
-                                            <th>Status</th>
+                                            {{--<th>Status</th>--}}
+                                            <th>Winner Username</th>
                                             <th>Is Paid</th>
 
-                                            <th>view All Bids</th>
+                                            <th>View All Bids/<br> declare winner</th>
 
                                         </tr>
                                         </thead>
@@ -39,7 +40,7 @@
                                                 <td><a href="{{ url('view-auction/'.$auction->id) }}">{{ $auction->title }}</a></td>
                                                 <td>{{ $auction->bid_starting_amount }}</td>
                                                 <td>{{ $auction->bidding->count() }}</td>
-                                                <td>{{ ($auction->winner_user_id)? 'Closed': 'Opened' }}</td>
+                                                <td>{{ ($auction->winner_user_id)? $auction->winnerUser->username : 'Winner not declare yet' }}</td>
                                                 <td>
                                                     @if($auction->is_paid)
                                                         Yes

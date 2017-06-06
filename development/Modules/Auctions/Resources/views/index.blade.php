@@ -13,6 +13,7 @@
             <th class="sorting" data-table="Auction.average_bid">Average Bid</th>
             <th class="sorting" data-table="Auction.start_date">Start Date</th>
             <th class="sorting" data-table="Auction.end_date">End Date</th>
+            <th>Winner Username</th>
             <th>Is Paid</th>
             <th>Action</th>
         </tr>
@@ -28,12 +29,18 @@
                 <td>{{ $auction->average_bid }}</td>
                 <td>{{ $auction->start_date->format('d F Y') }}</td>
                 <td>{{ $auction->end_date->format('d F Y') }}</td>
+                <td>{{ ($auction->winner_user_id)? $auction->winnerUser->username : 'Winner not declare yet' }}</td>
+
                 <td>
+                    @if($auction->winner_user_id)
                     @if($auction->is_paid)
                         Yes
                     @else
                         <a href="{{ route('admin.auctions.paid', ['id' => $auction->id]) }}"> Paid ?</a>
                     @endif
+                        @else
+                        Click <a href="{{ route('auctioneer.auctionBids', ['id' => $auction->id]) }}">here</a> to declare winner.
+                        @endif
                 </td>
                 <td width="150">
                     <a href="{{ route(Helper::route('edit'),$auction->id) }}" type="button" class="btn btn-icon-toggle" data-toggle="tooltip"

@@ -30,10 +30,11 @@ class AuctioneerAuctionsController extends Controller
             ->whereHas('car', function ($q) {
                 $q->where('user_id', \Auth::user()->id);
             })
-            ->with('bidding')
+            ->with('winnerUser')
             ->paginate(\Helper::limit($request));
 
 
+//        return $auctions;
         return view('auctions::auctioneer.index', compact('auctions'));
     }
 

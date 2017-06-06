@@ -30,10 +30,12 @@ class AuctionsController extends Controller
     public function index(Filters $filter, Request $request)
     {
         $filter->belongsTo = [Car::class => ['title']];
-        $filter->column = ['id','is_paid', 'bid_starting_amount', 'average_bid', 'start_date', 'end_date'];
-        $auctions = Auction::filter($filter)->paginate(\Helper::limit($request));
-        Session::forget('auction.car');
+        $filter->column = ['id','is_paid', 'bid_starting_amount','winner_user_id', 'average_bid', 'start_date', 'end_date'];
+        $auctions = Auction::filter($filter)
+            ->with('winnerUser')
+            ->paginate(\Helper::limit($request));
 
+//        return $auctions;
         return view('auctions::index', compact('auctions'));
     }
 
@@ -172,7 +174,10 @@ class AuctionsController extends Controller
 
     public function auctionEndNotify()
     {
-        $pendingNotifyAuctions = Auction::where('end_date', '<=', date('Y-m-d'))->where('end_time', '<=', date('H:i:s'))->whereNull('is_notify')->with(['car.user', 'bidding' => function ($q) {
+        $pendingNotifyAuctions = Auction::where('end_date', '<=', date('Y-m-d'))->where('end_time', '<=', date('H:i:s'))->where(function($q){
+            $q->whereNull('is_notify');
+            $q->orWhere('is_notify', 0);
+        })->with(['car.user', 'bidding' => function ($q) {
                 $q->orderBy('bid_amount', 'desc');
                 $q->take(1);
             }, 'bidding.user'])->get();
@@ -180,7 +185,8 @@ class AuctionsController extends Controller
         foreach ($pendingNotifyAuctions as $pendingNotifyAuction) {
             $pendingNotifyAuction->car->user->notify(new EndAuction($pendingNotifyAuction));
             $pendingNotifyAuction->update([
-                'is_notify' => 1
+                'is_notify' => 1,
+                'winner_user_id' => $pendingNotifyAuction->car->user->id,
             ]);
         }
     }

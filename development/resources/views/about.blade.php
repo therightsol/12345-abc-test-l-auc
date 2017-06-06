@@ -139,7 +139,7 @@
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 latest-news margin-padding-none xs-padding-bottom-40 xs-padding-left-none xs-padding-right-none sm-padding-left-none sm-margin-bottom-none scroll_effect fadeInUp animated" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                         <h3 class="margin-bottom-25">LATEST AUTOMOTIVE NEWS</h3>
-                        <div class="arrow1 pull-right blog_post_controls"><a class="bx-next" href=""><i class=" fa fa-chevron-up"></i></a><a class="bx-prev" href=""><i class=" fa fa-chevron-down"></i></a></div>
+                        <div class="arrow1 pull-right blog_post_controls"></div>
                         <div class="bx-wrapper" style="max-width: 100%; margin: 0px auto;"><div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 286px;"><ul class="recent_blog_posts" style="width: auto; position: relative; transition-duration: 0s; transform: translate3d(0px, -308px, 0px);"><li style="float: none; list-style: none; position: relative; width: 473px;" class="bx-clone">
                                         <div class="blog-list">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-info padding-bottom-15 padding-horizontal-5">
@@ -229,7 +229,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 featured-brand-slider scroll_effect fadeInUp margin-top-30 xs-margin-top-none xs-padding-left-none xs-padding-right-none sm-padding-left-none sm-margin-top-15 animated" style="visibility: visible; animation-name: fadeInUp;">
                     <div class="featured-brand">
                         <h3 class="margin-bottom-25">SOME OF OUR FEATURED BRANDS</h3>
-                        <div class="arrow2 pull-right clearfix" id="slideControls"><span class="next-btn"><a class="bx-next" href="">Next</a></span><span class="prev-btn"><a class="bx-prev" href="">Prev</a></span></div>
+                        <div class="arrow2 pull-right clearfix" id="slideControls">
+                            <span class="next-btn"></span><span class="prev-btn"></span></div>
                         <div class="bx-wrapper" style="max-width: 1080px; margin: 0px auto;"><div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 82px;"><div class="carasouel-slider featured_slider" style="width: 1415%; position: relative; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
                                     <div class="slide jquery" style="float: left; list-style: none; position: relative; margin-right: 30px; width: 155px;"><a href="#">jquery</a></div>
                                     <div class="slide html5" style="float: left; list-style: none; position: relative; margin-right: 30px; width: 155px;"><a href="#">html5</a></div>

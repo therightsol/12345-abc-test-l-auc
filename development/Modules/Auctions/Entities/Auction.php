@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Modules\Biddings\Entities\Bidding;
 use Modules\Cars\Entities\Car;
 use Modules\CommonBackend\Entities\BaseModel;
+use Modules\Users\Entities\UserModel;
 
 class   Auction extends BaseModel
 {
@@ -30,7 +31,7 @@ class   Auction extends BaseModel
 
     public function winnerUser()
     {
-        return $this->belongsTo(User::class, 'winner_user_id');
+        return $this->belongsTo(UserModel::class, 'winner_user_id');
     }
 
     public function isActive()
